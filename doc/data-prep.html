@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Data Prep | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study</title>
+  <meta name="description" content="2 Data Prep | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Data Prep | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Data Prep | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
+  
+  
+  
+
+<meta name="author" content="Rayyan Tutunji" />
+
+
+<meta name="date" content="2025-11-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="descriptives.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-prep.html"><a href="data-prep.html"><i class="fa fa-check"></i><b>2</b> Data Prep</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-prep.html"><a href="data-prep.html#processing"><i class="fa fa-check"></i><b>2.1</b> Processing</a></li>
+<li class="chapter" data-level="2.2" data-path="data-prep.html"><a href="data-prep.html#compliance-estimates"><i class="fa fa-check"></i><b>2.2</b> Compliance Estimates</a></li>
+<li class="chapter" data-level="2.3" data-path="data-prep.html"><a href="data-prep.html#data-merger"><i class="fa fa-check"></i><b>2.3</b> Data Merger</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Descriptives</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptives.html"><a href="descriptives.html#demographics"><i class="fa fa-check"></i>Demographics</a></li>
+<li class="chapter" data-level="" data-path="descriptives.html"><a href="descriptives.html#compliance-rates"><i class="fa fa-check"></i>Compliance Rates</a></li>
+<li class="chapter" data-level="" data-path="descriptives.html"><a href="descriptives.html#feature-correlations"><i class="fa fa-check"></i>Feature Correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="imputation.html"><a href="imputation.html"><i class="fa fa-check"></i><b>4</b> Imputation</a></li>
+<li class="chapter" data-level="5" data-path="dataset-creation.html"><a href="dataset-creation.html"><i class="fa fa-check"></i><b>5</b> Dataset Creation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dataset-creation.html"><a href="dataset-creation.html#weekly-data"><i class="fa fa-check"></i><b>5.1</b> Weekly Data</a></li>
+<li class="chapter" data-level="5.2" data-path="dataset-creation.html"><a href="dataset-creation.html#daily-data"><i class="fa fa-check"></i><b>5.2</b> Daily Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dataset-export.html"><a href="dataset-export.html"><i class="fa fa-check"></i><b>6</b> Dataset Export</a></li>
+<li class="chapter" data-level="7" data-path="model-testing.html"><a href="model-testing.html"><i class="fa fa-check"></i><b>7</b> Model Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="model-testing.html"><a href="model-testing.html#model-predictions"><i class="fa fa-check"></i><b>7.1</b> Model Predictions</a></li>
+<li class="chapter" data-level="7.2" data-path="model-testing.html"><a href="model-testing.html#shap-estimate"><i class="fa fa-check"></i><b>7.2</b> SHAP Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>8</b> Results</a></li>
+<li class="chapter" data-level="9" data-path="model-performance.html"><a href="model-performance.html"><i class="fa fa-check"></i><b>9</b> Model Performance</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-performance.html"><a href="model-performance.html#training-cv"><i class="fa fa-check"></i>Training CV</a></li>
+<li class="chapter" data-level="" data-path="model-performance.html"><a href="model-performance.html#test-data"><i class="fa fa-check"></i>Test Data</a></li>
+<li class="chapter" data-level="9.1" data-path="model-performance.html"><a href="model-performance.html#full-results"><i class="fa fa-check"></i><b>9.1</b> Full Results</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="idiographic-model-performance.html"><a href="idiographic-model-performance.html"><i class="fa fa-check"></i><b>10</b> Idiographic Model Performance</a></li>
+<li class="chapter" data-level="11" data-path="shap.html"><a href="shap.html"><i class="fa fa-check"></i><b>11</b> SHAP</a>
+<ul>
+<li class="chapter" data-level="" data-path="shap.html"><a href="shap.html#top-10-daily"><i class="fa fa-check"></i>Top 10 Daily</a></li>
+<li class="chapter" data-level="11.1" data-path="shap.html"><a href="shap.html#top-10-weekly"><i class="fa fa-check"></i><b>11.1</b> Top 10 Weekly</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="supp-analysis.html"><a href="supp-analysis.html"><i class="fa fa-check"></i><b>12</b> Supp Analysis</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="supp-analysis.html"><a href="supp-analysis.html#phq-9-autoregressive-model"><i class="fa fa-check"></i><b>12.1</b> PHQ-9 Autoregressive Model</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-prep" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Data Prep<a href="data-prep.html#data-prep" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Two data sources are used in the current analysis. <em>Stage 1</em> Qualtrics questionnaires with baseline surveys, <em>Stage 2</em> EMA and Garmin data spanning 85 days. <em>Stage 3</em> Qualtrics questionnaires with follow-up surveys are not used. Data was processed via (WARN-Pipe)[<a href="https://github.com/WARN-D/WARNPipe" class="uri">https://github.com/WARN-D/WARNPipe</a>], a set of functions written to process data acquired in WARN-D. The exact steps implemented to process the data can be found in the scripts directory of the project specific GitHub directory, and a brief summary is provided here.</p>
+<ul>
+<li>Stage 1 data was analyzed as follows:
+<ul>
+<li>Variable names were recoded to match the codebook in cases where data exports were inconsistent</li>
+<li>NAN correction was applied to instances where -998 and -999 were present, making NANs explicit</li>
+<li>Scoring was applied to the different scales in the data</li>
+<li>Data was cleaned to remove potential identifiers (I.P. address, emails, etc…)</li>
+</ul></li>
+<li>Stage 2 data was processed as follows:
+<ul>
+<li>First, the different ethica exports containing various stages of EMA data were merged</li>
+<li>As Ethica stores data with one question per row, we also widen the data to a “regular” long EMA format with one survey per row instead</li>
+<li>We finally expand the data to include all potential prompts, as missed prompts were not part of the export</li>
+<li>Garmin data was synced to the EMA data in windows of 15, 30, 60, 120, and 240 minutes before each survey. This was done on the ALICE cluster as well.</li>
+</ul></li>
+</ul>
+<p><em>N.B.</em>: File paths are stored as Renviron variables and are not included in the commit.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-prep.html#cb1-1" tabindex="-1"></a><span class="co"># Set dirs for files we need</span></span>
+<span id="cb1-2"><a href="data-prep.html#cb1-2" tabindex="-1"></a>df_base <span class="ot">=</span> <span class="fu">fread</span>(<span class="fu">here</span>(datasets, <span class="st">&#39;WARND_stage1_c1234_fullset_v2025_10_24.csv&#39;</span>))</span>
+<span id="cb1-3"><a href="data-prep.html#cb1-3" tabindex="-1"></a>df_ema <span class="ot">=</span> <span class="fu">fread</span>(<span class="fu">here</span>(datasets, <span class="st">&#39;WARND_stage2_c1234_fullset_before_60min_v2025_10_24.csv&#39;</span>))</span></code></pre></div>
+<div id="processing" class="section level2 tabset hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Processing<a href="data-prep.html#processing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the data is loaded, we can proceed to transform and generate some variables out of the individual items. This is mostly necessary for the EMA data, were we can estimate some features both for the daily variables, and the weekly variables. We first define our variables of interest, and make vectors out of them, and then apply several transformation on them as described in the next sections. We estimate two sets of features: Daily and Weekly.</p>
+<ul>
+<li>Daily:
+<ul>
+<li>4x/day:
+<ul>
+<li>Here we do some simple processing of the data. First we get vectors of all potential features we’re interested in from both the ethica and garmin data. We estimate sleep starts and end times in minutes, and then we fill in categorical items. In cases where they were not endorsed or selected, we get <code>NA</code>s, which is not correct. So we fill in these instances with 0’s</li>
+</ul></li>
+<li>Morning/Evening (1x/day)
+<ul>
+<li>We do the same as above for the categorical items</li>
+<li>We forward fill the morning items within the same day</li>
+<li>We back fill the evening items within the same day</li>
+</ul></li>
+<li>Evening (1x/day)</li>
+</ul></li>
+<li>Weekly:
+<ul>
+<li>We make sum scores for the depression questionnaires</li>
+<li>Using the sum scores, we set a cut-off for moderate depression</li>
+</ul></li>
+</ul>
+<div id="daily-features" class="section level3 unnumbered hasAnchor">
+<h3>Daily Features<a href="data-prep.html#daily-features" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-prep.html#cb2-1" tabindex="-1"></a><span class="co"># Make vectors out of variables we want</span></span>
+<span id="cb2-2"><a href="data-prep.html#cb2-2" tabindex="-1"></a>ema_day_vars <span class="ot">=</span> <span class="fu">c</span>( <span class="st">&quot;overwhelm_d&quot;</span>, <span class="st">&quot;motivated_d&quot;</span>, <span class="st">&quot;stressed_d&quot;</span>, <span class="st">&quot;ruminate_d&quot;</span>, <span class="st">&quot;tired_d&quot;</span>, <span class="st">&quot;nervous_d&quot;</span>, <span class="st">&quot;sad_d&quot;</span>, <span class="st">&quot;relaxed_d&quot;</span>, <span class="st">&quot;cheerful_d&quot;</span>, <span class="st">&quot;irritable_d&quot;</span>, <span class="st">&quot;activity_enjoy_d&quot;</span>, <span class="st">&quot;location_d&quot;</span>,<span class="st">&quot;offline_enjoy_d&quot;</span>, <span class="st">&quot;online_enjoy_d&quot;</span>)</span>
+<span id="cb2-3"><a href="data-prep.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="data-prep.html#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="data-prep.html#cb2-5" tabindex="-1"></a><span class="co"># Also lets do same for EPA </span></span>
+<span id="cb2-6"><a href="data-prep.html#cb2-6" tabindex="-1"></a>epa_day_hr <span class="ot">=</span> <span class="fu">colnames</span>(df_ema <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;hr_&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&#39;samp&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_w&quot;</span>)) )</span>
+<span id="cb2-7"><a href="data-prep.html#cb2-7" tabindex="-1"></a>epa_day_stress <span class="ot">=</span> <span class="fu">colnames</span>(df_ema <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;stress_&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&#39;samp&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_w&quot;</span>)) )</span>
+<span id="cb2-8"><a href="data-prep.html#cb2-8" tabindex="-1"></a>epa_day_act <span class="ot">=</span> <span class="fu">colnames</span>(df_ema <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;intraday_&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&#39;samp&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_w&quot;</span>)) )</span>
+<span id="cb2-9"><a href="data-prep.html#cb2-9" tabindex="-1"></a>epa_day_bat <span class="ot">=</span> <span class="fu">colnames</span>(df_ema <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;body_bat_&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&#39;samp&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_w&quot;</span>)) )</span>
+<span id="cb2-10"><a href="data-prep.html#cb2-10" tabindex="-1"></a>epa_sleep <span class="ot">=</span> <span class="fu">colnames</span>(df_ema <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;sleep_&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&#39;samp&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_m&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">&quot;sleep_hr&quot;</span>)) )</span>
+<span id="cb2-11"><a href="data-prep.html#cb2-11" tabindex="-1"></a>epa_sleep_hr <span class="ot">=</span> <span class="fu">colnames</span>(df_ema <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;sleep_&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&#39;samp&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_m&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;sleep_hr&quot;</span>)) )</span>
+<span id="cb2-12"><a href="data-prep.html#cb2-12" tabindex="-1"></a>epa_day_summary <span class="ot">=</span> <span class="fu">colnames</span>(df_ema <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;day_&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&#39;samp&#39;</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_num&quot;</span>)) )</span>
+<span id="cb2-13"><a href="data-prep.html#cb2-13" tabindex="-1"></a><span class="co"># put them all togethet</span></span>
+<span id="cb2-14"><a href="data-prep.html#cb2-14" tabindex="-1"></a>epa_day_vars <span class="ot">=</span> <span class="fu">c</span>(epa_day_hr, epa_day_stress, epa_day_act[<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>)], epa_day_bat)</span>
+<span id="cb2-15"><a href="data-prep.html#cb2-15" tabindex="-1"></a>epa_sleep_vars <span class="ot">=</span> <span class="fu">c</span>(epa_sleep_hr, <span class="st">&#39;sleep_start&#39;</span>, <span class="st">&#39;sleep_end&#39;</span>, <span class="st">&#39;sleep_dur_tot_s&#39;</span>)</span>
+<span id="cb2-16"><a href="data-prep.html#cb2-16" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="data-prep.html#cb2-17" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="data-prep.html#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="data-prep.html#cb2-19" tabindex="-1"></a><span class="co"># Convert sleep start and end times to minutes from midnight</span></span>
+<span id="cb2-20"><a href="data-prep.html#cb2-20" tabindex="-1"></a>df_ema <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span></span>
+<span id="cb2-21"><a href="data-prep.html#cb2-21" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>( <span class="fu">across</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">&#39;sleep_start&#39;</span>, <span class="st">&#39;sleep_end&#39;</span>)), <span class="sc">~</span> {</span>
+<span id="cb2-22"><a href="data-prep.html#cb2-22" tabindex="-1"></a>    hour_part <span class="ot">&lt;-</span> <span class="fu">hour</span>(.x)</span>
+<span id="cb2-23"><a href="data-prep.html#cb2-23" tabindex="-1"></a>    minute_part <span class="ot">&lt;-</span> <span class="fu">minute</span>(.x)</span>
+<span id="cb2-24"><a href="data-prep.html#cb2-24" tabindex="-1"></a>    minutes_from_midnight <span class="ot">&lt;-</span> hour_part <span class="sc">*</span> <span class="dv">60</span> <span class="sc">+</span> minute_part</span>
+<span id="cb2-25"><a href="data-prep.html#cb2-25" tabindex="-1"></a>    minutes_from_midnight}, <span class="at">.names =</span> <span class="st">&quot;{.col}&quot;</span> ) )</span>
+<span id="cb2-26"><a href="data-prep.html#cb2-26" tabindex="-1"></a>  </span>
+<span id="cb2-27"><a href="data-prep.html#cb2-27" tabindex="-1"></a><span class="co"># Now fix the daily category items</span></span>
+<span id="cb2-28"><a href="data-prep.html#cb2-28" tabindex="-1"></a><span class="do">## First select the coloumns</span></span>
+<span id="cb2-29"><a href="data-prep.html#cb2-29" tabindex="-1"></a>activity_cat_d <span class="ot">=</span>  <span class="fu">colnames</span>(df_ema)[<span class="fu">grep</span>(<span class="st">&#39;^activity_cat_d&#39;</span>, <span class="fu">colnames</span>(df_ema))]</span>
+<span id="cb2-30"><a href="data-prep.html#cb2-30" tabindex="-1"></a>online_cat_d <span class="ot">=</span> <span class="fu">colnames</span>(df_ema)[<span class="fu">grep</span>(<span class="st">&#39;^online_cat_d&#39;</span>, <span class="fu">colnames</span>(df_ema))]</span>
+<span id="cb2-31"><a href="data-prep.html#cb2-31" tabindex="-1"></a>offline_cat_d <span class="ot">=</span> <span class="fu">colnames</span>(df_ema)[<span class="fu">grep</span>(<span class="st">&#39;^offline_cat_d&#39;</span>, <span class="fu">colnames</span>(df_ema))]</span>
+<span id="cb2-32"><a href="data-prep.html#cb2-32" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="data-prep.html#cb2-33" tabindex="-1"></a>categorical_items_d <span class="ot">=</span> <span class="fu">c</span>(activity_cat_d, offline_cat_d, online_cat_d)</span>
+<span id="cb2-34"><a href="data-prep.html#cb2-34" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="data-prep.html#cb2-35" tabindex="-1"></a>df_ema <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span> </span>
+<span id="cb2-36"><a href="data-prep.html#cb2-36" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(categorical_items_d), <span class="sc">~</span> <span class="fu">if_else</span>(.x <span class="sc">&gt;</span><span class="dv">0</span>, <span class="dv">1</span>, .x)), <span class="co"># First turn into binary items for categories</span></span>
+<span id="cb2-37"><a href="data-prep.html#cb2-37" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">all_of</span>(categorical_items_d), <span class="sc">~</span> <span class="fu">if_else</span>( (<span class="fu">is.na</span>(.x) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(activity_enjoy_d)), <span class="dv">0</span>, .x)) )<span class="co"># Now replace the unselected MCQ options with 0</span></span></code></pre></div>
+</div>
+<div id="morningevening-features" class="section level3 unnumbered hasAnchor">
+<h3>Morning/Evening Features<a href="data-prep.html#morningevening-features" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-prep.html#cb3-1" tabindex="-1"></a>ema_mor_vars <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;sleep_qual_m&#39;</span>,<span class="st">&#39;sleep_rest_m&#39;</span>,<span class="st">&#39;outlook_m&#39;</span>)</span>
+<span id="cb3-2"><a href="data-prep.html#cb3-2" tabindex="-1"></a>pos_exp_cats <span class="ot">=</span> <span class="fu">colnames</span>(df_ema)[<span class="fu">grep</span>(<span class="st">&#39;^pos_exp_cat_e&#39;</span>, <span class="fu">colnames</span>(df_ema))]</span>
+<span id="cb3-3"><a href="data-prep.html#cb3-3" tabindex="-1"></a>neg_exp_cats <span class="ot">=</span> <span class="fu">colnames</span>(df_ema)[<span class="fu">grep</span>(<span class="st">&#39;^neg_exp_cat_e&#39;</span>, <span class="fu">colnames</span>(df_ema))]</span>
+<span id="cb3-4"><a href="data-prep.html#cb3-4" tabindex="-1"></a>substance_cats <span class="ot">=</span> <span class="fu">colnames</span>(df_ema)[<span class="fu">grep</span>(<span class="st">&#39;^substance_e&#39;</span>, <span class="fu">colnames</span>(df_ema))]</span>
+<span id="cb3-5"><a href="data-prep.html#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="data-prep.html#cb3-6" tabindex="-1"></a>ema_eve_vars <span class="ot">=</span> <span class="fu">c</span>( <span class="st">&#39;discomfort_e&#39;</span>, <span class="st">&#39;emo_reg_e&#39;</span>, <span class="st">&#39;useful_e&#39;</span>, <span class="st">&#39;neg_exp_e&#39;</span>, <span class="st">&#39;pos_exp_e&#39;</span>,  pos_exp_cats, neg_exp_cats, substance_cats)</span>
+<span id="cb3-7"><a href="data-prep.html#cb3-7" tabindex="-1"></a>ema_eve_vars <span class="ot">=</span> ema_eve_vars[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;_NA&quot;</span>, ema_eve_vars)]</span>
+<span id="cb3-8"><a href="data-prep.html#cb3-8" tabindex="-1"></a>df_ema <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="data-prep.html#cb3-9" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, date) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="data-prep.html#cb3-10" tabindex="-1"></a>  <span class="co"># Here we check for the MC questions, if an evening is anwered by cat is NA, replace with 0</span></span>
+<span id="cb3-11"><a href="data-prep.html#cb3-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(pos_exp_cats, neg_exp_cats, substance_cats)), <span class="sc">~</span> <span class="fu">if_else</span>( (<span class="fu">is.na</span>(.x) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(emo_reg_e)), <span class="dv">0</span>, .x))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="data-prep.html#cb3-12" tabindex="-1"></a>  <span class="fu">fill</span>(<span class="fu">all_of</span>(ema_mor_vars), <span class="at">.direction =</span> <span class="st">&#39;down&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-13"><a href="data-prep.html#cb3-13" tabindex="-1"></a>  <span class="fu">fill</span>(<span class="fu">all_of</span>(ema_eve_vars), <span class="at">.direction =</span> <span class="st">&#39;up&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-14"><a href="data-prep.html#cb3-14" tabindex="-1"></a>  <span class="fu">ungroup</span>()  <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="data-prep.html#cb3-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(neg_exp_cats, pos_exp_cats, substance_cats)), <span class="sc">~</span> <span class="fu">if_else</span>(.x<span class="sc">&gt;</span><span class="dv">0</span>, <span class="dv">1</span>, .x)))</span></code></pre></div>
+</div>
+<div id="weekly-features" class="section level3 unnumbered hasAnchor">
+<h3>Weekly Features<a href="data-prep.html#weekly-features" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-prep.html#cb4-1" tabindex="-1"></a><span class="co"># First make the grouping factor</span></span>
+<span id="cb4-2"><a href="data-prep.html#cb4-2" tabindex="-1"></a>df_ema<span class="sc">$</span>week_n <span class="ot">=</span> <span class="fu">isoweek</span>(df_ema<span class="sc">$</span>date)</span>
+<span id="cb4-3"><a href="data-prep.html#cb4-3" tabindex="-1"></a><span class="co"># create a list of PHQ items</span></span>
+<span id="cb4-4"><a href="data-prep.html#cb4-4" tabindex="-1"></a>phq_items_w <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;phq5_appet_loss_w&quot;</span>, <span class="st">&quot;phq7_concentr_w&quot;</span> , <span class="st">&quot;phq5_overeat_w&quot;</span>, <span class="st">&quot;phq8_retar_w&quot;</span>, <span class="st">&quot;phq9_suicide_w&quot;</span>, <span class="st">&quot;phq12_libido_w&quot;</span>, </span>
+<span id="cb4-5"><a href="data-prep.html#cb4-5" tabindex="-1"></a>  <span class="st">&quot;phq6_worthless_w&quot;</span> , <span class="st">&quot;phq11_irrit_w&quot;</span>, <span class="st">&quot;phq2_sad_w&quot;</span> , <span class="st">&quot;phq8_agitate_w&quot;</span>, <span class="st">&quot;phq2_hopeless_w&quot;</span>, <span class="st">&quot;phq1_anhedo_w&quot;</span> , </span>
+<span id="cb4-6"><a href="data-prep.html#cb4-6" tabindex="-1"></a>  <span class="st">&quot;phq3_insomnia_w&quot;</span>, <span class="st">&quot;phq3_hypersom_w&quot;</span> , <span class="st">&quot;phq4_tired_w&quot;</span>)  </span>
+<span id="cb4-7"><a href="data-prep.html#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="data-prep.html#cb4-8" tabindex="-1"></a><span class="co"># First we estimate the evening depression</span></span>
+<span id="cb4-9"><a href="data-prep.html#cb4-9" tabindex="-1"></a>df_ema <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span> </span>
+<span id="cb4-10"><a href="data-prep.html#cb4-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phq2_sum_e =</span> anhedonia_e <span class="sc">+</span> depressed_e)</span>
+<span id="cb4-11"><a href="data-prep.html#cb4-11" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="data-prep.html#cb4-12" tabindex="-1"></a><span class="co"># estimate PHQ9 Sum score for weekly too</span></span>
+<span id="cb4-13"><a href="data-prep.html#cb4-13" tabindex="-1"></a>df_ema <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span> </span>
+<span id="cb4-14"><a href="data-prep.html#cb4-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">phq9_sum_w =</span> pseudo_phq9_sum_w) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-15"><a href="data-prep.html#cb4-15" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb4-16"><a href="data-prep.html#cb4-16" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="data-prep.html#cb4-17" tabindex="-1"></a><span class="co"># Create a week variable for grouping</span></span>
+<span id="cb4-18"><a href="data-prep.html#cb4-18" tabindex="-1"></a>df_ema <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span> </span>
+<span id="cb4-19"><a href="data-prep.html#cb4-19" tabindex="-1"></a>  <span class="co"># Estimate the week number and weekly days</span></span>
+<span id="cb4-20"><a href="data-prep.html#cb4-20" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-21"><a href="data-prep.html#cb4-21" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week_nr =</span> <span class="fu">floor</span>(<span class="fu">as.numeric</span>(<span class="fu">difftime</span>(date, <span class="fu">min</span>(date, <span class="at">na.rm =</span> T), <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>))) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-22"><a href="data-prep.html#cb4-22" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, week_nr) <span class="sc">%&gt;%</span></span>
+<span id="cb4-23"><a href="data-prep.html#cb4-23" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day_nr =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(date, <span class="fu">min</span>(date, <span class="at">na.rm =</span> T), <span class="at">units =</span> <span class="st">&quot;days&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-24"><a href="data-prep.html#cb4-24" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb4-25"><a href="data-prep.html#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="data-prep.html#cb4-26" tabindex="-1"></a><span class="co"># Now estimate the daily and weekly depression</span></span>
+<span id="cb4-27"><a href="data-prep.html#cb4-27" tabindex="-1"></a>df_ema <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span> </span>
+<span id="cb4-28"><a href="data-prep.html#cb4-28" tabindex="-1"></a>  <span class="co"># Estimate the centered valyes for the phq9</span></span>
+<span id="cb4-29"><a href="data-prep.html#cb4-29" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span></span>
+<span id="cb4-30"><a href="data-prep.html#cb4-30" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(phq_items_w, <span class="st">&#39;phq9_sum_w&#39;</span>)), <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span>T)),<span class="at">.names =</span>  <span class="st">&quot;{.col}_c&quot;</span> )) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-31"><a href="data-prep.html#cb4-31" tabindex="-1"></a>  <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb4-32"><a href="data-prep.html#cb4-32" tabindex="-1"></a>  <span class="co"># Fill backwards daily</span></span>
+<span id="cb4-33"><a href="data-prep.html#cb4-33" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, day_nr) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-34"><a href="data-prep.html#cb4-34" tabindex="-1"></a>  <span class="fu">fill</span>(phq2_sum_e, <span class="at">.direction =</span> <span class="st">&#39;up&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-35"><a href="data-prep.html#cb4-35" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-36"><a href="data-prep.html#cb4-36" tabindex="-1"></a>  <span class="co"># Fill backwards weekly</span></span>
+<span id="cb4-37"><a href="data-prep.html#cb4-37" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, week_nr) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-38"><a href="data-prep.html#cb4-38" tabindex="-1"></a>  <span class="fu">fill</span>(phq9_sum_w, <span class="at">.direction =</span> <span class="st">&#39;updown&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-39"><a href="data-prep.html#cb4-39" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb4-40"><a href="data-prep.html#cb4-40" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="data-prep.html#cb4-41" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="data-prep.html#cb4-42" tabindex="-1"></a><span class="co"># Estimate the cutoff for PHQ 9</span></span>
+<span id="cb4-43"><a href="data-prep.html#cb4-43" tabindex="-1"></a>df_ema<span class="sc">$</span>phq9_cuttoff <span class="ot">=</span> <span class="fu">ifelse</span>(df_ema<span class="sc">$</span>phq9_sum_w <span class="sc">&gt;</span> <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="compliance-estimates" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Compliance Estimates<a href="data-prep.html#compliance-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we make some compliance estimates for the data. We do this for the EMA and garmin data separately.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-prep.html#cb5-1" tabindex="-1"></a><span class="co"># Add comploance rates (without prompt_5)</span></span>
+<span id="cb5-2"><a href="data-prep.html#cb5-2" tabindex="-1"></a>df_ema_compliance <span class="ot">=</span> df_ema <span class="sc">%&gt;%</span> <span class="fu">filter</span>(prompt_num <span class="sc">!=</span> <span class="dv">5</span>)</span>
+<span id="cb5-3"><a href="data-prep.html#cb5-3" tabindex="-1"></a>df_ema_compliance<span class="sc">$</span>compliance <span class="ot">=</span> esmpack<span class="sc">::</span><span class="fu">calc.nomiss</span>(sad_d, <span class="at">id =</span> external_id, <span class="at">data =</span> df_ema_compliance, <span class="at">prop =</span> T, <span class="at">expand =</span> T)</span>
+<span id="cb5-4"><a href="data-prep.html#cb5-4" tabindex="-1"></a>df_ema_compliance<span class="sc">$</span>compliance_hr <span class="ot">=</span> esmpack<span class="sc">::</span><span class="fu">calc.nomiss</span>(hr_mean, <span class="at">id =</span> external_id, <span class="at">data =</span> df_ema_compliance, <span class="at">prop =</span> T, <span class="at">expand =</span> T)</span>
+<span id="cb5-5"><a href="data-prep.html#cb5-5" tabindex="-1"></a>df_ema_compliance<span class="sc">$</span>compliance_stress <span class="ot">=</span> esmpack<span class="sc">::</span><span class="fu">calc.nomiss</span>(stress_mean, <span class="at">id =</span> external_id, <span class="at">data =</span> df_ema_compliance, <span class="at">prop =</span> T, <span class="at">expand =</span> T)</span>
+<span id="cb5-6"><a href="data-prep.html#cb5-6" tabindex="-1"></a>df_ema_compliance <span class="ot">=</span> df_ema_compliance <span class="sc">%&gt;%</span> <span class="fu">select</span>(external_id, <span class="fu">starts_with</span>(<span class="st">&quot;compliance&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb5-7"><a href="data-prep.html#cb5-7" tabindex="-1"></a><span class="co"># Add compliance rates to main df</span></span>
+<span id="cb5-8"><a href="data-prep.html#cb5-8" tabindex="-1"></a>df_ema <span class="ot">=</span> <span class="fu">merge</span>(df_ema, df_ema_compliance, <span class="at">by =</span> <span class="st">&#39;external_id&#39;</span>, <span class="at">all =</span> T)</span></code></pre></div>
+</div>
+<div id="data-merger" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Data Merger<a href="data-prep.html#data-merger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the preprocessing is done, we attach the EMA data to the baseline data so that we can get per-subject values for our descriptives.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-prep.html#cb6-1" tabindex="-1"></a><span class="co"># Merge base to ema</span></span>
+<span id="cb6-2"><a href="data-prep.html#cb6-2" tabindex="-1"></a>df_merge <span class="ot">=</span> <span class="fu">merge</span>(df_base, df_ema, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;external_id&#39;</span>, <span class="st">&#39;cohort&#39;</span>), <span class="at">all =</span> T)</span>
+<span id="cb6-3"><a href="data-prep.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="data-prep.html#cb6-4" tabindex="-1"></a><span class="co"># Filter based on compliance</span></span>
+<span id="cb6-5"><a href="data-prep.html#cb6-5" tabindex="-1"></a>df_merge <span class="ot">=</span> df_merge[df_merge<span class="sc">$</span>compliance <span class="sc">&gt;</span> <span class="fl">0.3</span>, ]</span>
+<span id="cb6-6"><a href="data-prep.html#cb6-6" tabindex="-1"></a>df_merge <span class="ot">=</span> df_merge[<span class="sc">!</span><span class="fu">is.na</span>(df_merge<span class="sc">$</span>cohort), ]</span>
+<span id="cb6-7"><a href="data-prep.html#cb6-7" tabindex="-1"></a>df_merge <span class="ot">=</span> df_merge[<span class="sc">!</span><span class="fu">is.na</span>(df_merge<span class="sc">$</span>prompt_num), ]</span>
+<span id="cb6-8"><a href="data-prep.html#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="data-prep.html#cb6-9" tabindex="-1"></a><span class="co"># read training list and filter subjects</span></span>
+<span id="cb6-10"><a href="data-prep.html#cb6-10" tabindex="-1"></a>training_set <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="fu">paste</span>(project_folder, <span class="st">&#39;data&#39;</span>, <span class="st">&#39;participants&#39;</span>, <span class="st">&#39;linked_ids_training_set_seed666_by_Cohort.csv&#39;</span>, <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>))</span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descriptives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

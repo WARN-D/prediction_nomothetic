@@ -1,0 +1,8 @@
+week,ema
+week,epa
+week,all
+day,ema
+day,epa
+day,all
+day,phq
+week,phq

@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RDataTmp
+.Renviron
+.Rdata
+.httr-oauth
+.DS_Store
+.quarto
+archive/*
+data/*
+results/*
+figures/*.svg

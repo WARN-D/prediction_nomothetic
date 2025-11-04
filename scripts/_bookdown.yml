@@ -1,0 +1,8 @@
+book_filename: "final_report"
+rmd_files:
+  - "00_index.Rmd"
+  - "01_dataprep.Rmd"
+  - "02_model_testing.Rmd"
+  - "03_results.Rmd"
+delete_merged_file: true
+output_dir: "../docs"

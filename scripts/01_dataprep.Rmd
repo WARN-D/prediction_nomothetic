@@ -1,0 +1,565 @@
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# runtime: shiny_prerendered # for learner
+# Data Manipulation
+library(here)
+library(data.table)
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(mice)
+
+
+# parallel processing
+library(progressr)
+library(foreach)
+library(parallel)
+library(doSNOW)
+library(progress)
+# Stats
+library(lmerTest)
+library(corrr)
+library(corrplot)
+
+# Machine Learning
+library(caret)
+library(keras)
+library(tfruns)
+library(kernelshap)
+library(shapviz)
+
+# Markdown and Plots
+library(knitr)
+library(WARNPipe)
+
+# Functions
+source(here('scripts', 'functions.R'))
+Sys.getlocale()
+```
+
+# Data Prep
+
+Two data sources are used in the current analysis. *Stage 1* Qualtrics questionnaires with baseline surveys, *Stage 2* EMA and Garmin data spanning 85 days. *Stage 3* Qualtrics questionnaires with follow-up surveys are not used. Data was processed via (WARN-Pipe)[https://github.com/WARN-D/WARNPipe], a set of functions written to process data acquired in WARN-D. The exact steps implemented to process the data can be found in the scripts directory of the project specific GitHub directory, and a brief summary is provided here.
+
+-   Stage 1 data was analyzed as follows:
+    -   Variable names were recoded to match the codebook in cases where data exports were inconsistent
+    -   NAN correction was applied to instances where -998 and -999 were present, making NANs explicit
+    -   Scoring was applied to the different scales in the data
+    -   Data was cleaned to remove potential identifiers (I.P. address, emails, etc...)
+-   Stage 2 data was processed as follows:
+    -   First, the different ethica exports containing various stages of EMA data were merged
+    -   As Ethica stores data with one question per row, we also widen the data to a "regular" long EMA format with one survey per row instead
+    -   We finally expand the data to include all potential prompts, as missed prompts were not part of the export
+    -   Garmin data was synced to the EMA data in windows of 15, 30, 60, 120, and 240 minutes before each survey. This was done on the ALICE cluster as well.
+  
+_N.B._: File paths are stored as Renviron variables and are not included in the commit.
+
+```{r}
+# Set dirs for files we need
+df_base = fread(here(datasets, 'WARND_stage1_c1234_fullset_v2025_10_24.csv'))
+df_ema = fread(here(datasets, 'WARND_stage2_c1234_fullset_before_60min_v2025_10_24.csv'))
+```
+
+## Processing {.tabset}
+
+Now that the data is loaded, we can proceed to transform and generate some variables out of the individual items. This is mostly necessary for the EMA data, were we can estimate some features both for the daily variables, and the weekly variables. We first define our variables of interest, and make vectors out of them, and then apply several transformation on them as described in the next sections. We estimate two sets of features: Daily and Weekly. 
+
+- Daily: 
+  - 4x/day:
+    - Here we do some simple processing of the data. First we get vectors of all potential features we're interested in from both the ethica and garmin data. We estimate sleep starts and end times in minutes, and then we fill in categorical items. In cases where they were not endorsed or selected, we get `NA`s, which is not correct. So we fill in these instances with 0's
+  - Morning/Evening (1x/day)
+    - We do the same as above for the categorical items
+    - We forward fill the morning items within the same day
+    - We back fill the evening items within the same day
+  - Evening (1x/day)
+  
+- Weekly:
+  - We make sum scores for the depression questionnaires
+  - Using the sum scores, we set a cut-off for moderate depression
+  
+### Daily Features {-}
+```{r}
+
+# Make vectors out of variables we want
+ema_day_vars = c( "overwhelm_d", "motivated_d", "stressed_d", "ruminate_d", "tired_d", "nervous_d", "sad_d", "relaxed_d", "cheerful_d", "irritable_d", "activity_enjoy_d", "location_d","offline_enjoy_d", "online_enjoy_d")
+
+
+# Also lets do same for EPA 
+epa_day_hr = colnames(df_ema %>% select(starts_with("hr_")) %>% select(!ends_with('samp')) %>% select(!ends_with("_w")) )
+epa_day_stress = colnames(df_ema %>% select(starts_with("stress_")) %>% select(!ends_with('samp')) %>% select(!ends_with("_w")) )
+epa_day_act = colnames(df_ema %>% select(starts_with("intraday_")) %>% select(!ends_with('samp')) %>% select(!ends_with("_w")) )
+epa_day_bat = colnames(df_ema %>% select(starts_with("body_bat_")) %>% select(!ends_with('samp')) %>% select(!ends_with("_w")) )
+epa_sleep = colnames(df_ema %>% select(starts_with("sleep_")) %>% select(!ends_with('samp')) %>% select(!ends_with("_m")) %>% select(!starts_with("sleep_hr")) )
+epa_sleep_hr = colnames(df_ema %>% select(starts_with("sleep_")) %>% select(!ends_with('samp')) %>% select(!ends_with("_m")) %>% select(starts_with("sleep_hr")) )
+epa_day_summary = colnames(df_ema %>% select(starts_with("day_")) %>% select(!ends_with('samp')) %>% select(!ends_with("_num")) )
+# put them all togethet
+epa_day_vars = c(epa_day_hr, epa_day_stress, epa_day_act[c(2:5,7,8)], epa_day_bat)
+epa_sleep_vars = c(epa_sleep_hr, 'sleep_start', 'sleep_end', 'sleep_dur_tot_s')
+
+
+
+# Convert sleep start and end times to minutes from midnight
+df_ema = df_ema %>%
+  dplyr::mutate( across(all_of(c('sleep_start', 'sleep_end')), ~ {
+    hour_part <- hour(.x)
+    minute_part <- minute(.x)
+    minutes_from_midnight <- hour_part * 60 + minute_part
+    minutes_from_midnight}, .names = "{.col}" ) )
+  
+# Now fix the daily category items
+## First select the coloumns
+activity_cat_d =  colnames(df_ema)[grep('^activity_cat_d', colnames(df_ema))]
+online_cat_d = colnames(df_ema)[grep('^online_cat_d', colnames(df_ema))]
+offline_cat_d = colnames(df_ema)[grep('^offline_cat_d', colnames(df_ema))]
+
+categorical_items_d = c(activity_cat_d, offline_cat_d, online_cat_d)
+
+df_ema = df_ema %>% 
+  mutate(across(all_of(categorical_items_d), ~ if_else(.x >0, 1, .x)), # First turn into binary items for categories
+         across(all_of(categorical_items_d), ~ if_else( (is.na(.x) & !is.na(activity_enjoy_d)), 0, .x)) )# Now replace the unselected MCQ options with 0
+
+```
+
+### Morning/Evening Features {-}
+```{r}
+ema_mor_vars = c('sleep_qual_m','sleep_rest_m','outlook_m')
+pos_exp_cats = colnames(df_ema)[grep('^pos_exp_cat_e', colnames(df_ema))]
+neg_exp_cats = colnames(df_ema)[grep('^neg_exp_cat_e', colnames(df_ema))]
+substance_cats = colnames(df_ema)[grep('^substance_e', colnames(df_ema))]
+
+ema_eve_vars = c( 'discomfort_e', 'emo_reg_e', 'useful_e', 'neg_exp_e', 'pos_exp_e',  pos_exp_cats, neg_exp_cats, substance_cats)
+ema_eve_vars = ema_eve_vars[!grepl("_NA", ema_eve_vars)]
+df_ema = df_ema %>% 
+  group_by(external_id, date) %>% 
+  # Here we check for the MC questions, if an evening is anwered by cat is NA, replace with 0
+  mutate(across(all_of(c(pos_exp_cats, neg_exp_cats, substance_cats)), ~ if_else( (is.na(.x) & !is.na(emo_reg_e)), 0, .x))) %>%
+  fill(all_of(ema_mor_vars), .direction = 'down') %>% 
+  fill(all_of(ema_eve_vars), .direction = 'up') %>% 
+  ungroup()  %>%
+  mutate(across(all_of(c(neg_exp_cats, pos_exp_cats, substance_cats)), ~ if_else(.x>0, 1, .x)))
+
+
+```
+
+
+### Weekly Features {-}
+```{r}
+# First make the grouping factor
+df_ema$week_n = isoweek(df_ema$date)
+# create a list of PHQ items
+phq_items_w = c("phq5_appet_loss_w", "phq7_concentr_w" , "phq5_overeat_w", "phq8_retar_w", "phq9_suicide_w", "phq12_libido_w", 
+  "phq6_worthless_w" , "phq11_irrit_w", "phq2_sad_w" , "phq8_agitate_w", "phq2_hopeless_w", "phq1_anhedo_w" , 
+  "phq3_insomnia_w", "phq3_hypersom_w" , "phq4_tired_w")  
+
+# First we estimate the evening depression
+df_ema = df_ema %>% 
+  mutate(phq2_sum_e = anhedonia_e + depressed_e)
+
+# estimate PHQ9 Sum score for weekly too
+df_ema = df_ema %>% 
+  dplyr::mutate(phq9_sum_w = pseudo_phq9_sum_w) %>% 
+  ungroup()
+
+# Create a week variable for grouping
+df_ema = df_ema %>% 
+  # Estimate the week number and weekly days
+  group_by(external_id) %>% 
+  mutate(week_nr = floor(as.numeric(difftime(date, min(date, na.rm = T), units = "weeks"))) ) %>% 
+  group_by(external_id, week_nr) %>%
+  mutate(day_nr = as.numeric(difftime(date, min(date, na.rm = T), units = "days"))) %>% 
+  ungroup()
+
+# Now estimate the daily and weekly depression
+df_ema = df_ema %>% 
+  # Estimate the centered valyes for the phq9
+  dplyr::group_by(external_id) %>%
+  dplyr::mutate(across(all_of(c(phq_items_w, 'phq9_sum_w')), ~ (.x - mean(.x, na.rm =T)),.names =  "{.col}_c" )) %>% 
+  arrange(date) %>%
+  # Fill backwards daily
+  group_by(external_id, day_nr) %>% 
+  fill(phq2_sum_e, .direction = 'up') %>%
+  ungroup() %>%
+  # Fill backwards weekly
+  group_by(external_id, week_nr) %>% 
+  fill(phq9_sum_w, .direction = 'updown') %>%
+  ungroup()
+
+
+# Estimate the cutoff for PHQ 9
+df_ema$phq9_cuttoff = ifelse(df_ema$phq9_sum_w > 9, 1, 0)
+```
+
+
+## Compliance Estimates
+
+Now we make some compliance estimates for the data. We do this for the EMA and garmin data separately.
+```{r}
+
+# Add comploance rates (without prompt_5)
+df_ema_compliance = df_ema %>% filter(prompt_num != 5)
+df_ema_compliance$compliance = esmpack::calc.nomiss(sad_d, id = external_id, data = df_ema_compliance, prop = T, expand = T)
+df_ema_compliance$compliance_hr = esmpack::calc.nomiss(hr_mean, id = external_id, data = df_ema_compliance, prop = T, expand = T)
+df_ema_compliance$compliance_stress = esmpack::calc.nomiss(stress_mean, id = external_id, data = df_ema_compliance, prop = T, expand = T)
+df_ema_compliance = df_ema_compliance %>% select(external_id, starts_with("compliance")) %>% distinct()
+# Add compliance rates to main df
+df_ema = merge(df_ema, df_ema_compliance, by = 'external_id', all = T)
+```
+
+## Data Merger
+
+Now that the preprocessing is done, we attach the EMA data to the baseline data so that we can get per-subject values for our descriptives. 
+```{r}
+# Merge base to ema
+df_merge = merge(df_base, df_ema, by = c('external_id', 'cohort'), all = T)
+
+# Filter based on compliance
+df_merge = df_merge[df_merge$compliance > 0.3, ]
+df_merge = df_merge[!is.na(df_merge$cohort), ]
+df_merge = df_merge[!is.na(df_merge$prompt_num), ]
+
+# read training list and filter subjects
+training_set = read.csv(paste(project_folder, 'data', 'participants', 'linked_ids_training_set_seed666_by_Cohort.csv', sep = "/"))
+
+```
+
+# Descriptives {.tabset}
+
+Lets take a look at some general data exploration and descriptives here. I specifically want to look at demopgraphics and EMA compliance rates. I'll also take a look at the general distributions and trends in the data. We check the correlations between our different features. We use the baseline PHQ, Garmin, and EMA variables. We first check the overall correlations, and then check the ones with r > 0.7 for feature selection. This helps us make our models a bit more parsimonious. Based on these matrices, we see that HR mean is highly correlated with the mean, and minimum of the stress measure, mean of the body battery is also highly correlated with the mean and minimum.
+
+
+## Demographics {.unnumbered}
+```{r}
+library(summarytools)
+df_descriptive = merge(training_set, df_merge, by = c("external_id", "cohort"), all.y = T)
+df_descriptive <-  df_descriptive%>%  dplyr::rowwise() %>%
+    dplyr::mutate(sum_lidas = sum(core1_lidas, core2_lidas, core3_lidas, lidas_13,appetite_lidas,
+                                  sleep_lidas,motor_lidas,concentr_lidas,lidas_27,lidas_28, 
+                                  na.rm=T),
+                  lidas_cut_off = ifelse( ((core1_lidas==1 | core2_lidas == 1 | core3_lidas == 1) &  sum_lidas>=5 & lidas_29==1), 1, 0))
+
+df_desc_summ = df_descriptive %>%
+  mutate(training_set = if_else(training_set == 1, 'train', 'test')) %>%
+  group_by(training_set) %>%
+  distinct(external_id, .keep_all = T) %>% 
+  select(age, sex, lvl_edu, nationality, sss, pseudo_phq9_sum, lidas_cut_off) %>% 
+  mutate(across(c("sex", "lvl_edu", "nationality", "lidas_cut_off"), ~ factor(.x)))
+
+dfSummary(df_desc_summ, plain.ascii = T, graph.col = F)
+
+```
+
+
+## Compliance Rates {.unnumbered}
+
+Here are the compliance rates
+```{r}
+message("EMA Compliance")
+(summary(df_ema_compliance$compliance, title="EMA"))
+message("Garmin Compliance")
+summary(df_ema_compliance$compliance_hr)
+```
+
+And now plots for the distribution of the compliance rates:
+```{r}
+df_merge$cohort = as.factor(df_merge$cohort)
+ggpubr::ggarrange(
+  ggplot(df_merge, aes(x=compliance, fill = cohort)) + geom_histogram(bins = 50) + labs(x="Compliance-EMA") + facet_grid(.~cohort), 
+  ggplot(df_merge, aes(x=compliance_hr, fill = cohort)) + geom_histogram(bins = 50) +  labs(x="Compliance-HR") + facet_grid(.~cohort),
+  ggplot(df_merge, aes(x=compliance_stress, fill = cohort)) + geom_histogram(bins=50) + labs(x="Compliance-Stress")+ facet_grid(.~cohort),
+  nrow = 3, common.legend = TRUE, legend = "bottom")
+```
+
+## Feature Correlations {- .tabset}
+
+We take a look at the correlation of features, and then also check which are the features with super high correlations. 
+
+### Full Features {-}
+
+```{r, fig.height=6}
+
+df_merge_corr = df_merge %>%
+  select(external_id, day_num, prompt_num, pseudo_phq9_sum, phq2_sum_e, phq9_sum_w, all_of(ema_day_vars), all_of(epa_day_vars),starts_with("sleep_dur"), starts_with('sleep_hr') ) %>% 
+  arrange(external_id, day_num, prompt_num)
+
+corr_all = correlate(df_merge_corr, diagonal = T, method = 'spearman' )
+corr_all_plot = corrplot(as_matrix(corr_all), type =  'lower',method = 'color', addgrid.col = 'aliceblue', tl.cex = 0.5)
+
+```
+
+### Highly Correlated Features 
+
+```{r, fig.height=6}
+corr_high = correlate(df_merge_corr, diagonal = T)
+corr_high = corr_high %>% mutate( across(everything(), ~ ifelse((.x <= 0.7 & .x >= -0.7), 0, .x)))
+corrplot(as_matrix(corr_high), type =  'lower', method = 'color', addgrid.col = 'aliceblue', tl.cex = 0.5)
+```
+
+# Imputation
+
+Here I use MICE for imputation, setting my imputation model to a random forest model at the within-subject levels. We include in this model all predictors, and we set outcomes and ID to 0 so we can exclude them from any predictions. We then check if any variables have a constant value. This occurs for example in some of the substance use items, or perhaps location items. So we fill those with the constant value the participants endorsed (or didn't). Once that's done, we exclude those predictors from our matrix as well, and then implement MICE. 
+```{r}
+
+# Select non-composite EMA variable
+ema_vars = c(ema_mor_vars, ema_day_vars, ema_eve_vars, categorical_items_d)
+# Now also select som EPA variables (subset sleep)
+epa_vars = c(epa_day_hr, epa_day_stress, epa_sleep_vars, epa_day_act[c(2:5,7,8)], epa_day_bat)
+# Vector of IVs of interest and n of features
+impute_vars =  c(ema_vars, epa_vars)
+
+# Subset data
+df_features = df_merge %>%
+  select(external_id, week_nr, day_nr, prompt_num,
+         phq9_sum_w, phq2_sum_e, all_of(impute_vars) )  %>%
+  filter(prompt_num != 5) 
+
+run_imputation=FALSE
+  if (run_imputation){
+  # Define the path for your error log
+  error_log_file <- paste0("imputation_failures_", Sys.Date(), ".log")
+  if (file.exists(error_log_file)) file.remove(error_log_file)
+    
+  # Progress bar set-up
+  library(progress)
+  pb <- progress_bar$new(format = "[:bar] :percent ETA: :eta", total = length(unique(df_features$external_id)))
+  progress <- function(n){ pb$tick()}
+  opts <- list(progress = progress)
+  
+  # Parallel set-up
+  n_cores = detectCores()-1
+  cl = makeCluster(n_cores)
+  registerDoSNOW(cl)
+  
+  # Parallel Run
+  list_imputation_results = foreach(i = unique(df_features$external_id),
+                                    .packages = c('mice','beepr', "dplyr"),
+                                    .errorhandling = 'pass',
+                                    .options.snow = opts,
+                                    .verbose = F) %dopar% {
+    # Run function and log failures
+    tryCatch({
+      impute_subject(df_features, i, impute_vars )}, 
+      # On errror:
+      error = function(e) {
+        # Create error message
+        failed_id <- i
+        error_message <- paste0(
+          "Timestamp: ", Sys.time(),
+          ", Subject_ID: ", failed_id,
+          ", Error: ", e$message, "\n")
+        # Append the error message to the log file
+        cat(error_message, file = error_log_file, append = TRUE)
+        
+        # Return NULL for the failed iteration
+        return(NULL)
+        }
+      )
+  }
+  stopCluster(cl)
+    
+  # Combine results and make an imputation column
+  df_features_imputed = rbindlist(list_imputation_results)
+  df_features_imputed$imputed <- 1
+  
+  # Subset unimputed subs
+  impute_fail_subs <- setdiff(df_features$external_id, df_features_imputed$external_id)
+  df_features_unimputed <- df_features[(df_features$external_id %in% impute_fail_subs),]
+  df_features_unimputed$imputed <- 0
+  
+  # Now put them togerther
+  df_features_mix = rbind(df_features_imputed, df_features_unimputed, fill = TRUE)
+  
+  # # # Impute the ones that didnt work at the between-subject level
+  L2_prediction_mat <- make_pred_matrix(df_features_mix, impute_vars = impute_vars)$pred_matrix
+  L2_prediction_mat[, "external_id"] <- -2
+  mice_imputation_2l <- mice(data = df_features_mix,
+                             maxit = 2,
+                              method = "2lonly.pmm",
+                              seed = 666,
+                              blocks = as.list(rownames(L2_prediction_mat)),
+                              predictorMatrix = L2_prediction_mat)
+  
+  df_features_mix <- complete(mice_imputation_2l)
+  # Make a day-prompt interaction for later
+  df_features_mix$day_prompt = as.numeric(interaction(df_features_mix$day_nr, df_features_mix$prompt_num))
+    
+  # Finally save the imputed data frame 
+  fwrite(df_features_mix, file = here('data', 'df_features_imputed.csv'))  
+    
+  # Now separate the training and test sets
+  df_features_mix = df_features_mix %>% arrange(external_id, week_nr, day_nr, imputed) 
+  df_ml_train = df_features_mix %>% filter(external_id %in%  training_set$external_id)
+  df_ml_test = df_features_mix %>% filter(!(external_id %in%  training_set$external_id))
+  # Write the data
+  fwrite(df_ml_train, file = here("data", "imputed_training.csv"))
+  fwrite(df_ml_test, file = here("data", "imputed_testing.csv"))
+}else{
+  df_features_mix <- fread(file = here('data', 'df_features_imputed.csv'))  
+  df_ml_train = fread(file = here("data", "imputed_training.csv"))
+  df_ml_test = fread(file = here("data", "imputed_testing.csv"))
+}
+
+```
+
+
+# Dataset Creation {.tabset}
+
+We have completed the first part of data exploration and preparation and are now ready to start running our actual models. My aim is to first see if I can predict depression at the daily (PHQ-2) and weekly (PHQ-9) levels. I also want to see whether we can do this using EMA measures, or wearable measures. To get there, I use the Leiden University [ALICE HPC cluster](https://pubappslu.atlassian.net/wiki/spaces/HPCWIKI/pages/37519378/About+ALICE). The analysis is also done in `python`, so here I will prepare the data to send to the cluster as python pickles which I can then read into the cluster much more easily. Part of the preparation at this stage is to also standardize the variables within-subject. I then pivot the data to the required format.  
+
+## Weekly Data 
+```{r}
+# Pivot to wide and make matrix per variable
+features = impute_vars
+n_features = length(impute_vars)
+
+
+## First for PA
+df_ml_lstm_week = df_features_mix %>% 
+  select(external_id, week_nr, prompt_num,  phq9_sum_w, day_nr, all_of(features)) %>%
+  filter(!is.na(day_nr)) %>% 
+  # Now we back-fill the PHQ9 items again (cause we have to)
+  group_by(external_id, week_nr) %>% 
+  fill(phq9_sum_w, .direction = 'up') %>%
+  ungroup() %>% 
+  #  Now we rearrange and keep the distinct obesractions in case of dups
+  arrange(external_id, week_nr, day_nr, prompt_num) %>%
+  distinct(external_id, week_nr, day_nr, prompt_num, .keep_all = TRUE) %>%
+  # Now create the PHQ-9 cut-off for classification
+  mutate(phq9_cuttoff = ifelse(phq9_sum_w>9, 1, 0)) %>% 
+  # Scale and center non-binary feats
+  group_by(external_id) %>%
+  mutate(across(all_of(c(ema_day_vars, epa_vars, ema_mor_vars, "discomfort_e", "emo_reg_e", "useful_e", "neg_exp_e","pos_exp_e")), 
+                       ~ (.x - mean(.x, na.rm = T))/sd(.x, na.rm = T))) %>% 
+  ungroup() %>%
+   # Pivot Wider
+  pivot_wider(id_cols = c(external_id, week_nr, phq9_sum_w, phq9_cuttoff), names_from = c(day_nr, prompt_num), values_from = all_of(features)) %>% 
+  select(!ends_with("_5")) %>%
+  na.omit()
+
+# Create training and test sets
+df_ml_lstm_week_train = df_ml_lstm_week[(df_ml_lstm_week$external_id %in% training_set$external_id),]
+df_ml_lstm_week_test = df_ml_lstm_week[!(df_ml_lstm_week$external_id %in% training_set$external_id),]
+``` 
+
+## Daily Data
+```{r}
+
+# Pivot to wide and make matrix per variable
+features =  impute_vars
+n_features = length(features)
+
+
+## First for PA
+df_ml_lstm_day = df_features_mix %>% 
+  select(external_id, week_nr, prompt_num,  phq2_sum_e, day_nr, all_of(features)) %>%
+  filter(!is.na(day_nr)) %>% 
+  # Now we back-fill the PHQ9 items again (cause we have to)
+  group_by(external_id, week_nr, day_nr) %>% 
+  fill(phq2_sum_e, .direction = 'up') %>%
+  ungroup() %>% 
+  #  Now we rearrange and keep the distinct obesractions in case of dups
+  arrange(external_id, week_nr, day_nr, prompt_num) %>%
+  distinct(external_id, week_nr, day_nr, prompt_num, .keep_all = TRUE) %>%
+  # Scale and center
+  group_by(external_id) %>% 
+  mutate(across(all_of(features[-c(grep("cat", features), grep("substance", features))]),
+                ~ (.x - mean(.x, na.rm = T))/sd(.x, na.rm = T))) %>% 
+  ungroup() %>%
+  # Pivot Wider
+  pivot_wider(id_cols = c(external_id, week_nr, day_nr, phq2_sum_e), names_from = c(prompt_num), values_from = features) %>% 
+  select(!ends_with("_5")) %>% 
+  na.omit()
+
+# Create training and test sets
+df_ml_lstm_day_train = df_ml_lstm_day[(df_ml_lstm_day$external_id %in% training_set$external_id),]
+df_ml_lstm_day_test = df_ml_lstm_day[!(df_ml_lstm_day$external_id %in% training_set$external_id),]
+```
+
+
+# Dataset Export
+
+We now save the data as a python object since we run the final models there. We do this iteratively over the week/day and train/test data in a function format. This creates the following for each combination of the previously mentioned:
+
+- *_sub: A file containing the subject rows for grouping purposes later. 
+- *_phq: A file with the Y outcomes 
+- *_ema: A file with the EMA features
+- vars*: A file with the variable names for SHAP estimations and such
+```{r}
+library(reticulate)
+# Make sublists
+week_list <- list(
+  train = df_ml_lstm_week_train,
+  val = df_ml_lstm_week_test
+  )
+day_list <- list(
+  train = df_ml_lstm_day_train,
+  val = df_ml_lstm_day_test
+  )
+var_lists <- list(
+  ema = ema_vars,
+  epa = epa_vars,
+  all = c(ema_vars, epa_vars)
+  )
+
+
+pickle_jar = TRUE # TO avoid rewriting the OG data everytime we knit
+if (pickle_jar){
+  # Then inside the loop, you just need one line:
+  for (timeframe in c("week", "day")){
+    # Specify data to use  
+    if(timeframe == "week"){
+      tmp_list <- week_list
+      outcome = 'phq9_sum_w'
+    } else if(timeframe == 'day'){
+      tmp_list <- day_list
+      outcome = 'phq2_sum_e'
+    }
+    # Now do the train/test stuff
+    for(train_test in c("train", "val")){ 
+      tmp_data <- tmp_list[[train_test]]
+      ## Save subject IDs and outcomes
+      tmp_data %>% 
+        select(external_id) %>%
+        as.matrix() %>%
+        py_save_object(here('data', 'pickles', paste0(timeframe, '_', train_test, '_subs.pickle')))
+      ## Outcome
+      tmp_data %>% 
+        select(all_of(outcome)) %>%
+        as.matrix() %>% 
+        py_save_object(here('data', 'pickles', paste0(timeframe, '_', train_test, '_phq.pickle')))
+      # Make the lagged-phq9 predictor
+      tmp_data %>% 
+        group_by(external_id) %>% 
+        mutate(across(all_of(outcome), function(.x) {
+            lagged_x <- lag(.x)
+            # Calculate median *once* to avoid re-computing
+            median_val <- round(median(na.omit(lagged_x))) 
+            lagged_x <- ifelse(is.na(lagged_x), median_val, lagged_x)
+            return(lagged_x)
+          }, .names = "{.col}_lag1")) %>% 
+        ungroup() %>% 
+        select(all_of(paste0(outcome, "_lag1"))) %>% 
+        as.matrix() %>% 
+        py_save_object(here('data', 'pickles', paste0(timeframe, '_', train_test, '_phq_lag1.pickle')))
+      # Now we make the predictor matrices
+      for (data in c("ema", "epa", "all")){
+        var_list <- var_lists[[data]]
+        feature_mat(tmp_data, vars = var_list) %>%
+          reticulate::r_to_py() %>% 
+          py_save_object( here('data', 'pickles', paste0(timeframe, '_', train_test, '_', data, '.pickle')))
+      }
+    }
+  }
+}
+
+# And now we do the variable list separtely
+for (data in c("ema", "epa", "all")){
+   var_list <- var_lists[[data]]
+   var_list %>% 
+     as.matrix() %>%
+     py_save_object(here('data', 'pickles', paste0('vars_', data, '.pickle')))
+}
+```
+
+
+
+

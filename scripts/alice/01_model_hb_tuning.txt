@@ -1,0 +1,4 @@
+day,epa
+day,all
+week,epa
+week,all

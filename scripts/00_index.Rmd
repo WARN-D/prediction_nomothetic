@@ -1,0 +1,17 @@
+---
+title: "Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study"
+author: "Rayyan Tutunji"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site 
+output: 
+  bookdown::gitbook:
+    df_print: "paged"
+    toc_depth: 2
+    config:
+      toc:
+        collapse: subsection
+---
+
+# Introduction
+
+This is the notebook accompanying the publication **Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study**. In it, two sections run in R can be found. Part 1 contains code used to run the pre-processing on some of the data, and then the descriptive statistics. In this chapter, we also format data in a way to make it work with `pyhton`, which we then use for the main portion of the machine learning (ML) analysis. Following the ML analysis, we bring back the data to R and produce tables and figures that we later use in publication. 

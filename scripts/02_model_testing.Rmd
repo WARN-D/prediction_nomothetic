@@ -1,0 +1,141 @@
+# Model Testing
+
+Here is where we run the models on the test data. We do this in a loop across all timeframes/data sources. Importantly, this is done in python. I
+
+```{r setup-python, include=FALSE}
+library(reticulate)
+```
+
+```{python}
+import os
+import pandas as pd
+import numpy as np
+
+
+# ML Libs
+from sklearn import preprocessing  
+from sklearn import model_selection
+import tensorflow as tf
+from tensorflow import keras
+import shap
+# For plotting
+import matplotlib.pyplot as plt
+from sklearn.metrics import r2_score
+
+```
+
+## Model Predictions
+```{python}
+# Define model parameters
+models = ['week', "day"]
+sources = ["ema", "epa", "all", "phq_lag1"]
+
+# Run loops
+for model_windows in models:
+  for source in sources:
+    print(f'Running {model_windows} for {source} data...')
+    # --- Load data ---
+    try:
+      # set data paths
+      test_x_path = os.path.join('..', 'data', 'pickles', f'{model_windows}_val_{source}.pickle')
+      test_y_path = os.path.join('..','data', 'pickles', f'{model_windows}_val_phq.pickle')
+      test_subs_path = os.path.join('..','data', 'pickles', f'{model_windows}_val_subs.pickle')
+      # load data
+      test_x = pd.read_pickle(test_x_path)
+      test_y = np.float32(pd.read_pickle(test_y_path)) + 1 
+      test_subs = pd.read_pickle(test_subs_path)
+    except Exception as e:
+      print(f"Error loading data for model {model_windows}, source {source}: {e}")
+      
+      # --- Load models and predict ---
+      all_predictions = pd.DataFrame()
+      for i in range(1, 11):
+        try:
+          model_path = os.path.join('..','results', f'model_{model_windows}_{source}_fold_{i}.keras')
+          # Load the model
+          model = tf.keras.models.load_model(model_path, compile=False)
+          
+          # Get predictions
+          predicted_vals = model.predict(test_x)
+          
+          # Create a temporary DataFrame for this fold's results
+          temp_preds = pd.DataFrame()
+          temp_preds['predicted'] = predicted_vals.flatten()
+          temp_preds['actual'] = test_y.flatten()
+          temp_preds['model'] = model_windows
+          temp_preds['source'] = source
+          temp_preds['fold'] = i
+          temp_preds['sub_id'] = test_subs.flatten()
+                
+          # Append the DataFrame to initial one
+          all_predictions = pd.concat([all_predictions, temp_preds], ignore_index=True)
+                
+        except Exception as e:
+            print(f"Could not load/predict model for fold {i}, model {model_windows}, source {source}: {e}")
+
+		# Save the predictions
+    #all_predictions.to_csv(f'../results/results_testing_{model_windows}_{source}.csv', index=False)
+
+```
+
+## SHAP Estimate
+
+Here we estimated the SHAP values. Code is commented because it takes forever to run, and I don't want to redo this everytime I am knitting the notebooks. 
+```{python, }
+# # Set up arrays and dfs for results
+# models = ['day', 'week']
+# sources = ['all', 'ema', 'epa']
+# 
+# 
+# 
+# # Run loops
+# for model_windows in models:
+# 	for source in sources:
+# 		print(f"Processing SHAP values for model: {model_windows}, source: {source}")
+# 		# Load data
+# 		train_x = pd.read_pickle(f'../data/{model_windows}_train_{source}_new.pickle')
+# 		test_x = pd.read_pickle(f'../data/{model_windows}_val_{source}_new.pickle')
+# 		test_y = np.float32(pd.read_pickle(f'../data/{model_windows}_val_phq_new.pickle') + 1)
+# 		vars = pd.read_pickle(f'../data/vars_{source}_new.pickle').flatten()
+# 	
+# 		# Load models
+# 		all_shaps = pd.DataFrame()
+# 		for  i in range(1,11):
+# 			print(f"  Fold {i}")
+# 			# Fit the models and get the predictions
+# 			model = tf.keras.models.load_model(f'../results/model_{model_windows}_{source}_fold_{i}.keras', compile=False)
+# 			predicted_vals = model.predict(test_x)
+#    
+# 			# Run the shap explainer
+# 			background = shap.sample(train_x, 1000)
+# 			explainer = shap.GradientExplainer(model, background)
+# 			explanation = explainer(test_x)
+# 			explanation.feature_names = vars
+#    
+# 			# Extract SHAP values
+# 			shap_values = explanation.values[:,:,:,0]
+# 			# Reshape the SHAP values to a 2D array
+# 			reshaped = shap_values.reshape(-1, shap_values.shape[-1])
+# 			# Create sample and step indices
+# 			num_samples, num_steps, num_features = shap_values.shape
+# 			sample_idx = np.repeat(np.arange(num_samples), num_steps)
+# 			step_idx = np.tile(np.arange(num_steps), num_samples)
+#    
+# 			# Build DataFrame
+# 			shap_df = pd.DataFrame(reshaped, columns=vars)
+# 			shap_df['sample'] = sample_idx
+# 			shap_df['step'] = step_idx
+# 			shap_df['fold'] = i
+# 			shap_df['source'] = source	
+# 			shap_df['model'] = model_windows
+#    
+# 			# Append to master
+# 			all_shaps = pd.concat([all_shaps, shap_df], ignore_index=True)
+# 			# Save the SHAP values
+# 		all_shaps.to_csv(f'../results/shap_values_{model_windows}_{source}.csv', index=False, )
+
+```
+
+
+
+

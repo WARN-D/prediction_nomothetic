@@ -48,12 +48,12 @@ confidence_interval <- function(vector, interval) {
 ```
 
 
-# Model Performance {.tabset}
+## Model Performance 
 
 First check the model performance. I do this by loading the model results as csvs which contain the predictions and actual scores for each of the training and test set, then estimating the mean error (ME), mean absolute error (MAE), mean absolute percent error (MAPE), root mean square error (RMSE), and R^2. R^2 is our primary metric of interest here as its the easiest to interpret for psychologists (our target audience).  
 
 
-## Training CV {-}
+### Training CV 
 ```{r}
 
 # Load the results from the training CV
@@ -93,7 +93,7 @@ df_val_summ$set = "cv"
 
 ```
 
-## Test Data {-}
+### Test Data
 ```{r}
 test_cv = Sys.glob("C:/Users/rayya/Nextcloud/FSW_WARN-D (Projectfolder)/group/raytut/projects/prediction_nomothetic/results/results_testing_*.csv")
 
@@ -132,7 +132,7 @@ df_test_summ
 df_test_summ$set = "test"
 ```
 
-## Full Results{.active}
+### Full Results {.active}
 ```{r}
 df_results <- rbind(df_val_summ, df_test_summ)
 df_results %>%
@@ -142,7 +142,7 @@ df_results %>%
 ```
 
 
-# Idiographic Model Performance
+## Idiographic Model Performance
 
 I also estimate the idiographic model performance, just doing R^2 here. 
 ```{r}
@@ -175,7 +175,7 @@ ggplot(df_idio_sum, aes(y=R2, x=source, fill=samp, color=samp)) +
 
 
 
-# SHAP
+## SHAP
 
 Now I estimate the SHAP plots for feature contributions. I wrap this into a function that lets me plot a bit more easily and keep some visual consistency. The funciton will filter the data to reduce overhead memory usage, rank the SHAP values based on the absolute SHAP values, and then filter and plot the top 10 features. I do the data loading after setting-up the function to read all the SHAP values. 
 
@@ -337,7 +337,7 @@ shap_values$feature_labs <- factor(shap_values$feature,
 ```
 
 
-## Top 10 Daily {-}
+### Top 10 Daily 
 ```{r}
 
 # Set up the three plots
@@ -366,7 +366,7 @@ ggsave("../figures/sm_figure_daily_ts_shap.svg", plot_d_3_ts, dpi=300, width=18,
 ggsave("../figures/sm_figure_daily_ts_shap.png", plot_d_3_ts, dpi=900,width=18, height=14, units="cm",device=ragg::agg_png)
 ```
 
-## Top 10 Weekly
+### Top 10 Weekly
 
 Check the overall SHAP values
 ```{r}
@@ -394,9 +394,9 @@ ggsave("../figures/sm_figure_weekly_ts_shap.svg", plot_w_3_ts, dpi=300, width=18
 ggsave("../figures/sm_figure_weekly_ts_shap.png", plot_w_3_ts, dpi=900, width=18, height=14, units="cm", device=ragg::agg_png)
 ```
 
-# Supp Analysis
+## Supp Analysis
 
-## PHQ-9 Autoregressive Model
+### PHQ-9 Autoregressive Model
 
 We investigate the PHQ-9 model performance visually to see whats going on in the weekly models. 
 ```{r}
@@ -430,7 +430,7 @@ random_subs = sample(unique(df_val_phq_combi$sub_id),9)
 df_val_phq_combi <- df_val_phq_combi[df_val_phq_combi$sub_id %in% random_subs,]
 # Plot
 ggplot(df_val_phq_combi, aes(x=n, y=phq, color=score) ) + 
-  geom_line(stat = 'summary') + 
+  geom_line(stat = 'summary', fun = "mean_se") + 
   geom_hline(aes(yintercept=phq_mean),  linetype='dashed') +
   facet_grid(sub_id~predictors) + 
   labs(y = "PHQ-9 sum score", x ="Time steps") +

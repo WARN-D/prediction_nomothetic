@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study</title>
-  <meta name="description" content="7 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
+  <title>3 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study</title>
+  <meta name="description" content="3 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
+  <meta property="og:title" content="3 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
+  <meta name="twitter:title" content="3 Model Testing | Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study" />
   
   
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Rayyan Tutunji" />
 
 
-<meta name="date" content="2025-11-03" />
+<meta name="date" content="2025-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dataset-export.html"/>
+<link rel="prev" href="data-prep.html"/>
 <link rel="next" href="results.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -142,44 +142,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-prep.html"><a href="data-prep.html"><i class="fa fa-check"></i><b>2</b> Data Prep</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data-prep.html"><a href="data-prep.html#processing"><i class="fa fa-check"></i><b>2.1</b> Processing</a></li>
-<li class="chapter" data-level="2.2" data-path="data-prep.html"><a href="data-prep.html#compliance-estimates"><i class="fa fa-check"></i><b>2.2</b> Compliance Estimates</a></li>
-<li class="chapter" data-level="2.3" data-path="data-prep.html"><a href="data-prep.html#data-merger"><i class="fa fa-check"></i><b>2.3</b> Data Merger</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Descriptives</a>
+<li class="chapter" data-level="2.1" data-path="data-prep.html"><a href="data-prep.html#processing"><i class="fa fa-check"></i><b>2.1</b> Processing</a>
 <ul>
-<li class="chapter" data-level="" data-path="descriptives.html"><a href="descriptives.html#demographics"><i class="fa fa-check"></i>Demographics</a></li>
-<li class="chapter" data-level="" data-path="descriptives.html"><a href="descriptives.html#compliance-rates"><i class="fa fa-check"></i>Compliance Rates</a></li>
-<li class="chapter" data-level="" data-path="descriptives.html"><a href="descriptives.html#feature-correlations"><i class="fa fa-check"></i>Feature Correlations</a></li>
+<li class="chapter" data-level="2.1.1" data-path="data-prep.html"><a href="data-prep.html#daily-features"><i class="fa fa-check"></i><b>2.1.1</b> Daily Features</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-prep.html"><a href="data-prep.html#morningevening-features"><i class="fa fa-check"></i><b>2.1.2</b> Morning/Evening Features</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data-prep.html"><a href="data-prep.html#weekly-features"><i class="fa fa-check"></i><b>2.1.3</b> Weekly Features</a></li>
+<li class="chapter" data-level="2.1.4" data-path="data-prep.html"><a href="data-prep.html#compliance-estimates"><i class="fa fa-check"></i><b>2.1.4</b> Compliance Estimates</a></li>
+<li class="chapter" data-level="2.1.5" data-path="data-prep.html"><a href="data-prep.html#data-merger"><i class="fa fa-check"></i><b>2.1.5</b> Data Merger</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="imputation.html"><a href="imputation.html"><i class="fa fa-check"></i><b>4</b> Imputation</a></li>
-<li class="chapter" data-level="5" data-path="dataset-creation.html"><a href="dataset-creation.html"><i class="fa fa-check"></i><b>5</b> Dataset Creation</a>
+<li class="chapter" data-level="2.2" data-path="data-prep.html"><a href="data-prep.html#descriptives"><i class="fa fa-check"></i><b>2.2</b> Descriptives</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="dataset-creation.html"><a href="dataset-creation.html#weekly-data"><i class="fa fa-check"></i><b>5.1</b> Weekly Data</a></li>
-<li class="chapter" data-level="5.2" data-path="dataset-creation.html"><a href="dataset-creation.html#daily-data"><i class="fa fa-check"></i><b>5.2</b> Daily Data</a></li>
+<li class="chapter" data-level="2.2.1" data-path="data-prep.html"><a href="data-prep.html#demographics"><i class="fa fa-check"></i><b>2.2.1</b> Demographics</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-prep.html"><a href="data-prep.html#compliance-rates"><i class="fa fa-check"></i><b>2.2.2</b> Compliance Rates</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-prep.html"><a href="data-prep.html#feature-correlations"><i class="fa fa-check"></i><b>2.2.3</b> Feature Correlations</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="dataset-export.html"><a href="dataset-export.html"><i class="fa fa-check"></i><b>6</b> Dataset Export</a></li>
-<li class="chapter" data-level="7" data-path="model-testing.html"><a href="model-testing.html"><i class="fa fa-check"></i><b>7</b> Model Testing</a>
+<li class="chapter" data-level="2.3" data-path="data-prep.html"><a href="data-prep.html#imputation"><i class="fa fa-check"></i><b>2.3</b> Imputation</a></li>
+<li class="chapter" data-level="2.4" data-path="data-prep.html"><a href="data-prep.html#dataset-creation"><i class="fa fa-check"></i><b>2.4</b> Dataset Creation</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="model-testing.html"><a href="model-testing.html#model-predictions"><i class="fa fa-check"></i><b>7.1</b> Model Predictions</a></li>
-<li class="chapter" data-level="7.2" data-path="model-testing.html"><a href="model-testing.html#shap-estimate"><i class="fa fa-check"></i><b>7.2</b> SHAP Estimate</a></li>
+<li class="chapter" data-level="2.4.1" data-path="data-prep.html"><a href="data-prep.html#weekly-data"><i class="fa fa-check"></i><b>2.4.1</b> Weekly Data</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-prep.html"><a href="data-prep.html#daily-data"><i class="fa fa-check"></i><b>2.4.2</b> Daily Data</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>8</b> Results</a></li>
-<li class="chapter" data-level="9" data-path="model-performance.html"><a href="model-performance.html"><i class="fa fa-check"></i><b>9</b> Model Performance</a>
-<ul>
-<li class="chapter" data-level="" data-path="model-performance.html"><a href="model-performance.html#training-cv"><i class="fa fa-check"></i>Training CV</a></li>
-<li class="chapter" data-level="" data-path="model-performance.html"><a href="model-performance.html#test-data"><i class="fa fa-check"></i>Test Data</a></li>
-<li class="chapter" data-level="9.1" data-path="model-performance.html"><a href="model-performance.html#full-results"><i class="fa fa-check"></i><b>9.1</b> Full Results</a></li>
+<li class="chapter" data-level="2.5" data-path="data-prep.html"><a href="data-prep.html#dataset-export"><i class="fa fa-check"></i><b>2.5</b> Dataset Export</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="idiographic-model-performance.html"><a href="idiographic-model-performance.html"><i class="fa fa-check"></i><b>10</b> Idiographic Model Performance</a></li>
-<li class="chapter" data-level="11" data-path="shap.html"><a href="shap.html"><i class="fa fa-check"></i><b>11</b> SHAP</a>
+<li class="chapter" data-level="3" data-path="model-testing.html"><a href="model-testing.html"><i class="fa fa-check"></i><b>3</b> Model Testing</a>
 <ul>
-<li class="chapter" data-level="" data-path="shap.html"><a href="shap.html#top-10-daily"><i class="fa fa-check"></i>Top 10 Daily</a></li>
-<li class="chapter" data-level="11.1" data-path="shap.html"><a href="shap.html#top-10-weekly"><i class="fa fa-check"></i><b>11.1</b> Top 10 Weekly</a></li>
+<li class="chapter" data-level="3.1" data-path="model-testing.html"><a href="model-testing.html#model-predictions"><i class="fa fa-check"></i><b>3.1</b> Model Predictions</a></li>
+<li class="chapter" data-level="3.2" data-path="model-testing.html"><a href="model-testing.html#shap-estimate"><i class="fa fa-check"></i><b>3.2</b> SHAP Estimate</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="supp-analysis.html"><a href="supp-analysis.html"><i class="fa fa-check"></i><b>12</b> Supp Analysis</a>
+<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="supp-analysis.html"><a href="supp-analysis.html#phq-9-autoregressive-model"><i class="fa fa-check"></i><b>12.1</b> PHQ-9 Autoregressive Model</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#model-performance"><i class="fa fa-check"></i><b>4.1</b> Model Performance</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="results.html"><a href="results.html#training-cv"><i class="fa fa-check"></i><b>4.1.1</b> Training CV</a></li>
+<li class="chapter" data-level="4.1.2" data-path="results.html"><a href="results.html#test-data"><i class="fa fa-check"></i><b>4.1.2</b> Test Data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="results.html"><a href="results.html#full-results"><i class="fa fa-check"></i><b>4.1.3</b> Full Results</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#idiographic-model-performance"><i class="fa fa-check"></i><b>4.2</b> Idiographic Model Performance</a></li>
+<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#shap"><i class="fa fa-check"></i><b>4.3</b> SHAP</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="results.html"><a href="results.html#top-10-daily"><i class="fa fa-check"></i><b>4.3.1</b> Top 10 Daily</a></li>
+<li class="chapter" data-level="4.3.2" data-path="results.html"><a href="results.html#top-10-weekly"><i class="fa fa-check"></i><b>4.3.2</b> Top 10 Weekly</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#supp-analysis"><i class="fa fa-check"></i><b>4.4</b> Supp Analysis</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="results.html"><a href="results.html#phq-9-autoregressive-model"><i class="fa fa-check"></i><b>4.4.1</b> PHQ-9 Autoregressive Model</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -198,8 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="model-testing" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">7</span> Model Testing<a href="model-testing.html#model-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="model-testing" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Model Testing<a href="model-testing.html#model-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Here is where we run the models on the test data. We do this in a loop across all timeframes/data sources. Importantly, this is done in python. I</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="model-testing.html#cb31-1" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb31-2"><a href="model-testing.html#cb31-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -215,8 +222,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-12"><a href="model-testing.html#cb31-12" tabindex="-1"></a><span class="co"># For plotting</span></span>
 <span id="cb31-13"><a href="model-testing.html#cb31-13" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb31-14"><a href="model-testing.html#cb31-14" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span></code></pre></div>
-<div id="model-predictions" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Model Predictions<a href="model-testing.html#model-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="model-predictions" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Model Predictions<a href="model-testing.html#model-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="model-testing.html#cb32-1" tabindex="-1"></a><span class="co"># Define model parameters</span></span>
 <span id="cb32-2"><a href="model-testing.html#cb32-2" tabindex="-1"></a>models <span class="op">=</span> [<span class="st">&#39;week&#39;</span>, <span class="st">&quot;day&quot;</span>]</span>
 <span id="cb32-3"><a href="model-testing.html#cb32-3" tabindex="-1"></a>sources <span class="op">=</span> [<span class="st">&quot;ema&quot;</span>, <span class="st">&quot;epa&quot;</span>, <span class="st">&quot;all&quot;</span>, <span class="st">&quot;phq_lag1&quot;</span>]</span>
@@ -275,8 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb34-2"><a href="model-testing.html#cb34-2" tabindex="-1"></a>        <span class="co"># Save the predictions</span></span>
 <span id="cb34-3"><a href="model-testing.html#cb34-3" tabindex="-1"></a>    <span class="co">#all_predictions.to_csv(f&#39;../results/results_testing_{model_windows}_{source}.csv&#39;, index=False)</span></span></code></pre></div>
 </div>
-<div id="shap-estimate" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> SHAP Estimate<a href="model-testing.html#shap-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="shap-estimate" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> SHAP Estimate<a href="model-testing.html#shap-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we estimated the SHAP values. Code is commented because it takes forever to run, and I don’t want to redo this everytime I am knitting the notebooks.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="model-testing.html#cb35-1" tabindex="-1"></a><span class="co"># # Set up arrays and dfs for results</span></span>
 <span id="cb35-2"><a href="model-testing.html#cb35-2" tabindex="-1"></a><span class="co"># models = [&#39;day&#39;, &#39;week&#39;]</span></span>
@@ -337,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="dataset-export.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-prep.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

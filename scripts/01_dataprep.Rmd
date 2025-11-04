@@ -60,7 +60,7 @@ df_base = fread(here(datasets, 'WARND_stage1_c1234_fullset_v2025_10_24.csv'))
 df_ema = fread(here(datasets, 'WARND_stage2_c1234_fullset_before_60min_v2025_10_24.csv'))
 ```
 
-## Processing {.tabset}
+## Processing
 
 Now that the data is loaded, we can proceed to transform and generate some variables out of the individual items. This is mostly necessary for the EMA data, were we can estimate some features both for the daily variables, and the weekly variables. We first define our variables of interest, and make vectors out of them, and then apply several transformation on them as described in the next sections. We estimate two sets of features: Daily and Weekly. 
 
@@ -77,7 +77,7 @@ Now that the data is loaded, we can proceed to transform and generate some varia
   - We make sum scores for the depression questionnaires
   - Using the sum scores, we set a cut-off for moderate depression
   
-### Daily Features {-}
+### Daily Features
 ```{r}
 
 # Make vectors out of variables we want
@@ -120,7 +120,7 @@ df_ema = df_ema %>%
 
 ```
 
-### Morning/Evening Features {-}
+### Morning/Evening Features
 ```{r}
 ema_mor_vars = c('sleep_qual_m','sleep_rest_m','outlook_m')
 pos_exp_cats = colnames(df_ema)[grep('^pos_exp_cat_e', colnames(df_ema))]
@@ -142,7 +142,7 @@ df_ema = df_ema %>%
 ```
 
 
-### Weekly Features {-}
+### Weekly Features
 ```{r}
 # First make the grouping factor
 df_ema$week_n = isoweek(df_ema$date)
@@ -190,7 +190,7 @@ df_ema$phq9_cuttoff = ifelse(df_ema$phq9_sum_w > 9, 1, 0)
 ```
 
 
-## Compliance Estimates
+### Compliance Estimates
 
 Now we make some compliance estimates for the data. We do this for the EMA and garmin data separately.
 ```{r}
@@ -205,7 +205,7 @@ df_ema_compliance = df_ema_compliance %>% select(external_id, starts_with("compl
 df_ema = merge(df_ema, df_ema_compliance, by = 'external_id', all = T)
 ```
 
-## Data Merger
+### Data Merger
 
 Now that the preprocessing is done, we attach the EMA data to the baseline data so that we can get per-subject values for our descriptives. 
 ```{r}
@@ -222,12 +222,12 @@ training_set = read.csv(paste(project_folder, 'data', 'participants', 'linked_id
 
 ```
 
-# Descriptives {.tabset}
+## Descriptives {.tabset}
 
 Lets take a look at some general data exploration and descriptives here. I specifically want to look at demopgraphics and EMA compliance rates. I'll also take a look at the general distributions and trends in the data. We check the correlations between our different features. We use the baseline PHQ, Garmin, and EMA variables. We first check the overall correlations, and then check the ones with r > 0.7 for feature selection. This helps us make our models a bit more parsimonious. Based on these matrices, we see that HR mean is highly correlated with the mean, and minimum of the stress measure, mean of the body battery is also highly correlated with the mean and minimum.
 
 
-## Demographics {.unnumbered}
+### Demographics
 ```{r}
 library(summarytools)
 df_descriptive = merge(training_set, df_merge, by = c("external_id", "cohort"), all.y = T)
@@ -249,7 +249,7 @@ dfSummary(df_desc_summ, plain.ascii = T, graph.col = F)
 ```
 
 
-## Compliance Rates {.unnumbered}
+### Compliance Rates
 
 Here are the compliance rates
 ```{r}
@@ -269,11 +269,11 @@ ggpubr::ggarrange(
   nrow = 3, common.legend = TRUE, legend = "bottom")
 ```
 
-## Feature Correlations {- .tabset}
+### Feature Correlations 
 
 We take a look at the correlation of features, and then also check which are the features with super high correlations. 
 
-### Full Features {-}
+#### Full Features 
 
 ```{r, fig.height=6}
 
@@ -286,7 +286,7 @@ corr_all_plot = corrplot(as_matrix(corr_all), type =  'lower',method = 'color', 
 
 ```
 
-### Highly Correlated Features 
+#### Highly Correlated Features 
 
 ```{r, fig.height=6}
 corr_high = correlate(df_merge_corr, diagonal = T)
@@ -294,7 +294,7 @@ corr_high = corr_high %>% mutate( across(everything(), ~ ifelse((.x <= 0.7 & .x 
 corrplot(as_matrix(corr_high), type =  'lower', method = 'color', addgrid.col = 'aliceblue', tl.cex = 0.5)
 ```
 
-# Imputation
+## Imputation
 
 Here I use MICE for imputation, setting my imputation model to a random forest model at the within-subject levels. We include in this model all predictors, and we set outcomes and ID to 0 so we can exclude them from any predictions. We then check if any variables have a constant value. This occurs for example in some of the substance use items, or perhaps location items. So we fill those with the constant value the participants endorsed (or didn't). Once that's done, we exclude those predictors from our matrix as well, and then implement MICE. 
 ```{r}
@@ -401,11 +401,11 @@ run_imputation=FALSE
 ```
 
 
-# Dataset Creation {.tabset}
+## Dataset Creation 
 
 We have completed the first part of data exploration and preparation and are now ready to start running our actual models. My aim is to first see if I can predict depression at the daily (PHQ-2) and weekly (PHQ-9) levels. I also want to see whether we can do this using EMA measures, or wearable measures. To get there, I use the Leiden University [ALICE HPC cluster](https://pubappslu.atlassian.net/wiki/spaces/HPCWIKI/pages/37519378/About+ALICE). The analysis is also done in `python`, so here I will prepare the data to send to the cluster as python pickles which I can then read into the cluster much more easily. Part of the preparation at this stage is to also standardize the variables within-subject. I then pivot the data to the required format.  
 
-## Weekly Data 
+### Weekly Data 
 ```{r}
 # Pivot to wide and make matrix per variable
 features = impute_vars
@@ -440,7 +440,7 @@ df_ml_lstm_week_train = df_ml_lstm_week[(df_ml_lstm_week$external_id %in% traini
 df_ml_lstm_week_test = df_ml_lstm_week[!(df_ml_lstm_week$external_id %in% training_set$external_id),]
 ``` 
 
-## Daily Data
+### Daily Data
 ```{r}
 
 # Pivot to wide and make matrix per variable
@@ -475,7 +475,7 @@ df_ml_lstm_day_test = df_ml_lstm_day[!(df_ml_lstm_day$external_id %in% training_
 ```
 
 
-# Dataset Export
+## Dataset Export
 
 We now save the data as a python object since we run the final models there. We do this iteratively over the week/day and train/test data in a function format. This creates the following for each combination of the previously mentioned:
 

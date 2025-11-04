@@ -6,7 +6,7 @@ site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
     df_print: "paged"
-    toc_depth: 2
+    toc_depth: 3
     config:
       toc:
         collapse: subsection
@@ -14,4 +14,14 @@ output:
 
 # Introduction
 
-This is the notebook accompanying the publication **Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study**. In it, two sections run in R can be found. Part 1 contains code used to run the pre-processing on some of the data, and then the descriptive statistics. In this chapter, we also format data in a way to make it work with `pyhton`, which we then use for the main portion of the machine learning (ML) analysis. Following the ML analysis, we bring back the data to R and produce tables and figures that we later use in publication. 
+This is the notebook accompanying the preprint/publication [**Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study**](https://osf.io/preprints/osf/hbtre_v2). The notebook contains four main sections. 
+
+<div id="TOC"></div>
+
+Parts 2 and 4 are coded in R, with part 3 run in python. In 2, the data preperation and processing is carried out. The descriptive statistics that are used in the paper are also done in this part.
+
+Between section 2 and 3, code is run on the HPC ALICE cluster of Leiden Univeristy. This process is not integrated into the notebook, but is provided as a [code in the repository](https://github.com/WARN-D/prediction_nomothetic/tree/master/scripts/alice). 
+
+The results of the model calibration and cross-validation are done using the code under section 3 in `python`. Here we also generate the SHAP values. All this is saved into .csv files that we use for the end results/figures which are presented in section 4, in `R` again. 
+
+

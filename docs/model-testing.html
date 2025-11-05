@@ -23,7 +23,7 @@
 <meta name="author" content="Rayyan Tutunji" />
 
 
-<meta name="date" content="2025-11-04" />
+<meta name="date" content="2025-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -208,68 +208,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="model-testing" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> Model Testing<a href="model-testing.html#model-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Here is where we run the models on the test data. We do this in a loop across all timeframes/data sources. Importantly, this is done in python. I</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="model-testing.html#cb31-1" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb31-2"><a href="model-testing.html#cb31-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb31-3"><a href="model-testing.html#cb31-3" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb31-4"><a href="model-testing.html#cb31-4" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="model-testing.html#cb31-5" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="model-testing.html#cb31-6" tabindex="-1"></a><span class="co"># ML Libs</span></span>
-<span id="cb31-7"><a href="model-testing.html#cb31-7" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> preprocessing  </span>
-<span id="cb31-8"><a href="model-testing.html#cb31-8" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> model_selection</span>
-<span id="cb31-9"><a href="model-testing.html#cb31-9" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb31-10"><a href="model-testing.html#cb31-10" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb31-11"><a href="model-testing.html#cb31-11" tabindex="-1"></a><span class="im">import</span> shap</span>
-<span id="cb31-12"><a href="model-testing.html#cb31-12" tabindex="-1"></a><span class="co"># For plotting</span></span>
-<span id="cb31-13"><a href="model-testing.html#cb31-13" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb31-14"><a href="model-testing.html#cb31-14" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="model-testing.html#cb30-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb30-2"><a href="model-testing.html#cb30-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-3"><a href="model-testing.html#cb30-3" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-4"><a href="model-testing.html#cb30-4" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="model-testing.html#cb30-5" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="model-testing.html#cb30-6" tabindex="-1"></a><span class="co"># ML Libs</span></span>
+<span id="cb30-7"><a href="model-testing.html#cb30-7" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> preprocessing  </span>
+<span id="cb30-8"><a href="model-testing.html#cb30-8" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> model_selection</span>
+<span id="cb30-9"><a href="model-testing.html#cb30-9" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb30-10"><a href="model-testing.html#cb30-10" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb30-11"><a href="model-testing.html#cb30-11" tabindex="-1"></a><span class="im">import</span> shap</span>
+<span id="cb30-12"><a href="model-testing.html#cb30-12" tabindex="-1"></a><span class="co"># For plotting</span></span>
+<span id="cb30-13"><a href="model-testing.html#cb30-13" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb30-14"><a href="model-testing.html#cb30-14" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span></code></pre></div>
 <div id="model-predictions" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Model Predictions<a href="model-testing.html#model-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="model-testing.html#cb32-1" tabindex="-1"></a><span class="co"># Define model parameters</span></span>
-<span id="cb32-2"><a href="model-testing.html#cb32-2" tabindex="-1"></a>models <span class="op">=</span> [<span class="st">&#39;week&#39;</span>, <span class="st">&quot;day&quot;</span>]</span>
-<span id="cb32-3"><a href="model-testing.html#cb32-3" tabindex="-1"></a>sources <span class="op">=</span> [<span class="st">&quot;ema&quot;</span>, <span class="st">&quot;epa&quot;</span>, <span class="st">&quot;all&quot;</span>, <span class="st">&quot;phq_lag1&quot;</span>]</span>
-<span id="cb32-4"><a href="model-testing.html#cb32-4" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="model-testing.html#cb32-5" tabindex="-1"></a><span class="co"># Run loops</span></span>
-<span id="cb32-6"><a href="model-testing.html#cb32-6" tabindex="-1"></a><span class="cf">for</span> model_windows <span class="kw">in</span> models:</span>
-<span id="cb32-7"><a href="model-testing.html#cb32-7" tabindex="-1"></a>  <span class="cf">for</span> source <span class="kw">in</span> sources:</span>
-<span id="cb32-8"><a href="model-testing.html#cb32-8" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&#39;Running </span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss"> for </span><span class="sc">{</span>source<span class="sc">}</span><span class="ss"> data...&#39;</span>)</span>
-<span id="cb32-9"><a href="model-testing.html#cb32-9" tabindex="-1"></a>    <span class="co"># --- Load data ---</span></span>
-<span id="cb32-10"><a href="model-testing.html#cb32-10" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb32-11"><a href="model-testing.html#cb32-11" tabindex="-1"></a>      <span class="co"># set data paths</span></span>
-<span id="cb32-12"><a href="model-testing.html#cb32-12" tabindex="-1"></a>      test_x_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="ss">f&#39;</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_val_</span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">.pickle&#39;</span>)</span>
-<span id="cb32-13"><a href="model-testing.html#cb32-13" tabindex="-1"></a>      test_y_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>,<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="ss">f&#39;</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_val_phq.pickle&#39;</span>)</span>
-<span id="cb32-14"><a href="model-testing.html#cb32-14" tabindex="-1"></a>      test_subs_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>,<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="ss">f&#39;</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_val_subs.pickle&#39;</span>)</span>
-<span id="cb32-15"><a href="model-testing.html#cb32-15" tabindex="-1"></a>      <span class="co"># load data</span></span>
-<span id="cb32-16"><a href="model-testing.html#cb32-16" tabindex="-1"></a>      test_x <span class="op">=</span> pd.read_pickle(test_x_path)</span>
-<span id="cb32-17"><a href="model-testing.html#cb32-17" tabindex="-1"></a>      test_y <span class="op">=</span> np.float32(pd.read_pickle(test_y_path)) <span class="op">+</span> <span class="dv">1</span> </span>
-<span id="cb32-18"><a href="model-testing.html#cb32-18" tabindex="-1"></a>      test_subs <span class="op">=</span> pd.read_pickle(test_subs_path)</span>
-<span id="cb32-19"><a href="model-testing.html#cb32-19" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb32-20"><a href="model-testing.html#cb32-20" tabindex="-1"></a>      <span class="bu">print</span>(<span class="ss">f&quot;Error loading data for model </span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">, source </span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span>
-<span id="cb32-21"><a href="model-testing.html#cb32-21" tabindex="-1"></a>      </span>
-<span id="cb32-22"><a href="model-testing.html#cb32-22" tabindex="-1"></a>      <span class="co"># --- Load models and predict ---</span></span>
-<span id="cb32-23"><a href="model-testing.html#cb32-23" tabindex="-1"></a>      all_predictions <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb32-24"><a href="model-testing.html#cb32-24" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
-<span id="cb32-25"><a href="model-testing.html#cb32-25" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb32-26"><a href="model-testing.html#cb32-26" tabindex="-1"></a>          model_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>,<span class="st">&#39;results&#39;</span>, <span class="ss">f&#39;model_</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">_fold_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">.keras&#39;</span>)</span>
-<span id="cb32-27"><a href="model-testing.html#cb32-27" tabindex="-1"></a>          <span class="co"># Load the model</span></span>
-<span id="cb32-28"><a href="model-testing.html#cb32-28" tabindex="-1"></a>          model <span class="op">=</span> tf.keras.models.load_model(model_path, <span class="bu">compile</span><span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb32-29"><a href="model-testing.html#cb32-29" tabindex="-1"></a>          </span>
-<span id="cb32-30"><a href="model-testing.html#cb32-30" tabindex="-1"></a>          <span class="co"># Get predictions</span></span>
-<span id="cb32-31"><a href="model-testing.html#cb32-31" tabindex="-1"></a>          predicted_vals <span class="op">=</span> model.predict(test_x)</span>
-<span id="cb32-32"><a href="model-testing.html#cb32-32" tabindex="-1"></a>          </span>
-<span id="cb32-33"><a href="model-testing.html#cb32-33" tabindex="-1"></a>          <span class="co"># Create a temporary DataFrame for this fold&#39;s results</span></span>
-<span id="cb32-34"><a href="model-testing.html#cb32-34" tabindex="-1"></a>          temp_preds <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb32-35"><a href="model-testing.html#cb32-35" tabindex="-1"></a>          temp_preds[<span class="st">&#39;predicted&#39;</span>] <span class="op">=</span> predicted_vals.flatten()</span>
-<span id="cb32-36"><a href="model-testing.html#cb32-36" tabindex="-1"></a>          temp_preds[<span class="st">&#39;actual&#39;</span>] <span class="op">=</span> test_y.flatten()</span>
-<span id="cb32-37"><a href="model-testing.html#cb32-37" tabindex="-1"></a>          temp_preds[<span class="st">&#39;model&#39;</span>] <span class="op">=</span> model_windows</span>
-<span id="cb32-38"><a href="model-testing.html#cb32-38" tabindex="-1"></a>          temp_preds[<span class="st">&#39;source&#39;</span>] <span class="op">=</span> source</span>
-<span id="cb32-39"><a href="model-testing.html#cb32-39" tabindex="-1"></a>          temp_preds[<span class="st">&#39;fold&#39;</span>] <span class="op">=</span> i</span>
-<span id="cb32-40"><a href="model-testing.html#cb32-40" tabindex="-1"></a>          temp_preds[<span class="st">&#39;sub_id&#39;</span>] <span class="op">=</span> test_subs.flatten()</span>
-<span id="cb32-41"><a href="model-testing.html#cb32-41" tabindex="-1"></a>                </span>
-<span id="cb32-42"><a href="model-testing.html#cb32-42" tabindex="-1"></a>          <span class="co"># Append the DataFrame to initial one</span></span>
-<span id="cb32-43"><a href="model-testing.html#cb32-43" tabindex="-1"></a>          all_predictions <span class="op">=</span> pd.concat([all_predictions, temp_preds], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb32-44"><a href="model-testing.html#cb32-44" tabindex="-1"></a>                </span>
-<span id="cb32-45"><a href="model-testing.html#cb32-45" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb32-46"><a href="model-testing.html#cb32-46" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;Could not load/predict model for fold </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, model </span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">, source </span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="model-testing.html#cb31-1" tabindex="-1"></a><span class="co"># Define model parameters</span></span>
+<span id="cb31-2"><a href="model-testing.html#cb31-2" tabindex="-1"></a>models <span class="op">=</span> [<span class="st">&#39;week&#39;</span>, <span class="st">&quot;day&quot;</span>]</span>
+<span id="cb31-3"><a href="model-testing.html#cb31-3" tabindex="-1"></a>sources <span class="op">=</span> [<span class="st">&quot;ema&quot;</span>, <span class="st">&quot;epa&quot;</span>, <span class="st">&quot;all&quot;</span>, <span class="st">&quot;phq_lag1&quot;</span>]</span>
+<span id="cb31-4"><a href="model-testing.html#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="model-testing.html#cb31-5" tabindex="-1"></a><span class="co"># Run loops</span></span>
+<span id="cb31-6"><a href="model-testing.html#cb31-6" tabindex="-1"></a><span class="cf">for</span> model_windows <span class="kw">in</span> models:</span>
+<span id="cb31-7"><a href="model-testing.html#cb31-7" tabindex="-1"></a>  <span class="cf">for</span> source <span class="kw">in</span> sources:</span>
+<span id="cb31-8"><a href="model-testing.html#cb31-8" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&#39;Running </span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss"> for </span><span class="sc">{</span>source<span class="sc">}</span><span class="ss"> data...&#39;</span>)</span>
+<span id="cb31-9"><a href="model-testing.html#cb31-9" tabindex="-1"></a>    <span class="co"># --- Load data ---</span></span>
+<span id="cb31-10"><a href="model-testing.html#cb31-10" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb31-11"><a href="model-testing.html#cb31-11" tabindex="-1"></a>      <span class="co"># set data paths</span></span>
+<span id="cb31-12"><a href="model-testing.html#cb31-12" tabindex="-1"></a>      test_x_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="ss">f&#39;</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_val_</span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">.pickle&#39;</span>)</span>
+<span id="cb31-13"><a href="model-testing.html#cb31-13" tabindex="-1"></a>      test_y_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>,<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="ss">f&#39;</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_val_phq.pickle&#39;</span>)</span>
+<span id="cb31-14"><a href="model-testing.html#cb31-14" tabindex="-1"></a>      test_subs_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>,<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="ss">f&#39;</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_val_subs.pickle&#39;</span>)</span>
+<span id="cb31-15"><a href="model-testing.html#cb31-15" tabindex="-1"></a>      <span class="co"># load data</span></span>
+<span id="cb31-16"><a href="model-testing.html#cb31-16" tabindex="-1"></a>      test_x <span class="op">=</span> pd.read_pickle(test_x_path)</span>
+<span id="cb31-17"><a href="model-testing.html#cb31-17" tabindex="-1"></a>      test_y <span class="op">=</span> np.float32(pd.read_pickle(test_y_path)) <span class="op">+</span> <span class="dv">1</span> </span>
+<span id="cb31-18"><a href="model-testing.html#cb31-18" tabindex="-1"></a>      test_subs <span class="op">=</span> pd.read_pickle(test_subs_path)</span>
+<span id="cb31-19"><a href="model-testing.html#cb31-19" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb31-20"><a href="model-testing.html#cb31-20" tabindex="-1"></a>      <span class="bu">print</span>(<span class="ss">f&quot;Error loading data for model </span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">, source </span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb31-21"><a href="model-testing.html#cb31-21" tabindex="-1"></a>      </span>
+<span id="cb31-22"><a href="model-testing.html#cb31-22" tabindex="-1"></a>      <span class="co"># --- Load models and predict ---</span></span>
+<span id="cb31-23"><a href="model-testing.html#cb31-23" tabindex="-1"></a>      all_predictions <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb31-24"><a href="model-testing.html#cb31-24" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb31-25"><a href="model-testing.html#cb31-25" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb31-26"><a href="model-testing.html#cb31-26" tabindex="-1"></a>          model_path <span class="op">=</span> os.path.join(<span class="st">&#39;..&#39;</span>,<span class="st">&#39;results&#39;</span>, <span class="ss">f&#39;model_</span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">_fold_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">.keras&#39;</span>)</span>
+<span id="cb31-27"><a href="model-testing.html#cb31-27" tabindex="-1"></a>          <span class="co"># Load the model</span></span>
+<span id="cb31-28"><a href="model-testing.html#cb31-28" tabindex="-1"></a>          model <span class="op">=</span> tf.keras.models.load_model(model_path, <span class="bu">compile</span><span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb31-29"><a href="model-testing.html#cb31-29" tabindex="-1"></a>          </span>
+<span id="cb31-30"><a href="model-testing.html#cb31-30" tabindex="-1"></a>          <span class="co"># Get predictions</span></span>
+<span id="cb31-31"><a href="model-testing.html#cb31-31" tabindex="-1"></a>          predicted_vals <span class="op">=</span> model.predict(test_x)</span>
+<span id="cb31-32"><a href="model-testing.html#cb31-32" tabindex="-1"></a>          </span>
+<span id="cb31-33"><a href="model-testing.html#cb31-33" tabindex="-1"></a>          <span class="co"># Create a temporary DataFrame for this fold&#39;s results</span></span>
+<span id="cb31-34"><a href="model-testing.html#cb31-34" tabindex="-1"></a>          temp_preds <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb31-35"><a href="model-testing.html#cb31-35" tabindex="-1"></a>          temp_preds[<span class="st">&#39;predicted&#39;</span>] <span class="op">=</span> predicted_vals.flatten()</span>
+<span id="cb31-36"><a href="model-testing.html#cb31-36" tabindex="-1"></a>          temp_preds[<span class="st">&#39;actual&#39;</span>] <span class="op">=</span> test_y.flatten()</span>
+<span id="cb31-37"><a href="model-testing.html#cb31-37" tabindex="-1"></a>          temp_preds[<span class="st">&#39;model&#39;</span>] <span class="op">=</span> model_windows</span>
+<span id="cb31-38"><a href="model-testing.html#cb31-38" tabindex="-1"></a>          temp_preds[<span class="st">&#39;source&#39;</span>] <span class="op">=</span> source</span>
+<span id="cb31-39"><a href="model-testing.html#cb31-39" tabindex="-1"></a>          temp_preds[<span class="st">&#39;fold&#39;</span>] <span class="op">=</span> i</span>
+<span id="cb31-40"><a href="model-testing.html#cb31-40" tabindex="-1"></a>          temp_preds[<span class="st">&#39;sub_id&#39;</span>] <span class="op">=</span> test_subs.flatten()</span>
+<span id="cb31-41"><a href="model-testing.html#cb31-41" tabindex="-1"></a>                </span>
+<span id="cb31-42"><a href="model-testing.html#cb31-42" tabindex="-1"></a>          <span class="co"># Append the DataFrame to initial one</span></span>
+<span id="cb31-43"><a href="model-testing.html#cb31-43" tabindex="-1"></a>          all_predictions <span class="op">=</span> pd.concat([all_predictions, temp_preds], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb31-44"><a href="model-testing.html#cb31-44" tabindex="-1"></a>                </span>
+<span id="cb31-45"><a href="model-testing.html#cb31-45" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb31-46"><a href="model-testing.html#cb31-46" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;Could not load/predict model for fold </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, model </span><span class="sc">{</span>model_windows<span class="sc">}</span><span class="ss">, source </span><span class="sc">{</span>source<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <pre><code>## Running week for ema data...
 ## Running week for epa data...
 ## Running week for all data...
@@ -278,64 +278,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Running day for epa data...
 ## Running day for all data...
 ## Running day for phq_lag1 data...</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="model-testing.html#cb34-1" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="model-testing.html#cb34-2" tabindex="-1"></a>        <span class="co"># Save the predictions</span></span>
-<span id="cb34-3"><a href="model-testing.html#cb34-3" tabindex="-1"></a>    <span class="co">#all_predictions.to_csv(f&#39;../results/results_testing_{model_windows}_{source}.csv&#39;, index=False)</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="model-testing.html#cb33-1" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="model-testing.html#cb33-2" tabindex="-1"></a>        <span class="co"># Save the predictions</span></span>
+<span id="cb33-3"><a href="model-testing.html#cb33-3" tabindex="-1"></a>    <span class="co">#all_predictions.to_csv(f&#39;../results/results_testing_{model_windows}_{source}.csv&#39;, index=False)</span></span></code></pre></div>
 </div>
 <div id="shap-estimate" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> SHAP Estimate<a href="model-testing.html#shap-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we estimated the SHAP values. Code is commented because it takes forever to run, and I don’t want to redo this everytime I am knitting the notebooks.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="model-testing.html#cb35-1" tabindex="-1"></a><span class="co"># # Set up arrays and dfs for results</span></span>
-<span id="cb35-2"><a href="model-testing.html#cb35-2" tabindex="-1"></a><span class="co"># models = [&#39;day&#39;, &#39;week&#39;]</span></span>
-<span id="cb35-3"><a href="model-testing.html#cb35-3" tabindex="-1"></a><span class="co"># sources = [&#39;all&#39;, &#39;ema&#39;, &#39;epa&#39;]</span></span>
-<span id="cb35-4"><a href="model-testing.html#cb35-4" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb35-5"><a href="model-testing.html#cb35-5" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb35-6"><a href="model-testing.html#cb35-6" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb35-7"><a href="model-testing.html#cb35-7" tabindex="-1"></a><span class="co"># # Run loops</span></span>
-<span id="cb35-8"><a href="model-testing.html#cb35-8" tabindex="-1"></a><span class="co"># for model_windows in models:</span></span>
-<span id="cb35-9"><a href="model-testing.html#cb35-9" tabindex="-1"></a><span class="co">#   for source in sources:</span></span>
-<span id="cb35-10"><a href="model-testing.html#cb35-10" tabindex="-1"></a><span class="co">#       print(f&quot;Processing SHAP values for model: {model_windows}, source: {source}&quot;)</span></span>
-<span id="cb35-11"><a href="model-testing.html#cb35-11" tabindex="-1"></a><span class="co">#       # Load data</span></span>
-<span id="cb35-12"><a href="model-testing.html#cb35-12" tabindex="-1"></a><span class="co">#       train_x = pd.read_pickle(f&#39;../data/{model_windows}_train_{source}_new.pickle&#39;)</span></span>
-<span id="cb35-13"><a href="model-testing.html#cb35-13" tabindex="-1"></a><span class="co">#       test_x = pd.read_pickle(f&#39;../data/{model_windows}_val_{source}_new.pickle&#39;)</span></span>
-<span id="cb35-14"><a href="model-testing.html#cb35-14" tabindex="-1"></a><span class="co">#       test_y = np.float32(pd.read_pickle(f&#39;../data/{model_windows}_val_phq_new.pickle&#39;) + 1)</span></span>
-<span id="cb35-15"><a href="model-testing.html#cb35-15" tabindex="-1"></a><span class="co">#       vars = pd.read_pickle(f&#39;../data/vars_{source}_new.pickle&#39;).flatten()</span></span>
-<span id="cb35-16"><a href="model-testing.html#cb35-16" tabindex="-1"></a><span class="co">#   </span></span>
-<span id="cb35-17"><a href="model-testing.html#cb35-17" tabindex="-1"></a><span class="co">#       # Load models</span></span>
-<span id="cb35-18"><a href="model-testing.html#cb35-18" tabindex="-1"></a><span class="co">#       all_shaps = pd.DataFrame()</span></span>
-<span id="cb35-19"><a href="model-testing.html#cb35-19" tabindex="-1"></a><span class="co">#       for  i in range(1,11):</span></span>
-<span id="cb35-20"><a href="model-testing.html#cb35-20" tabindex="-1"></a><span class="co">#           print(f&quot;  Fold {i}&quot;)</span></span>
-<span id="cb35-21"><a href="model-testing.html#cb35-21" tabindex="-1"></a><span class="co">#           # Fit the models and get the predictions</span></span>
-<span id="cb35-22"><a href="model-testing.html#cb35-22" tabindex="-1"></a><span class="co">#           model = tf.keras.models.load_model(f&#39;../results/model_{model_windows}_{source}_fold_{i}.keras&#39;, compile=False)</span></span>
-<span id="cb35-23"><a href="model-testing.html#cb35-23" tabindex="-1"></a><span class="co">#           predicted_vals = model.predict(test_x)</span></span>
-<span id="cb35-24"><a href="model-testing.html#cb35-24" tabindex="-1"></a><span class="co">#    </span></span>
-<span id="cb35-25"><a href="model-testing.html#cb35-25" tabindex="-1"></a><span class="co">#           # Run the shap explainer</span></span>
-<span id="cb35-26"><a href="model-testing.html#cb35-26" tabindex="-1"></a><span class="co">#           background = shap.sample(train_x, 1000)</span></span>
-<span id="cb35-27"><a href="model-testing.html#cb35-27" tabindex="-1"></a><span class="co">#           explainer = shap.GradientExplainer(model, background)</span></span>
-<span id="cb35-28"><a href="model-testing.html#cb35-28" tabindex="-1"></a><span class="co">#           explanation = explainer(test_x)</span></span>
-<span id="cb35-29"><a href="model-testing.html#cb35-29" tabindex="-1"></a><span class="co">#           explanation.feature_names = vars</span></span>
-<span id="cb35-30"><a href="model-testing.html#cb35-30" tabindex="-1"></a><span class="co">#    </span></span>
-<span id="cb35-31"><a href="model-testing.html#cb35-31" tabindex="-1"></a><span class="co">#           # Extract SHAP values</span></span>
-<span id="cb35-32"><a href="model-testing.html#cb35-32" tabindex="-1"></a><span class="co">#           shap_values = explanation.values[:,:,:,0]</span></span>
-<span id="cb35-33"><a href="model-testing.html#cb35-33" tabindex="-1"></a><span class="co">#           # Reshape the SHAP values to a 2D array</span></span>
-<span id="cb35-34"><a href="model-testing.html#cb35-34" tabindex="-1"></a><span class="co">#           reshaped = shap_values.reshape(-1, shap_values.shape[-1])</span></span>
-<span id="cb35-35"><a href="model-testing.html#cb35-35" tabindex="-1"></a><span class="co">#           # Create sample and step indices</span></span>
-<span id="cb35-36"><a href="model-testing.html#cb35-36" tabindex="-1"></a><span class="co">#           num_samples, num_steps, num_features = shap_values.shape</span></span>
-<span id="cb35-37"><a href="model-testing.html#cb35-37" tabindex="-1"></a><span class="co">#           sample_idx = np.repeat(np.arange(num_samples), num_steps)</span></span>
-<span id="cb35-38"><a href="model-testing.html#cb35-38" tabindex="-1"></a><span class="co">#           step_idx = np.tile(np.arange(num_steps), num_samples)</span></span>
-<span id="cb35-39"><a href="model-testing.html#cb35-39" tabindex="-1"></a><span class="co">#    </span></span>
-<span id="cb35-40"><a href="model-testing.html#cb35-40" tabindex="-1"></a><span class="co">#           # Build DataFrame</span></span>
-<span id="cb35-41"><a href="model-testing.html#cb35-41" tabindex="-1"></a><span class="co">#           shap_df = pd.DataFrame(reshaped, columns=vars)</span></span>
-<span id="cb35-42"><a href="model-testing.html#cb35-42" tabindex="-1"></a><span class="co">#           shap_df[&#39;sample&#39;] = sample_idx</span></span>
-<span id="cb35-43"><a href="model-testing.html#cb35-43" tabindex="-1"></a><span class="co">#           shap_df[&#39;step&#39;] = step_idx</span></span>
-<span id="cb35-44"><a href="model-testing.html#cb35-44" tabindex="-1"></a><span class="co">#           shap_df[&#39;fold&#39;] = i</span></span>
-<span id="cb35-45"><a href="model-testing.html#cb35-45" tabindex="-1"></a><span class="co">#           shap_df[&#39;source&#39;] = source  </span></span>
-<span id="cb35-46"><a href="model-testing.html#cb35-46" tabindex="-1"></a><span class="co">#           shap_df[&#39;model&#39;] = model_windows</span></span>
-<span id="cb35-47"><a href="model-testing.html#cb35-47" tabindex="-1"></a><span class="co">#    </span></span>
-<span id="cb35-48"><a href="model-testing.html#cb35-48" tabindex="-1"></a><span class="co">#           # Append to master</span></span>
-<span id="cb35-49"><a href="model-testing.html#cb35-49" tabindex="-1"></a><span class="co">#           all_shaps = pd.concat([all_shaps, shap_df], ignore_index=True)</span></span>
-<span id="cb35-50"><a href="model-testing.html#cb35-50" tabindex="-1"></a><span class="co">#           # Save the SHAP values</span></span>
-<span id="cb35-51"><a href="model-testing.html#cb35-51" tabindex="-1"></a><span class="co">#       all_shaps.to_csv(f&#39;../results/shap_values_{model_windows}_{source}.csv&#39;, index=False, )</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="model-testing.html#cb34-1" tabindex="-1"></a><span class="co"># # Set up arrays and dfs for results</span></span>
+<span id="cb34-2"><a href="model-testing.html#cb34-2" tabindex="-1"></a><span class="co"># models = [&#39;day&#39;, &#39;week&#39;]</span></span>
+<span id="cb34-3"><a href="model-testing.html#cb34-3" tabindex="-1"></a><span class="co"># sources = [&#39;all&#39;, &#39;ema&#39;, &#39;epa&#39;]</span></span>
+<span id="cb34-4"><a href="model-testing.html#cb34-4" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb34-5"><a href="model-testing.html#cb34-5" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb34-6"><a href="model-testing.html#cb34-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb34-7"><a href="model-testing.html#cb34-7" tabindex="-1"></a><span class="co"># # Run loops</span></span>
+<span id="cb34-8"><a href="model-testing.html#cb34-8" tabindex="-1"></a><span class="co"># for model_windows in models:</span></span>
+<span id="cb34-9"><a href="model-testing.html#cb34-9" tabindex="-1"></a><span class="co">#   for source in sources:</span></span>
+<span id="cb34-10"><a href="model-testing.html#cb34-10" tabindex="-1"></a><span class="co">#       print(f&quot;Processing SHAP values for model: {model_windows}, source: {source}&quot;)</span></span>
+<span id="cb34-11"><a href="model-testing.html#cb34-11" tabindex="-1"></a><span class="co">#       # Load data</span></span>
+<span id="cb34-12"><a href="model-testing.html#cb34-12" tabindex="-1"></a><span class="co">#       train_x = pd.read_pickle(f&#39;../data/{model_windows}_train_{source}_new.pickle&#39;)</span></span>
+<span id="cb34-13"><a href="model-testing.html#cb34-13" tabindex="-1"></a><span class="co">#       test_x = pd.read_pickle(f&#39;../data/{model_windows}_val_{source}_new.pickle&#39;)</span></span>
+<span id="cb34-14"><a href="model-testing.html#cb34-14" tabindex="-1"></a><span class="co">#       test_y = np.float32(pd.read_pickle(f&#39;../data/{model_windows}_val_phq_new.pickle&#39;) + 1)</span></span>
+<span id="cb34-15"><a href="model-testing.html#cb34-15" tabindex="-1"></a><span class="co">#       vars = pd.read_pickle(f&#39;../data/vars_{source}_new.pickle&#39;).flatten()</span></span>
+<span id="cb34-16"><a href="model-testing.html#cb34-16" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb34-17"><a href="model-testing.html#cb34-17" tabindex="-1"></a><span class="co">#       # Load models</span></span>
+<span id="cb34-18"><a href="model-testing.html#cb34-18" tabindex="-1"></a><span class="co">#       all_shaps = pd.DataFrame()</span></span>
+<span id="cb34-19"><a href="model-testing.html#cb34-19" tabindex="-1"></a><span class="co">#       for  i in range(1,11):</span></span>
+<span id="cb34-20"><a href="model-testing.html#cb34-20" tabindex="-1"></a><span class="co">#           print(f&quot;  Fold {i}&quot;)</span></span>
+<span id="cb34-21"><a href="model-testing.html#cb34-21" tabindex="-1"></a><span class="co">#           # Fit the models and get the predictions</span></span>
+<span id="cb34-22"><a href="model-testing.html#cb34-22" tabindex="-1"></a><span class="co">#           model = tf.keras.models.load_model(f&#39;../results/model_{model_windows}_{source}_fold_{i}.keras&#39;, compile=False)</span></span>
+<span id="cb34-23"><a href="model-testing.html#cb34-23" tabindex="-1"></a><span class="co">#           predicted_vals = model.predict(test_x)</span></span>
+<span id="cb34-24"><a href="model-testing.html#cb34-24" tabindex="-1"></a><span class="co">#    </span></span>
+<span id="cb34-25"><a href="model-testing.html#cb34-25" tabindex="-1"></a><span class="co">#           # Run the shap explainer</span></span>
+<span id="cb34-26"><a href="model-testing.html#cb34-26" tabindex="-1"></a><span class="co">#           background = shap.sample(train_x, 1000)</span></span>
+<span id="cb34-27"><a href="model-testing.html#cb34-27" tabindex="-1"></a><span class="co">#           explainer = shap.GradientExplainer(model, background)</span></span>
+<span id="cb34-28"><a href="model-testing.html#cb34-28" tabindex="-1"></a><span class="co">#           explanation = explainer(test_x)</span></span>
+<span id="cb34-29"><a href="model-testing.html#cb34-29" tabindex="-1"></a><span class="co">#           explanation.feature_names = vars</span></span>
+<span id="cb34-30"><a href="model-testing.html#cb34-30" tabindex="-1"></a><span class="co">#    </span></span>
+<span id="cb34-31"><a href="model-testing.html#cb34-31" tabindex="-1"></a><span class="co">#           # Extract SHAP values</span></span>
+<span id="cb34-32"><a href="model-testing.html#cb34-32" tabindex="-1"></a><span class="co">#           shap_values = explanation.values[:,:,:,0]</span></span>
+<span id="cb34-33"><a href="model-testing.html#cb34-33" tabindex="-1"></a><span class="co">#           # Reshape the SHAP values to a 2D array</span></span>
+<span id="cb34-34"><a href="model-testing.html#cb34-34" tabindex="-1"></a><span class="co">#           reshaped = shap_values.reshape(-1, shap_values.shape[-1])</span></span>
+<span id="cb34-35"><a href="model-testing.html#cb34-35" tabindex="-1"></a><span class="co">#           # Create sample and step indices</span></span>
+<span id="cb34-36"><a href="model-testing.html#cb34-36" tabindex="-1"></a><span class="co">#           num_samples, num_steps, num_features = shap_values.shape</span></span>
+<span id="cb34-37"><a href="model-testing.html#cb34-37" tabindex="-1"></a><span class="co">#           sample_idx = np.repeat(np.arange(num_samples), num_steps)</span></span>
+<span id="cb34-38"><a href="model-testing.html#cb34-38" tabindex="-1"></a><span class="co">#           step_idx = np.tile(np.arange(num_steps), num_samples)</span></span>
+<span id="cb34-39"><a href="model-testing.html#cb34-39" tabindex="-1"></a><span class="co">#    </span></span>
+<span id="cb34-40"><a href="model-testing.html#cb34-40" tabindex="-1"></a><span class="co">#           # Build DataFrame</span></span>
+<span id="cb34-41"><a href="model-testing.html#cb34-41" tabindex="-1"></a><span class="co">#           shap_df = pd.DataFrame(reshaped, columns=vars)</span></span>
+<span id="cb34-42"><a href="model-testing.html#cb34-42" tabindex="-1"></a><span class="co">#           shap_df[&#39;sample&#39;] = sample_idx</span></span>
+<span id="cb34-43"><a href="model-testing.html#cb34-43" tabindex="-1"></a><span class="co">#           shap_df[&#39;step&#39;] = step_idx</span></span>
+<span id="cb34-44"><a href="model-testing.html#cb34-44" tabindex="-1"></a><span class="co">#           shap_df[&#39;fold&#39;] = i</span></span>
+<span id="cb34-45"><a href="model-testing.html#cb34-45" tabindex="-1"></a><span class="co">#           shap_df[&#39;source&#39;] = source  </span></span>
+<span id="cb34-46"><a href="model-testing.html#cb34-46" tabindex="-1"></a><span class="co">#           shap_df[&#39;model&#39;] = model_windows</span></span>
+<span id="cb34-47"><a href="model-testing.html#cb34-47" tabindex="-1"></a><span class="co">#    </span></span>
+<span id="cb34-48"><a href="model-testing.html#cb34-48" tabindex="-1"></a><span class="co">#           # Append to master</span></span>
+<span id="cb34-49"><a href="model-testing.html#cb34-49" tabindex="-1"></a><span class="co">#           all_shaps = pd.concat([all_shaps, shap_df], ignore_index=True)</span></span>
+<span id="cb34-50"><a href="model-testing.html#cb34-50" tabindex="-1"></a><span class="co">#           # Save the SHAP values</span></span>
+<span id="cb34-51"><a href="model-testing.html#cb34-51" tabindex="-1"></a><span class="co">#       all_shaps.to_csv(f&#39;../results/shap_values_{model_windows}_{source}.csv&#39;, index=False, )</span></span></code></pre></div>
 
 </div>
 </div>

@@ -14,14 +14,10 @@ output:
 
 # Introduction
 
-This is the notebook accompanying the preprint/publication [**Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study**](https://osf.io/preprints/osf/hbtre_v2). The notebook contains four main sections. 
+This is the notebook accompanying the preprint/publication [**Integrating ecological momentary and passive sensing data to improve depression severity prediction: insights from the WARN-D study**](https://osf.io/preprints/osf/hbtre_v2). The notebook contains three main sections.
 
-<div id="TOC"></div>
+Parts 2 and 4 are coded in `R`, with part 3 run in `python`. In 2, the data preparation and processing is carried out. The descriptive statistics that are used in the paper are also done in this part.
 
-Parts 2 and 4 are coded in R, with part 3 run in python. In 2, the data preperation and processing is carried out. The descriptive statistics that are used in the paper are also done in this part.
+Between section 2 and 3, code is run on the HPC ALICE cluster of Leiden University. This process is not integrated into the notebook, but is provided as a [code in the repository](https://github.com/WARN-D/prediction_nomothetic/tree/master/scripts/alice).
 
-Between section 2 and 3, code is run on the HPC ALICE cluster of Leiden Univeristy. This process is not integrated into the notebook, but is provided as a [code in the repository](https://github.com/WARN-D/prediction_nomothetic/tree/master/scripts/alice). 
-
-The results of the model calibration and cross-validation are done using the code under section 3 in `python`. Here we also generate the SHAP values. All this is saved into .csv files that we use for the end results/figures which are presented in section 4, in `R` again. 
-
-
+The results of the model calibration and cross-validation are carried out using the code under section 3 in `python`. Here we also generate the SHAP values. All this is saved into *.csv* files that we use for the end results/figures which are presented in section 4, in `R` again.

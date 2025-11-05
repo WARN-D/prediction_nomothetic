@@ -31,7 +31,7 @@ library(shapviz)
 # Markdown and Plots
 library(knitr)
 library(WARNPipe)
-
+library(extrafont)
 # Functions
 source(here('scripts', 'functions.R'))
 Sys.getlocale()
@@ -263,9 +263,16 @@ And now plots for the distribution of the compliance rates:
 ```{r}
 df_merge$cohort = as.factor(df_merge$cohort)
 ggpubr::ggarrange(
-  ggplot(df_merge, aes(x=compliance, fill = cohort)) + geom_histogram(bins = 50) + labs(x="Compliance-EMA") + facet_grid(.~cohort), 
-  ggplot(df_merge, aes(x=compliance_hr, fill = cohort)) + geom_histogram(bins = 50) +  labs(x="Compliance-HR") + facet_grid(.~cohort),
-  ggplot(df_merge, aes(x=compliance_stress, fill = cohort)) + geom_histogram(bins=50) + labs(x="Compliance-Stress")+ facet_grid(.~cohort),
+  ggplot(df_merge, aes(x=compliance, fill = cohort)) + 
+    geom_histogram(bins = 50) + labs(x="Compliance-EMA") + 
+    facet_grid(.~cohort), 
+  ggplot(df_merge, aes(x=compliance_hr, fill = cohort)) +
+    geom_histogram(bins = 50) +  labs(x="Compliance-HR") + 
+    facet_grid(.~cohort),
+  ggplot(df_merge, aes(x=compliance_stress, fill = cohort)) +
+    geom_histogram(bins=50) + 
+    labs(x="Compliance-Stress") + 
+    facet_grid(.~cohort),
   nrow = 3, common.legend = TRUE, legend = "bottom")
 ```
 

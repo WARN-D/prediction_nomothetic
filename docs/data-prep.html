@@ -23,7 +23,7 @@
 <meta name="author" content="Rayyan Tutunji" />
 
 
-<meta name="date" content="2025-11-04" />
+<meta name="date" content="2025-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -515,481 +515,219 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>And now plots for the distribution of the compliance rates:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-prep.html#cb19-1" tabindex="-1"></a>df_merge<span class="sc">$</span>cohort <span class="ot">=</span> <span class="fu">as.factor</span>(df_merge<span class="sc">$</span>cohort)</span>
 <span id="cb19-2"><a href="data-prep.html#cb19-2" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(</span>
-<span id="cb19-3"><a href="data-prep.html#cb19-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_merge, <span class="fu">aes</span>(<span class="at">x=</span>compliance, <span class="at">fill =</span> cohort)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Compliance-EMA&quot;</span>) <span class="sc">+</span> <span class="fu">facet_grid</span>(.<span class="sc">~</span>cohort), </span>
-<span id="cb19-4"><a href="data-prep.html#cb19-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_merge, <span class="fu">aes</span>(<span class="at">x=</span>compliance_hr, <span class="at">fill =</span> cohort)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Compliance-HR&quot;</span>) <span class="sc">+</span> <span class="fu">facet_grid</span>(.<span class="sc">~</span>cohort),</span>
-<span id="cb19-5"><a href="data-prep.html#cb19-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_merge, <span class="fu">aes</span>(<span class="at">x=</span>compliance_stress, <span class="at">fill =</span> cohort)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Compliance-Stress&quot;</span>)<span class="sc">+</span> <span class="fu">facet_grid</span>(.<span class="sc">~</span>cohort),</span>
-<span id="cb19-6"><a href="data-prep.html#cb19-6" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">common.legend =</span> <span class="cn">TRUE</span>, <span class="at">legend =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family &#39;SegoeIcons&#39; not found in PostScript font database</code></pre>
-<p><img src="final_report_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<span id="cb19-3"><a href="data-prep.html#cb19-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_merge, <span class="fu">aes</span>(<span class="at">x=</span>compliance, <span class="at">fill =</span> cohort)) <span class="sc">+</span> </span>
+<span id="cb19-4"><a href="data-prep.html#cb19-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Compliance-EMA&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb19-5"><a href="data-prep.html#cb19-5" tabindex="-1"></a>    <span class="fu">facet_grid</span>(.<span class="sc">~</span>cohort), </span>
+<span id="cb19-6"><a href="data-prep.html#cb19-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_merge, <span class="fu">aes</span>(<span class="at">x=</span>compliance_hr, <span class="at">fill =</span> cohort)) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="data-prep.html#cb19-7" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Compliance-HR&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb19-8"><a href="data-prep.html#cb19-8" tabindex="-1"></a>    <span class="fu">facet_grid</span>(.<span class="sc">~</span>cohort),</span>
+<span id="cb19-9"><a href="data-prep.html#cb19-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_merge, <span class="fu">aes</span>(<span class="at">x=</span>compliance_stress, <span class="at">fill =</span> cohort)) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="data-prep.html#cb19-10" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span> </span>
+<span id="cb19-11"><a href="data-prep.html#cb19-11" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Compliance-Stress&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb19-12"><a href="data-prep.html#cb19-12" tabindex="-1"></a>    <span class="fu">facet_grid</span>(.<span class="sc">~</span>cohort),</span>
+<span id="cb19-13"><a href="data-prep.html#cb19-13" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">common.legend =</span> <span class="cn">TRUE</span>, <span class="at">legend =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="final_report_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="feature-correlations" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Feature Correlations<a href="data-prep.html#feature-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We take a look at the correlation of features, and then also check which are the features with super high correlations.</p>
 <div id="full-features" class="section level4 hasAnchor" number="2.2.3.1">
 <h4><span class="header-section-number">2.2.3.1</span> Full Features<a href="data-prep.html#full-features" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-prep.html#cb21-1" tabindex="-1"></a>df_merge_corr <span class="ot">=</span> df_merge <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="data-prep.html#cb21-2" tabindex="-1"></a>  <span class="fu">select</span>(external_id, day_num, prompt_num, pseudo_phq9_sum, phq2_sum_e, phq9_sum_w, <span class="fu">all_of</span>(ema_day_vars), <span class="fu">all_of</span>(epa_day_vars),<span class="fu">starts_with</span>(<span class="st">&quot;sleep_dur&quot;</span>), <span class="fu">starts_with</span>(<span class="st">&#39;sleep_hr&#39;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-3"><a href="data-prep.html#cb21-3" tabindex="-1"></a>  <span class="fu">arrange</span>(external_id, day_num, prompt_num)</span>
-<span id="cb21-4"><a href="data-prep.html#cb21-4" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="data-prep.html#cb21-5" tabindex="-1"></a>corr_all <span class="ot">=</span> <span class="fu">correlate</span>(df_merge_corr, <span class="at">diagonal =</span> T, <span class="at">method =</span> <span class="st">&#39;spearman&#39;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-prep.html#cb20-1" tabindex="-1"></a>df_merge_corr <span class="ot">=</span> df_merge <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="data-prep.html#cb20-2" tabindex="-1"></a>  <span class="fu">select</span>(external_id, day_num, prompt_num, pseudo_phq9_sum, phq2_sum_e, phq9_sum_w, <span class="fu">all_of</span>(ema_day_vars), <span class="fu">all_of</span>(epa_day_vars),<span class="fu">starts_with</span>(<span class="st">&quot;sleep_dur&quot;</span>), <span class="fu">starts_with</span>(<span class="st">&#39;sleep_hr&#39;</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="data-prep.html#cb20-3" tabindex="-1"></a>  <span class="fu">arrange</span>(external_id, day_num, prompt_num)</span>
+<span id="cb20-4"><a href="data-prep.html#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="data-prep.html#cb20-5" tabindex="-1"></a>corr_all <span class="ot">=</span> <span class="fu">correlate</span>(df_merge_corr, <span class="at">diagonal =</span> T, <span class="at">method =</span> <span class="st">&#39;spearman&#39;</span> )</span></code></pre></div>
 <pre><code>## Non-numeric variables removed from input: `external_id`
 ## Correlation computed with
 ## • Method: &#39;spearman&#39;
 ## • Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-prep.html#cb23-1" tabindex="-1"></a>corr_all_plot <span class="ot">=</span> <span class="fu">corrplot</span>(<span class="fu">as_matrix</span>(corr_all), <span class="at">type =</span>  <span class="st">&#39;lower&#39;</span>,<span class="at">method =</span> <span class="st">&#39;color&#39;</span>, <span class="at">addgrid.col =</span> <span class="st">&#39;aliceblue&#39;</span>, <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="final_report_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-prep.html#cb22-1" tabindex="-1"></a>corr_all_plot <span class="ot">=</span> <span class="fu">corrplot</span>(<span class="fu">as_matrix</span>(corr_all), <span class="at">type =</span>  <span class="st">&#39;lower&#39;</span>,<span class="at">method =</span> <span class="st">&#39;color&#39;</span>, <span class="at">addgrid.col =</span> <span class="st">&#39;aliceblue&#39;</span>, <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="final_report_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 <div id="highly-correlated-features" class="section level4 hasAnchor" number="2.2.3.2">
 <h4><span class="header-section-number">2.2.3.2</span> Highly Correlated Features<a href="data-prep.html#highly-correlated-features" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-prep.html#cb24-1" tabindex="-1"></a>corr_high <span class="ot">=</span> <span class="fu">correlate</span>(df_merge_corr, <span class="at">diagonal =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-prep.html#cb23-1" tabindex="-1"></a>corr_high <span class="ot">=</span> <span class="fu">correlate</span>(df_merge_corr, <span class="at">diagonal =</span> T)</span></code></pre></div>
 <pre><code>## Non-numeric variables removed from input: `external_id`
 ## Correlation computed with
 ## • Method: &#39;pearson&#39;
 ## • Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-prep.html#cb26-1" tabindex="-1"></a>corr_high <span class="ot">=</span> corr_high <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">ifelse</span>((.x <span class="sc">&lt;=</span> <span class="fl">0.7</span> <span class="sc">&amp;</span> .x <span class="sc">&gt;=</span> <span class="sc">-</span><span class="fl">0.7</span>), <span class="dv">0</span>, .x)))</span>
-<span id="cb26-2"><a href="data-prep.html#cb26-2" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">as_matrix</span>(corr_high), <span class="at">type =</span>  <span class="st">&#39;lower&#39;</span>, <span class="at">method =</span> <span class="st">&#39;color&#39;</span>, <span class="at">addgrid.col =</span> <span class="st">&#39;aliceblue&#39;</span>, <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="final_report_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-prep.html#cb25-1" tabindex="-1"></a>corr_high <span class="ot">=</span> corr_high <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">ifelse</span>((.x <span class="sc">&lt;=</span> <span class="fl">0.7</span> <span class="sc">&amp;</span> .x <span class="sc">&gt;=</span> <span class="sc">-</span><span class="fl">0.7</span>), <span class="dv">0</span>, .x)))</span>
+<span id="cb25-2"><a href="data-prep.html#cb25-2" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">as_matrix</span>(corr_high), <span class="at">type =</span>  <span class="st">&#39;lower&#39;</span>, <span class="at">method =</span> <span class="st">&#39;color&#39;</span>, <span class="at">addgrid.col =</span> <span class="st">&#39;aliceblue&#39;</span>, <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="final_report_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
 </div>
 <div id="imputation" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Imputation<a href="data-prep.html#imputation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here I use MICE for imputation, setting my imputation model to a random forest model at the within-subject levels. We include in this model all predictors, and we set outcomes and ID to 0 so we can exclude them from any predictions. We then check if any variables have a constant value. This occurs for example in some of the substance use items, or perhaps location items. So we fill those with the constant value the participants endorsed (or didn’t). Once that’s done, we exclude those predictors from our matrix as well, and then implement MICE.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-prep.html#cb27-1" tabindex="-1"></a><span class="co"># Select non-composite EMA variable</span></span>
-<span id="cb27-2"><a href="data-prep.html#cb27-2" tabindex="-1"></a>ema_vars <span class="ot">=</span> <span class="fu">c</span>(ema_mor_vars, ema_day_vars, ema_eve_vars, categorical_items_d)</span>
-<span id="cb27-3"><a href="data-prep.html#cb27-3" tabindex="-1"></a><span class="co"># Now also select som EPA variables (subset sleep)</span></span>
-<span id="cb27-4"><a href="data-prep.html#cb27-4" tabindex="-1"></a>epa_vars <span class="ot">=</span> <span class="fu">c</span>(epa_day_hr, epa_day_stress, epa_sleep_vars, epa_day_act[<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>)], epa_day_bat)</span>
-<span id="cb27-5"><a href="data-prep.html#cb27-5" tabindex="-1"></a><span class="co"># Vector of IVs of interest and n of features</span></span>
-<span id="cb27-6"><a href="data-prep.html#cb27-6" tabindex="-1"></a>impute_vars <span class="ot">=</span>  <span class="fu">c</span>(ema_vars, epa_vars)</span>
-<span id="cb27-7"><a href="data-prep.html#cb27-7" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="data-prep.html#cb27-8" tabindex="-1"></a><span class="co"># Subset data</span></span>
-<span id="cb27-9"><a href="data-prep.html#cb27-9" tabindex="-1"></a>df_features <span class="ot">=</span> df_merge <span class="sc">%&gt;%</span></span>
-<span id="cb27-10"><a href="data-prep.html#cb27-10" tabindex="-1"></a>  <span class="fu">select</span>(external_id, week_nr, day_nr, prompt_num,</span>
-<span id="cb27-11"><a href="data-prep.html#cb27-11" tabindex="-1"></a>         phq9_sum_w, phq2_sum_e, <span class="fu">all_of</span>(impute_vars) )  <span class="sc">%&gt;%</span></span>
-<span id="cb27-12"><a href="data-prep.html#cb27-12" tabindex="-1"></a>  <span class="fu">filter</span>(prompt_num <span class="sc">!=</span> <span class="dv">5</span>) </span>
-<span id="cb27-13"><a href="data-prep.html#cb27-13" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="data-prep.html#cb27-14" tabindex="-1"></a>run_imputation<span class="ot">=</span><span class="cn">FALSE</span></span>
-<span id="cb27-15"><a href="data-prep.html#cb27-15" tabindex="-1"></a>  <span class="cf">if</span> (run_imputation){</span>
-<span id="cb27-16"><a href="data-prep.html#cb27-16" tabindex="-1"></a>  <span class="co"># Define the path for your error log</span></span>
-<span id="cb27-17"><a href="data-prep.html#cb27-17" tabindex="-1"></a>  error_log_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;imputation_failures_&quot;</span>, <span class="fu">Sys.Date</span>(), <span class="st">&quot;.log&quot;</span>)</span>
-<span id="cb27-18"><a href="data-prep.html#cb27-18" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(error_log_file)) <span class="fu">file.remove</span>(error_log_file)</span>
-<span id="cb27-19"><a href="data-prep.html#cb27-19" tabindex="-1"></a>    </span>
-<span id="cb27-20"><a href="data-prep.html#cb27-20" tabindex="-1"></a>  <span class="co"># Progress bar set-up</span></span>
-<span id="cb27-21"><a href="data-prep.html#cb27-21" tabindex="-1"></a>  <span class="fu">library</span>(progress)</span>
-<span id="cb27-22"><a href="data-prep.html#cb27-22" tabindex="-1"></a>  pb <span class="ot">&lt;-</span> progress_bar<span class="sc">$</span><span class="fu">new</span>(<span class="at">format =</span> <span class="st">&quot;[:bar] :percent ETA: :eta&quot;</span>, <span class="at">total =</span> <span class="fu">length</span>(<span class="fu">unique</span>(df_features<span class="sc">$</span>external_id)))</span>
-<span id="cb27-23"><a href="data-prep.html#cb27-23" tabindex="-1"></a>  progress <span class="ot">&lt;-</span> <span class="cf">function</span>(n){ pb<span class="sc">$</span><span class="fu">tick</span>()}</span>
-<span id="cb27-24"><a href="data-prep.html#cb27-24" tabindex="-1"></a>  opts <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">progress =</span> progress)</span>
-<span id="cb27-25"><a href="data-prep.html#cb27-25" tabindex="-1"></a>  </span>
-<span id="cb27-26"><a href="data-prep.html#cb27-26" tabindex="-1"></a>  <span class="co"># Parallel set-up</span></span>
-<span id="cb27-27"><a href="data-prep.html#cb27-27" tabindex="-1"></a>  n_cores <span class="ot">=</span> <span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb27-28"><a href="data-prep.html#cb27-28" tabindex="-1"></a>  cl <span class="ot">=</span> <span class="fu">makeCluster</span>(n_cores)</span>
-<span id="cb27-29"><a href="data-prep.html#cb27-29" tabindex="-1"></a>  <span class="fu">registerDoSNOW</span>(cl)</span>
-<span id="cb27-30"><a href="data-prep.html#cb27-30" tabindex="-1"></a>  </span>
-<span id="cb27-31"><a href="data-prep.html#cb27-31" tabindex="-1"></a>  <span class="co"># Parallel Run</span></span>
-<span id="cb27-32"><a href="data-prep.html#cb27-32" tabindex="-1"></a>  list_imputation_results <span class="ot">=</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="fu">unique</span>(df_features<span class="sc">$</span>external_id),</span>
-<span id="cb27-33"><a href="data-prep.html#cb27-33" tabindex="-1"></a>                                    <span class="at">.packages =</span> <span class="fu">c</span>(<span class="st">&#39;mice&#39;</span>,<span class="st">&#39;beepr&#39;</span>, <span class="st">&quot;dplyr&quot;</span>),</span>
-<span id="cb27-34"><a href="data-prep.html#cb27-34" tabindex="-1"></a>                                    <span class="at">.errorhandling =</span> <span class="st">&#39;pass&#39;</span>,</span>
-<span id="cb27-35"><a href="data-prep.html#cb27-35" tabindex="-1"></a>                                    <span class="at">.options.snow =</span> opts,</span>
-<span id="cb27-36"><a href="data-prep.html#cb27-36" tabindex="-1"></a>                                    <span class="at">.verbose =</span> F) <span class="sc">%dopar%</span> {</span>
-<span id="cb27-37"><a href="data-prep.html#cb27-37" tabindex="-1"></a>    <span class="co"># Run function and log failures</span></span>
-<span id="cb27-38"><a href="data-prep.html#cb27-38" tabindex="-1"></a>    <span class="fu">tryCatch</span>({</span>
-<span id="cb27-39"><a href="data-prep.html#cb27-39" tabindex="-1"></a>      <span class="fu">impute_subject</span>(df_features, i, impute_vars )}, </span>
-<span id="cb27-40"><a href="data-prep.html#cb27-40" tabindex="-1"></a>      <span class="co"># On errror:</span></span>
-<span id="cb27-41"><a href="data-prep.html#cb27-41" tabindex="-1"></a>      <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb27-42"><a href="data-prep.html#cb27-42" tabindex="-1"></a>        <span class="co"># Create error message</span></span>
-<span id="cb27-43"><a href="data-prep.html#cb27-43" tabindex="-1"></a>        failed_id <span class="ot">&lt;-</span> i</span>
-<span id="cb27-44"><a href="data-prep.html#cb27-44" tabindex="-1"></a>        error_message <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb27-45"><a href="data-prep.html#cb27-45" tabindex="-1"></a>          <span class="st">&quot;Timestamp: &quot;</span>, <span class="fu">Sys.time</span>(),</span>
-<span id="cb27-46"><a href="data-prep.html#cb27-46" tabindex="-1"></a>          <span class="st">&quot;, Subject_ID: &quot;</span>, failed_id,</span>
-<span id="cb27-47"><a href="data-prep.html#cb27-47" tabindex="-1"></a>          <span class="st">&quot;, Error: &quot;</span>, e<span class="sc">$</span>message, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb27-48"><a href="data-prep.html#cb27-48" tabindex="-1"></a>        <span class="co"># Append the error message to the log file</span></span>
-<span id="cb27-49"><a href="data-prep.html#cb27-49" tabindex="-1"></a>        <span class="fu">cat</span>(error_message, <span class="at">file =</span> error_log_file, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-50"><a href="data-prep.html#cb27-50" tabindex="-1"></a>        </span>
-<span id="cb27-51"><a href="data-prep.html#cb27-51" tabindex="-1"></a>        <span class="co"># Return NULL for the failed iteration</span></span>
-<span id="cb27-52"><a href="data-prep.html#cb27-52" tabindex="-1"></a>        <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb27-53"><a href="data-prep.html#cb27-53" tabindex="-1"></a>        }</span>
-<span id="cb27-54"><a href="data-prep.html#cb27-54" tabindex="-1"></a>      )</span>
-<span id="cb27-55"><a href="data-prep.html#cb27-55" tabindex="-1"></a>  }</span>
-<span id="cb27-56"><a href="data-prep.html#cb27-56" tabindex="-1"></a>  <span class="fu">stopCluster</span>(cl)</span>
-<span id="cb27-57"><a href="data-prep.html#cb27-57" tabindex="-1"></a>    </span>
-<span id="cb27-58"><a href="data-prep.html#cb27-58" tabindex="-1"></a>  <span class="co"># Combine results and make an imputation column</span></span>
-<span id="cb27-59"><a href="data-prep.html#cb27-59" tabindex="-1"></a>  df_features_imputed <span class="ot">=</span> <span class="fu">rbindlist</span>(list_imputation_results)</span>
-<span id="cb27-60"><a href="data-prep.html#cb27-60" tabindex="-1"></a>  df_features_imputed<span class="sc">$</span>imputed <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb27-61"><a href="data-prep.html#cb27-61" tabindex="-1"></a>  </span>
-<span id="cb27-62"><a href="data-prep.html#cb27-62" tabindex="-1"></a>  <span class="co"># Subset unimputed subs</span></span>
-<span id="cb27-63"><a href="data-prep.html#cb27-63" tabindex="-1"></a>  impute_fail_subs <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(df_features<span class="sc">$</span>external_id, df_features_imputed<span class="sc">$</span>external_id)</span>
-<span id="cb27-64"><a href="data-prep.html#cb27-64" tabindex="-1"></a>  df_features_unimputed <span class="ot">&lt;-</span> df_features[(df_features<span class="sc">$</span>external_id <span class="sc">%in%</span> impute_fail_subs),]</span>
-<span id="cb27-65"><a href="data-prep.html#cb27-65" tabindex="-1"></a>  df_features_unimputed<span class="sc">$</span>imputed <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb27-66"><a href="data-prep.html#cb27-66" tabindex="-1"></a>  </span>
-<span id="cb27-67"><a href="data-prep.html#cb27-67" tabindex="-1"></a>  <span class="co"># Now put them togerther</span></span>
-<span id="cb27-68"><a href="data-prep.html#cb27-68" tabindex="-1"></a>  df_features_mix <span class="ot">=</span> <span class="fu">rbind</span>(df_features_imputed, df_features_unimputed, <span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-69"><a href="data-prep.html#cb27-69" tabindex="-1"></a>  </span>
-<span id="cb27-70"><a href="data-prep.html#cb27-70" tabindex="-1"></a>  <span class="co"># # # Impute the ones that didnt work at the between-subject level</span></span>
-<span id="cb27-71"><a href="data-prep.html#cb27-71" tabindex="-1"></a>  L2_prediction_mat <span class="ot">&lt;-</span> <span class="fu">make_pred_matrix</span>(df_features_mix, <span class="at">impute_vars =</span> impute_vars)<span class="sc">$</span>pred_matrix</span>
-<span id="cb27-72"><a href="data-prep.html#cb27-72" tabindex="-1"></a>  L2_prediction_mat[, <span class="st">&quot;external_id&quot;</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
-<span id="cb27-73"><a href="data-prep.html#cb27-73" tabindex="-1"></a>  mice_imputation_2l <span class="ot">&lt;-</span> <span class="fu">mice</span>(<span class="at">data =</span> df_features_mix,</span>
-<span id="cb27-74"><a href="data-prep.html#cb27-74" tabindex="-1"></a>                             <span class="at">maxit =</span> <span class="dv">2</span>,</span>
-<span id="cb27-75"><a href="data-prep.html#cb27-75" tabindex="-1"></a>                              <span class="at">method =</span> <span class="st">&quot;2lonly.pmm&quot;</span>,</span>
-<span id="cb27-76"><a href="data-prep.html#cb27-76" tabindex="-1"></a>                              <span class="at">seed =</span> <span class="dv">666</span>,</span>
-<span id="cb27-77"><a href="data-prep.html#cb27-77" tabindex="-1"></a>                              <span class="at">blocks =</span> <span class="fu">as.list</span>(<span class="fu">rownames</span>(L2_prediction_mat)),</span>
-<span id="cb27-78"><a href="data-prep.html#cb27-78" tabindex="-1"></a>                              <span class="at">predictorMatrix =</span> L2_prediction_mat)</span>
-<span id="cb27-79"><a href="data-prep.html#cb27-79" tabindex="-1"></a>  </span>
-<span id="cb27-80"><a href="data-prep.html#cb27-80" tabindex="-1"></a>  df_features_mix <span class="ot">&lt;-</span> <span class="fu">complete</span>(mice_imputation_2l)</span>
-<span id="cb27-81"><a href="data-prep.html#cb27-81" tabindex="-1"></a>  <span class="co"># Make a day-prompt interaction for later</span></span>
-<span id="cb27-82"><a href="data-prep.html#cb27-82" tabindex="-1"></a>  df_features_mix<span class="sc">$</span>day_prompt <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">interaction</span>(df_features_mix<span class="sc">$</span>day_nr, df_features_mix<span class="sc">$</span>prompt_num))</span>
-<span id="cb27-83"><a href="data-prep.html#cb27-83" tabindex="-1"></a>    </span>
-<span id="cb27-84"><a href="data-prep.html#cb27-84" tabindex="-1"></a>  <span class="co"># Finally save the imputed data frame </span></span>
-<span id="cb27-85"><a href="data-prep.html#cb27-85" tabindex="-1"></a>  <span class="fu">fwrite</span>(df_features_mix, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;df_features_imputed.csv&#39;</span>))  </span>
-<span id="cb27-86"><a href="data-prep.html#cb27-86" tabindex="-1"></a>    </span>
-<span id="cb27-87"><a href="data-prep.html#cb27-87" tabindex="-1"></a>  <span class="co"># Now separate the training and test sets</span></span>
-<span id="cb27-88"><a href="data-prep.html#cb27-88" tabindex="-1"></a>  df_features_mix <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(external_id, week_nr, day_nr, imputed) </span>
-<span id="cb27-89"><a href="data-prep.html#cb27-89" tabindex="-1"></a>  df_ml_train <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> <span class="fu">filter</span>(external_id <span class="sc">%in%</span>  training_set<span class="sc">$</span>external_id)</span>
-<span id="cb27-90"><a href="data-prep.html#cb27-90" tabindex="-1"></a>  df_ml_test <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>(external_id <span class="sc">%in%</span>  training_set<span class="sc">$</span>external_id))</span>
-<span id="cb27-91"><a href="data-prep.html#cb27-91" tabindex="-1"></a>  <span class="co"># Write the data</span></span>
-<span id="cb27-92"><a href="data-prep.html#cb27-92" tabindex="-1"></a>  <span class="fu">fwrite</span>(df_ml_train, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_training.csv&quot;</span>))</span>
-<span id="cb27-93"><a href="data-prep.html#cb27-93" tabindex="-1"></a>  <span class="fu">fwrite</span>(df_ml_test, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_testing.csv&quot;</span>))</span>
-<span id="cb27-94"><a href="data-prep.html#cb27-94" tabindex="-1"></a>}<span class="cf">else</span>{</span>
-<span id="cb27-95"><a href="data-prep.html#cb27-95" tabindex="-1"></a>  df_features_mix <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;df_features_imputed.csv&#39;</span>))  </span>
-<span id="cb27-96"><a href="data-prep.html#cb27-96" tabindex="-1"></a>  df_ml_train <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_training.csv&quot;</span>))</span>
-<span id="cb27-97"><a href="data-prep.html#cb27-97" tabindex="-1"></a>  df_ml_test <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_testing.csv&quot;</span>))</span>
-<span id="cb27-98"><a href="data-prep.html#cb27-98" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-prep.html#cb26-1" tabindex="-1"></a><span class="co"># Select non-composite EMA variable</span></span>
+<span id="cb26-2"><a href="data-prep.html#cb26-2" tabindex="-1"></a>ema_vars <span class="ot">=</span> <span class="fu">c</span>(ema_mor_vars, ema_day_vars, ema_eve_vars, categorical_items_d)</span>
+<span id="cb26-3"><a href="data-prep.html#cb26-3" tabindex="-1"></a><span class="co"># Now also select som EPA variables (subset sleep)</span></span>
+<span id="cb26-4"><a href="data-prep.html#cb26-4" tabindex="-1"></a>epa_vars <span class="ot">=</span> <span class="fu">c</span>(epa_day_hr, epa_day_stress, epa_sleep_vars, epa_day_act[<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>)], epa_day_bat)</span>
+<span id="cb26-5"><a href="data-prep.html#cb26-5" tabindex="-1"></a><span class="co"># Vector of IVs of interest and n of features</span></span>
+<span id="cb26-6"><a href="data-prep.html#cb26-6" tabindex="-1"></a>impute_vars <span class="ot">=</span>  <span class="fu">c</span>(ema_vars, epa_vars)</span>
+<span id="cb26-7"><a href="data-prep.html#cb26-7" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="data-prep.html#cb26-8" tabindex="-1"></a><span class="co"># Subset data</span></span>
+<span id="cb26-9"><a href="data-prep.html#cb26-9" tabindex="-1"></a>df_features <span class="ot">=</span> df_merge <span class="sc">%&gt;%</span></span>
+<span id="cb26-10"><a href="data-prep.html#cb26-10" tabindex="-1"></a>  <span class="fu">select</span>(external_id, week_nr, day_nr, prompt_num,</span>
+<span id="cb26-11"><a href="data-prep.html#cb26-11" tabindex="-1"></a>         phq9_sum_w, phq2_sum_e, <span class="fu">all_of</span>(impute_vars) )  <span class="sc">%&gt;%</span></span>
+<span id="cb26-12"><a href="data-prep.html#cb26-12" tabindex="-1"></a>  <span class="fu">filter</span>(prompt_num <span class="sc">!=</span> <span class="dv">5</span>) </span>
+<span id="cb26-13"><a href="data-prep.html#cb26-13" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="data-prep.html#cb26-14" tabindex="-1"></a>run_imputation<span class="ot">=</span><span class="cn">FALSE</span></span>
+<span id="cb26-15"><a href="data-prep.html#cb26-15" tabindex="-1"></a>  <span class="cf">if</span> (run_imputation){</span>
+<span id="cb26-16"><a href="data-prep.html#cb26-16" tabindex="-1"></a>  <span class="co"># Define the path for your error log</span></span>
+<span id="cb26-17"><a href="data-prep.html#cb26-17" tabindex="-1"></a>  error_log_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;imputation_failures_&quot;</span>, <span class="fu">Sys.Date</span>(), <span class="st">&quot;.log&quot;</span>)</span>
+<span id="cb26-18"><a href="data-prep.html#cb26-18" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(error_log_file)) <span class="fu">file.remove</span>(error_log_file)</span>
+<span id="cb26-19"><a href="data-prep.html#cb26-19" tabindex="-1"></a>    </span>
+<span id="cb26-20"><a href="data-prep.html#cb26-20" tabindex="-1"></a>  <span class="co"># Progress bar set-up</span></span>
+<span id="cb26-21"><a href="data-prep.html#cb26-21" tabindex="-1"></a>  <span class="fu">library</span>(progress)</span>
+<span id="cb26-22"><a href="data-prep.html#cb26-22" tabindex="-1"></a>  pb <span class="ot">&lt;-</span> progress_bar<span class="sc">$</span><span class="fu">new</span>(<span class="at">format =</span> <span class="st">&quot;[:bar] :percent ETA: :eta&quot;</span>, <span class="at">total =</span> <span class="fu">length</span>(<span class="fu">unique</span>(df_features<span class="sc">$</span>external_id)))</span>
+<span id="cb26-23"><a href="data-prep.html#cb26-23" tabindex="-1"></a>  progress <span class="ot">&lt;-</span> <span class="cf">function</span>(n){ pb<span class="sc">$</span><span class="fu">tick</span>()}</span>
+<span id="cb26-24"><a href="data-prep.html#cb26-24" tabindex="-1"></a>  opts <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">progress =</span> progress)</span>
+<span id="cb26-25"><a href="data-prep.html#cb26-25" tabindex="-1"></a>  </span>
+<span id="cb26-26"><a href="data-prep.html#cb26-26" tabindex="-1"></a>  <span class="co"># Parallel set-up</span></span>
+<span id="cb26-27"><a href="data-prep.html#cb26-27" tabindex="-1"></a>  n_cores <span class="ot">=</span> <span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb26-28"><a href="data-prep.html#cb26-28" tabindex="-1"></a>  cl <span class="ot">=</span> <span class="fu">makeCluster</span>(n_cores)</span>
+<span id="cb26-29"><a href="data-prep.html#cb26-29" tabindex="-1"></a>  <span class="fu">registerDoSNOW</span>(cl)</span>
+<span id="cb26-30"><a href="data-prep.html#cb26-30" tabindex="-1"></a>  </span>
+<span id="cb26-31"><a href="data-prep.html#cb26-31" tabindex="-1"></a>  <span class="co"># Parallel Run</span></span>
+<span id="cb26-32"><a href="data-prep.html#cb26-32" tabindex="-1"></a>  list_imputation_results <span class="ot">=</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="fu">unique</span>(df_features<span class="sc">$</span>external_id),</span>
+<span id="cb26-33"><a href="data-prep.html#cb26-33" tabindex="-1"></a>                                    <span class="at">.packages =</span> <span class="fu">c</span>(<span class="st">&#39;mice&#39;</span>,<span class="st">&#39;beepr&#39;</span>, <span class="st">&quot;dplyr&quot;</span>),</span>
+<span id="cb26-34"><a href="data-prep.html#cb26-34" tabindex="-1"></a>                                    <span class="at">.errorhandling =</span> <span class="st">&#39;pass&#39;</span>,</span>
+<span id="cb26-35"><a href="data-prep.html#cb26-35" tabindex="-1"></a>                                    <span class="at">.options.snow =</span> opts,</span>
+<span id="cb26-36"><a href="data-prep.html#cb26-36" tabindex="-1"></a>                                    <span class="at">.verbose =</span> F) <span class="sc">%dopar%</span> {</span>
+<span id="cb26-37"><a href="data-prep.html#cb26-37" tabindex="-1"></a>    <span class="co"># Run function and log failures</span></span>
+<span id="cb26-38"><a href="data-prep.html#cb26-38" tabindex="-1"></a>    <span class="fu">tryCatch</span>({</span>
+<span id="cb26-39"><a href="data-prep.html#cb26-39" tabindex="-1"></a>      <span class="fu">impute_subject</span>(df_features, i, impute_vars )}, </span>
+<span id="cb26-40"><a href="data-prep.html#cb26-40" tabindex="-1"></a>      <span class="co"># On errror:</span></span>
+<span id="cb26-41"><a href="data-prep.html#cb26-41" tabindex="-1"></a>      <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb26-42"><a href="data-prep.html#cb26-42" tabindex="-1"></a>        <span class="co"># Create error message</span></span>
+<span id="cb26-43"><a href="data-prep.html#cb26-43" tabindex="-1"></a>        failed_id <span class="ot">&lt;-</span> i</span>
+<span id="cb26-44"><a href="data-prep.html#cb26-44" tabindex="-1"></a>        error_message <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb26-45"><a href="data-prep.html#cb26-45" tabindex="-1"></a>          <span class="st">&quot;Timestamp: &quot;</span>, <span class="fu">Sys.time</span>(),</span>
+<span id="cb26-46"><a href="data-prep.html#cb26-46" tabindex="-1"></a>          <span class="st">&quot;, Subject_ID: &quot;</span>, failed_id,</span>
+<span id="cb26-47"><a href="data-prep.html#cb26-47" tabindex="-1"></a>          <span class="st">&quot;, Error: &quot;</span>, e<span class="sc">$</span>message, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb26-48"><a href="data-prep.html#cb26-48" tabindex="-1"></a>        <span class="co"># Append the error message to the log file</span></span>
+<span id="cb26-49"><a href="data-prep.html#cb26-49" tabindex="-1"></a>        <span class="fu">cat</span>(error_message, <span class="at">file =</span> error_log_file, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-50"><a href="data-prep.html#cb26-50" tabindex="-1"></a>        </span>
+<span id="cb26-51"><a href="data-prep.html#cb26-51" tabindex="-1"></a>        <span class="co"># Return NULL for the failed iteration</span></span>
+<span id="cb26-52"><a href="data-prep.html#cb26-52" tabindex="-1"></a>        <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb26-53"><a href="data-prep.html#cb26-53" tabindex="-1"></a>        }</span>
+<span id="cb26-54"><a href="data-prep.html#cb26-54" tabindex="-1"></a>      )</span>
+<span id="cb26-55"><a href="data-prep.html#cb26-55" tabindex="-1"></a>  }</span>
+<span id="cb26-56"><a href="data-prep.html#cb26-56" tabindex="-1"></a>  <span class="fu">stopCluster</span>(cl)</span>
+<span id="cb26-57"><a href="data-prep.html#cb26-57" tabindex="-1"></a>    </span>
+<span id="cb26-58"><a href="data-prep.html#cb26-58" tabindex="-1"></a>  <span class="co"># Combine results and make an imputation column</span></span>
+<span id="cb26-59"><a href="data-prep.html#cb26-59" tabindex="-1"></a>  df_features_imputed <span class="ot">=</span> <span class="fu">rbindlist</span>(list_imputation_results)</span>
+<span id="cb26-60"><a href="data-prep.html#cb26-60" tabindex="-1"></a>  df_features_imputed<span class="sc">$</span>imputed <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb26-61"><a href="data-prep.html#cb26-61" tabindex="-1"></a>  </span>
+<span id="cb26-62"><a href="data-prep.html#cb26-62" tabindex="-1"></a>  <span class="co"># Subset unimputed subs</span></span>
+<span id="cb26-63"><a href="data-prep.html#cb26-63" tabindex="-1"></a>  impute_fail_subs <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(df_features<span class="sc">$</span>external_id, df_features_imputed<span class="sc">$</span>external_id)</span>
+<span id="cb26-64"><a href="data-prep.html#cb26-64" tabindex="-1"></a>  df_features_unimputed <span class="ot">&lt;-</span> df_features[(df_features<span class="sc">$</span>external_id <span class="sc">%in%</span> impute_fail_subs),]</span>
+<span id="cb26-65"><a href="data-prep.html#cb26-65" tabindex="-1"></a>  df_features_unimputed<span class="sc">$</span>imputed <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb26-66"><a href="data-prep.html#cb26-66" tabindex="-1"></a>  </span>
+<span id="cb26-67"><a href="data-prep.html#cb26-67" tabindex="-1"></a>  <span class="co"># Now put them togerther</span></span>
+<span id="cb26-68"><a href="data-prep.html#cb26-68" tabindex="-1"></a>  df_features_mix <span class="ot">=</span> <span class="fu">rbind</span>(df_features_imputed, df_features_unimputed, <span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-69"><a href="data-prep.html#cb26-69" tabindex="-1"></a>  </span>
+<span id="cb26-70"><a href="data-prep.html#cb26-70" tabindex="-1"></a>  <span class="co"># # # Impute the ones that didnt work at the between-subject level</span></span>
+<span id="cb26-71"><a href="data-prep.html#cb26-71" tabindex="-1"></a>  L2_prediction_mat <span class="ot">&lt;-</span> <span class="fu">make_pred_matrix</span>(df_features_mix, <span class="at">impute_vars =</span> impute_vars)<span class="sc">$</span>pred_matrix</span>
+<span id="cb26-72"><a href="data-prep.html#cb26-72" tabindex="-1"></a>  L2_prediction_mat[, <span class="st">&quot;external_id&quot;</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb26-73"><a href="data-prep.html#cb26-73" tabindex="-1"></a>  mice_imputation_2l <span class="ot">&lt;-</span> <span class="fu">mice</span>(<span class="at">data =</span> df_features_mix,</span>
+<span id="cb26-74"><a href="data-prep.html#cb26-74" tabindex="-1"></a>                             <span class="at">maxit =</span> <span class="dv">2</span>,</span>
+<span id="cb26-75"><a href="data-prep.html#cb26-75" tabindex="-1"></a>                              <span class="at">method =</span> <span class="st">&quot;2lonly.pmm&quot;</span>,</span>
+<span id="cb26-76"><a href="data-prep.html#cb26-76" tabindex="-1"></a>                              <span class="at">seed =</span> <span class="dv">666</span>,</span>
+<span id="cb26-77"><a href="data-prep.html#cb26-77" tabindex="-1"></a>                              <span class="at">blocks =</span> <span class="fu">as.list</span>(<span class="fu">rownames</span>(L2_prediction_mat)),</span>
+<span id="cb26-78"><a href="data-prep.html#cb26-78" tabindex="-1"></a>                              <span class="at">predictorMatrix =</span> L2_prediction_mat)</span>
+<span id="cb26-79"><a href="data-prep.html#cb26-79" tabindex="-1"></a>  </span>
+<span id="cb26-80"><a href="data-prep.html#cb26-80" tabindex="-1"></a>  df_features_mix <span class="ot">&lt;-</span> <span class="fu">complete</span>(mice_imputation_2l)</span>
+<span id="cb26-81"><a href="data-prep.html#cb26-81" tabindex="-1"></a>  <span class="co"># Make a day-prompt interaction for later</span></span>
+<span id="cb26-82"><a href="data-prep.html#cb26-82" tabindex="-1"></a>  df_features_mix<span class="sc">$</span>day_prompt <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">interaction</span>(df_features_mix<span class="sc">$</span>day_nr, df_features_mix<span class="sc">$</span>prompt_num))</span>
+<span id="cb26-83"><a href="data-prep.html#cb26-83" tabindex="-1"></a>    </span>
+<span id="cb26-84"><a href="data-prep.html#cb26-84" tabindex="-1"></a>  <span class="co"># Finally save the imputed data frame </span></span>
+<span id="cb26-85"><a href="data-prep.html#cb26-85" tabindex="-1"></a>  <span class="fu">fwrite</span>(df_features_mix, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;df_features_imputed.csv&#39;</span>))  </span>
+<span id="cb26-86"><a href="data-prep.html#cb26-86" tabindex="-1"></a>    </span>
+<span id="cb26-87"><a href="data-prep.html#cb26-87" tabindex="-1"></a>  <span class="co"># Now separate the training and test sets</span></span>
+<span id="cb26-88"><a href="data-prep.html#cb26-88" tabindex="-1"></a>  df_features_mix <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(external_id, week_nr, day_nr, imputed) </span>
+<span id="cb26-89"><a href="data-prep.html#cb26-89" tabindex="-1"></a>  df_ml_train <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> <span class="fu">filter</span>(external_id <span class="sc">%in%</span>  training_set<span class="sc">$</span>external_id)</span>
+<span id="cb26-90"><a href="data-prep.html#cb26-90" tabindex="-1"></a>  df_ml_test <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>(external_id <span class="sc">%in%</span>  training_set<span class="sc">$</span>external_id))</span>
+<span id="cb26-91"><a href="data-prep.html#cb26-91" tabindex="-1"></a>  <span class="co"># Write the data</span></span>
+<span id="cb26-92"><a href="data-prep.html#cb26-92" tabindex="-1"></a>  <span class="fu">fwrite</span>(df_ml_train, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_training.csv&quot;</span>))</span>
+<span id="cb26-93"><a href="data-prep.html#cb26-93" tabindex="-1"></a>  <span class="fu">fwrite</span>(df_ml_test, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_testing.csv&quot;</span>))</span>
+<span id="cb26-94"><a href="data-prep.html#cb26-94" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb26-95"><a href="data-prep.html#cb26-95" tabindex="-1"></a>  df_features_mix <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;df_features_imputed.csv&#39;</span>))  </span>
+<span id="cb26-96"><a href="data-prep.html#cb26-96" tabindex="-1"></a>  df_ml_train <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_training.csv&quot;</span>))</span>
+<span id="cb26-97"><a href="data-prep.html#cb26-97" tabindex="-1"></a>  df_ml_test <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;imputed_testing.csv&quot;</span>))</span>
+<span id="cb26-98"><a href="data-prep.html#cb26-98" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="dataset-creation" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Dataset Creation<a href="data-prep.html#dataset-creation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have completed the first part of data exploration and preparation and are now ready to start running our actual models. My aim is to first see if I can predict depression at the daily (PHQ-2) and weekly (PHQ-9) levels. I also want to see whether we can do this using EMA measures, or wearable measures. To get there, I use the Leiden University <a href="https://pubappslu.atlassian.net/wiki/spaces/HPCWIKI/pages/37519378/About+ALICE">ALICE HPC cluster</a>. The analysis is also done in <code>python</code>, so here I will prepare the data to send to the cluster as python pickles which I can then read into the cluster much more easily. Part of the preparation at this stage is to also standardize the variables within-subject. I then pivot the data to the required format.</p>
 <div id="weekly-data" class="section level3 hasAnchor" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Weekly Data<a href="data-prep.html#weekly-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-prep.html#cb27-1" tabindex="-1"></a><span class="co"># Pivot to wide and make matrix per variable</span></span>
+<span id="cb27-2"><a href="data-prep.html#cb27-2" tabindex="-1"></a>features <span class="ot">=</span> impute_vars</span>
+<span id="cb27-3"><a href="data-prep.html#cb27-3" tabindex="-1"></a>n_features <span class="ot">=</span> <span class="fu">length</span>(impute_vars)</span>
+<span id="cb27-4"><a href="data-prep.html#cb27-4" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="data-prep.html#cb27-5" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="data-prep.html#cb27-6" tabindex="-1"></a><span class="do">## First for PA</span></span>
+<span id="cb27-7"><a href="data-prep.html#cb27-7" tabindex="-1"></a>df_ml_lstm_week <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> </span>
+<span id="cb27-8"><a href="data-prep.html#cb27-8" tabindex="-1"></a>  <span class="fu">select</span>(external_id, week_nr, prompt_num,  phq9_sum_w, day_nr, <span class="fu">all_of</span>(features)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-9"><a href="data-prep.html#cb27-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(day_nr)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-10"><a href="data-prep.html#cb27-10" tabindex="-1"></a>  <span class="co"># Now we back-fill the PHQ9 items again (cause we have to)</span></span>
+<span id="cb27-11"><a href="data-prep.html#cb27-11" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, week_nr) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-12"><a href="data-prep.html#cb27-12" tabindex="-1"></a>  <span class="fu">fill</span>(phq9_sum_w, <span class="at">.direction =</span> <span class="st">&#39;up&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-13"><a href="data-prep.html#cb27-13" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb27-14"><a href="data-prep.html#cb27-14" tabindex="-1"></a>  <span class="co">#  Now we rearrange and keep the distinct obesractions in case of dups</span></span>
+<span id="cb27-15"><a href="data-prep.html#cb27-15" tabindex="-1"></a>  <span class="fu">arrange</span>(external_id, week_nr, day_nr, prompt_num) <span class="sc">%&gt;%</span></span>
+<span id="cb27-16"><a href="data-prep.html#cb27-16" tabindex="-1"></a>  <span class="fu">distinct</span>(external_id, week_nr, day_nr, prompt_num, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-17"><a href="data-prep.html#cb27-17" tabindex="-1"></a>  <span class="co"># Now create the PHQ-9 cut-off for classification</span></span>
+<span id="cb27-18"><a href="data-prep.html#cb27-18" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phq9_cuttoff =</span> <span class="fu">ifelse</span>(phq9_sum_w<span class="sc">&gt;</span><span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-19"><a href="data-prep.html#cb27-19" tabindex="-1"></a>  <span class="co"># Scale and center non-binary feats</span></span>
+<span id="cb27-20"><a href="data-prep.html#cb27-20" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span></span>
+<span id="cb27-21"><a href="data-prep.html#cb27-21" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(ema_day_vars, epa_vars, ema_mor_vars, <span class="st">&quot;discomfort_e&quot;</span>, <span class="st">&quot;emo_reg_e&quot;</span>, <span class="st">&quot;useful_e&quot;</span>, <span class="st">&quot;neg_exp_e&quot;</span>,<span class="st">&quot;pos_exp_e&quot;</span>)), </span>
+<span id="cb27-22"><a href="data-prep.html#cb27-22" tabindex="-1"></a>                       <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> T))<span class="sc">/</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> T))) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-23"><a href="data-prep.html#cb27-23" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-24"><a href="data-prep.html#cb27-24" tabindex="-1"></a>   <span class="co"># Pivot Wider</span></span>
+<span id="cb27-25"><a href="data-prep.html#cb27-25" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(external_id, week_nr, phq9_sum_w, phq9_cuttoff), <span class="at">names_from =</span> <span class="fu">c</span>(day_nr, prompt_num), <span class="at">values_from =</span> <span class="fu">all_of</span>(features)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-26"><a href="data-prep.html#cb27-26" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_5&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-27"><a href="data-prep.html#cb27-27" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb27-28"><a href="data-prep.html#cb27-28" tabindex="-1"></a></span>
+<span id="cb27-29"><a href="data-prep.html#cb27-29" tabindex="-1"></a><span class="co"># Create training and test sets</span></span>
+<span id="cb27-30"><a href="data-prep.html#cb27-30" tabindex="-1"></a>df_ml_lstm_week_train <span class="ot">=</span> df_ml_lstm_week[(df_ml_lstm_week<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span>
+<span id="cb27-31"><a href="data-prep.html#cb27-31" tabindex="-1"></a>df_ml_lstm_week_test <span class="ot">=</span> df_ml_lstm_week[<span class="sc">!</span>(df_ml_lstm_week<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span></code></pre></div>
+</div>
+<div id="daily-data" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Daily Data<a href="data-prep.html#daily-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-prep.html#cb28-1" tabindex="-1"></a><span class="co"># Pivot to wide and make matrix per variable</span></span>
-<span id="cb28-2"><a href="data-prep.html#cb28-2" tabindex="-1"></a>features <span class="ot">=</span> impute_vars</span>
-<span id="cb28-3"><a href="data-prep.html#cb28-3" tabindex="-1"></a>n_features <span class="ot">=</span> <span class="fu">length</span>(impute_vars)</span>
+<span id="cb28-2"><a href="data-prep.html#cb28-2" tabindex="-1"></a>features <span class="ot">=</span>  impute_vars</span>
+<span id="cb28-3"><a href="data-prep.html#cb28-3" tabindex="-1"></a>n_features <span class="ot">=</span> <span class="fu">length</span>(features)</span>
 <span id="cb28-4"><a href="data-prep.html#cb28-4" tabindex="-1"></a></span>
 <span id="cb28-5"><a href="data-prep.html#cb28-5" tabindex="-1"></a></span>
 <span id="cb28-6"><a href="data-prep.html#cb28-6" tabindex="-1"></a><span class="do">## First for PA</span></span>
-<span id="cb28-7"><a href="data-prep.html#cb28-7" tabindex="-1"></a>df_ml_lstm_week <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> </span>
-<span id="cb28-8"><a href="data-prep.html#cb28-8" tabindex="-1"></a>  <span class="fu">select</span>(external_id, week_nr, prompt_num,  phq9_sum_w, day_nr, <span class="fu">all_of</span>(features)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="data-prep.html#cb28-7" tabindex="-1"></a>df_ml_lstm_day <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> </span>
+<span id="cb28-8"><a href="data-prep.html#cb28-8" tabindex="-1"></a>  <span class="fu">select</span>(external_id, week_nr, prompt_num,  phq2_sum_e, day_nr, <span class="fu">all_of</span>(features)) <span class="sc">%&gt;%</span></span>
 <span id="cb28-9"><a href="data-prep.html#cb28-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(day_nr)) <span class="sc">%&gt;%</span> </span>
 <span id="cb28-10"><a href="data-prep.html#cb28-10" tabindex="-1"></a>  <span class="co"># Now we back-fill the PHQ9 items again (cause we have to)</span></span>
-<span id="cb28-11"><a href="data-prep.html#cb28-11" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, week_nr) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-12"><a href="data-prep.html#cb28-12" tabindex="-1"></a>  <span class="fu">fill</span>(phq9_sum_w, <span class="at">.direction =</span> <span class="st">&#39;up&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-11"><a href="data-prep.html#cb28-11" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, week_nr, day_nr) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-12"><a href="data-prep.html#cb28-12" tabindex="-1"></a>  <span class="fu">fill</span>(phq2_sum_e, <span class="at">.direction =</span> <span class="st">&#39;up&#39;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb28-13"><a href="data-prep.html#cb28-13" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb28-14"><a href="data-prep.html#cb28-14" tabindex="-1"></a>  <span class="co">#  Now we rearrange and keep the distinct obesractions in case of dups</span></span>
 <span id="cb28-15"><a href="data-prep.html#cb28-15" tabindex="-1"></a>  <span class="fu">arrange</span>(external_id, week_nr, day_nr, prompt_num) <span class="sc">%&gt;%</span></span>
 <span id="cb28-16"><a href="data-prep.html#cb28-16" tabindex="-1"></a>  <span class="fu">distinct</span>(external_id, week_nr, day_nr, prompt_num, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-17"><a href="data-prep.html#cb28-17" tabindex="-1"></a>  <span class="co"># Now create the PHQ-9 cut-off for classification</span></span>
-<span id="cb28-18"><a href="data-prep.html#cb28-18" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phq9_cuttoff =</span> <span class="fu">ifelse</span>(phq9_sum_w<span class="sc">&gt;</span><span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-19"><a href="data-prep.html#cb28-19" tabindex="-1"></a>  <span class="co"># Scale and center non-binary feats</span></span>
-<span id="cb28-20"><a href="data-prep.html#cb28-20" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span></span>
-<span id="cb28-21"><a href="data-prep.html#cb28-21" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(ema_day_vars, epa_vars, ema_mor_vars, <span class="st">&quot;discomfort_e&quot;</span>, <span class="st">&quot;emo_reg_e&quot;</span>, <span class="st">&quot;useful_e&quot;</span>, <span class="st">&quot;neg_exp_e&quot;</span>,<span class="st">&quot;pos_exp_e&quot;</span>)), </span>
-<span id="cb28-22"><a href="data-prep.html#cb28-22" tabindex="-1"></a>                       <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> T))<span class="sc">/</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> T))) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-23"><a href="data-prep.html#cb28-23" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-24"><a href="data-prep.html#cb28-24" tabindex="-1"></a>   <span class="co"># Pivot Wider</span></span>
-<span id="cb28-25"><a href="data-prep.html#cb28-25" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(external_id, week_nr, phq9_sum_w, phq9_cuttoff), <span class="at">names_from =</span> <span class="fu">c</span>(day_nr, prompt_num), <span class="at">values_from =</span> <span class="fu">all_of</span>(features)) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-26"><a href="data-prep.html#cb28-26" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_5&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-27"><a href="data-prep.html#cb28-27" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb28-28"><a href="data-prep.html#cb28-28" tabindex="-1"></a></span>
-<span id="cb28-29"><a href="data-prep.html#cb28-29" tabindex="-1"></a><span class="co"># Create training and test sets</span></span>
-<span id="cb28-30"><a href="data-prep.html#cb28-30" tabindex="-1"></a>df_ml_lstm_week_train <span class="ot">=</span> df_ml_lstm_week[(df_ml_lstm_week<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span>
-<span id="cb28-31"><a href="data-prep.html#cb28-31" tabindex="-1"></a>df_ml_lstm_week_test <span class="ot">=</span> df_ml_lstm_week[<span class="sc">!</span>(df_ml_lstm_week<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span></code></pre></div>
-</div>
-<div id="daily-data" class="section level3 hasAnchor" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Daily Data<a href="data-prep.html#daily-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-prep.html#cb29-1" tabindex="-1"></a><span class="co"># Pivot to wide and make matrix per variable</span></span>
-<span id="cb29-2"><a href="data-prep.html#cb29-2" tabindex="-1"></a>features <span class="ot">=</span>  impute_vars</span>
-<span id="cb29-3"><a href="data-prep.html#cb29-3" tabindex="-1"></a>n_features <span class="ot">=</span> <span class="fu">length</span>(features)</span>
-<span id="cb29-4"><a href="data-prep.html#cb29-4" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="data-prep.html#cb29-5" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="data-prep.html#cb29-6" tabindex="-1"></a><span class="do">## First for PA</span></span>
-<span id="cb29-7"><a href="data-prep.html#cb29-7" tabindex="-1"></a>df_ml_lstm_day <span class="ot">=</span> df_features_mix <span class="sc">%&gt;%</span> </span>
-<span id="cb29-8"><a href="data-prep.html#cb29-8" tabindex="-1"></a>  <span class="fu">select</span>(external_id, week_nr, prompt_num,  phq2_sum_e, day_nr, <span class="fu">all_of</span>(features)) <span class="sc">%&gt;%</span></span>
-<span id="cb29-9"><a href="data-prep.html#cb29-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(day_nr)) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-10"><a href="data-prep.html#cb29-10" tabindex="-1"></a>  <span class="co"># Now we back-fill the PHQ9 items again (cause we have to)</span></span>
-<span id="cb29-11"><a href="data-prep.html#cb29-11" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id, week_nr, day_nr) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-12"><a href="data-prep.html#cb29-12" tabindex="-1"></a>  <span class="fu">fill</span>(phq2_sum_e, <span class="at">.direction =</span> <span class="st">&#39;up&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-13"><a href="data-prep.html#cb29-13" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb29-14"><a href="data-prep.html#cb29-14" tabindex="-1"></a>  <span class="co">#  Now we rearrange and keep the distinct obesractions in case of dups</span></span>
-<span id="cb29-15"><a href="data-prep.html#cb29-15" tabindex="-1"></a>  <span class="fu">arrange</span>(external_id, week_nr, day_nr, prompt_num) <span class="sc">%&gt;%</span></span>
-<span id="cb29-16"><a href="data-prep.html#cb29-16" tabindex="-1"></a>  <span class="fu">distinct</span>(external_id, week_nr, day_nr, prompt_num, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-17"><a href="data-prep.html#cb29-17" tabindex="-1"></a>  <span class="co"># Scale and center</span></span>
-<span id="cb29-18"><a href="data-prep.html#cb29-18" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-19"><a href="data-prep.html#cb29-19" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(features[<span class="sc">-</span><span class="fu">c</span>(<span class="fu">grep</span>(<span class="st">&quot;cat&quot;</span>, features), <span class="fu">grep</span>(<span class="st">&quot;substance&quot;</span>, features))]),</span>
-<span id="cb29-20"><a href="data-prep.html#cb29-20" tabindex="-1"></a>                <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> T))<span class="sc">/</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> T))) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-21"><a href="data-prep.html#cb29-21" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb29-22"><a href="data-prep.html#cb29-22" tabindex="-1"></a>  <span class="co"># Pivot Wider</span></span>
-<span id="cb29-23"><a href="data-prep.html#cb29-23" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(external_id, week_nr, day_nr, phq2_sum_e), <span class="at">names_from =</span> <span class="fu">c</span>(prompt_num), <span class="at">values_from =</span> features) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-24"><a href="data-prep.html#cb29-24" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_5&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-25"><a href="data-prep.html#cb29-25" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb29-26"><a href="data-prep.html#cb29-26" tabindex="-1"></a></span>
-<span id="cb29-27"><a href="data-prep.html#cb29-27" tabindex="-1"></a><span class="co"># Create training and test sets</span></span>
-<span id="cb29-28"><a href="data-prep.html#cb29-28" tabindex="-1"></a>df_ml_lstm_day_train <span class="ot">=</span> df_ml_lstm_day[(df_ml_lstm_day<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span>
-<span id="cb29-29"><a href="data-prep.html#cb29-29" tabindex="-1"></a>df_ml_lstm_day_test <span class="ot">=</span> df_ml_lstm_day[<span class="sc">!</span>(df_ml_lstm_day<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span></code></pre></div>
+<span id="cb28-17"><a href="data-prep.html#cb28-17" tabindex="-1"></a>  <span class="co"># Scale and center</span></span>
+<span id="cb28-18"><a href="data-prep.html#cb28-18" tabindex="-1"></a>  <span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-19"><a href="data-prep.html#cb28-19" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(features[<span class="sc">-</span><span class="fu">c</span>(<span class="fu">grep</span>(<span class="st">&quot;cat&quot;</span>, features), <span class="fu">grep</span>(<span class="st">&quot;substance&quot;</span>, features))]),</span>
+<span id="cb28-20"><a href="data-prep.html#cb28-20" tabindex="-1"></a>                <span class="sc">~</span> (.x <span class="sc">-</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> T))<span class="sc">/</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> T))) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-21"><a href="data-prep.html#cb28-21" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-22"><a href="data-prep.html#cb28-22" tabindex="-1"></a>  <span class="co"># Pivot Wider</span></span>
+<span id="cb28-23"><a href="data-prep.html#cb28-23" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(external_id, week_nr, day_nr, phq2_sum_e), <span class="at">names_from =</span> <span class="fu">c</span>(prompt_num), <span class="at">values_from =</span> features) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-24"><a href="data-prep.html#cb28-24" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_5&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-25"><a href="data-prep.html#cb28-25" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb28-26"><a href="data-prep.html#cb28-26" tabindex="-1"></a></span>
+<span id="cb28-27"><a href="data-prep.html#cb28-27" tabindex="-1"></a><span class="co"># Create training and test sets</span></span>
+<span id="cb28-28"><a href="data-prep.html#cb28-28" tabindex="-1"></a>df_ml_lstm_day_train <span class="ot">=</span> df_ml_lstm_day[(df_ml_lstm_day<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span>
+<span id="cb28-29"><a href="data-prep.html#cb28-29" tabindex="-1"></a>df_ml_lstm_day_test <span class="ot">=</span> df_ml_lstm_day[<span class="sc">!</span>(df_ml_lstm_day<span class="sc">$</span>external_id <span class="sc">%in%</span> training_set<span class="sc">$</span>external_id),]</span></code></pre></div>
 </div>
 </div>
 <div id="dataset-export" class="section level2 hasAnchor" number="2.5">
@@ -1001,80 +739,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>*_ema: A file with the EMA features</li>
 <li>vars*: A file with the variable names for SHAP estimations and such</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-prep.html#cb30-1" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb30-2"><a href="data-prep.html#cb30-2" tabindex="-1"></a><span class="co"># Make sublists</span></span>
-<span id="cb30-3"><a href="data-prep.html#cb30-3" tabindex="-1"></a>week_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb30-4"><a href="data-prep.html#cb30-4" tabindex="-1"></a>  <span class="at">train =</span> df_ml_lstm_week_train,</span>
-<span id="cb30-5"><a href="data-prep.html#cb30-5" tabindex="-1"></a>  <span class="at">val =</span> df_ml_lstm_week_test</span>
-<span id="cb30-6"><a href="data-prep.html#cb30-6" tabindex="-1"></a>  )</span>
-<span id="cb30-7"><a href="data-prep.html#cb30-7" tabindex="-1"></a>day_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb30-8"><a href="data-prep.html#cb30-8" tabindex="-1"></a>  <span class="at">train =</span> df_ml_lstm_day_train,</span>
-<span id="cb30-9"><a href="data-prep.html#cb30-9" tabindex="-1"></a>  <span class="at">val =</span> df_ml_lstm_day_test</span>
-<span id="cb30-10"><a href="data-prep.html#cb30-10" tabindex="-1"></a>  )</span>
-<span id="cb30-11"><a href="data-prep.html#cb30-11" tabindex="-1"></a>var_lists <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb30-12"><a href="data-prep.html#cb30-12" tabindex="-1"></a>  <span class="at">ema =</span> ema_vars,</span>
-<span id="cb30-13"><a href="data-prep.html#cb30-13" tabindex="-1"></a>  <span class="at">epa =</span> epa_vars,</span>
-<span id="cb30-14"><a href="data-prep.html#cb30-14" tabindex="-1"></a>  <span class="at">all =</span> <span class="fu">c</span>(ema_vars, epa_vars)</span>
-<span id="cb30-15"><a href="data-prep.html#cb30-15" tabindex="-1"></a>  )</span>
-<span id="cb30-16"><a href="data-prep.html#cb30-16" tabindex="-1"></a></span>
-<span id="cb30-17"><a href="data-prep.html#cb30-17" tabindex="-1"></a></span>
-<span id="cb30-18"><a href="data-prep.html#cb30-18" tabindex="-1"></a>pickle_jar <span class="ot">=</span> <span class="cn">TRUE</span> <span class="co"># TO avoid rewriting the OG data everytime we knit</span></span>
-<span id="cb30-19"><a href="data-prep.html#cb30-19" tabindex="-1"></a><span class="cf">if</span> (pickle_jar){</span>
-<span id="cb30-20"><a href="data-prep.html#cb30-20" tabindex="-1"></a>  <span class="co"># Then inside the loop, you just need one line:</span></span>
-<span id="cb30-21"><a href="data-prep.html#cb30-21" tabindex="-1"></a>  <span class="cf">for</span> (timeframe <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;week&quot;</span>, <span class="st">&quot;day&quot;</span>)){</span>
-<span id="cb30-22"><a href="data-prep.html#cb30-22" tabindex="-1"></a>    <span class="co"># Specify data to use  </span></span>
-<span id="cb30-23"><a href="data-prep.html#cb30-23" tabindex="-1"></a>    <span class="cf">if</span>(timeframe <span class="sc">==</span> <span class="st">&quot;week&quot;</span>){</span>
-<span id="cb30-24"><a href="data-prep.html#cb30-24" tabindex="-1"></a>      tmp_list <span class="ot">&lt;-</span> week_list</span>
-<span id="cb30-25"><a href="data-prep.html#cb30-25" tabindex="-1"></a>      outcome <span class="ot">=</span> <span class="st">&#39;phq9_sum_w&#39;</span></span>
-<span id="cb30-26"><a href="data-prep.html#cb30-26" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(timeframe <span class="sc">==</span> <span class="st">&#39;day&#39;</span>){</span>
-<span id="cb30-27"><a href="data-prep.html#cb30-27" tabindex="-1"></a>      tmp_list <span class="ot">&lt;-</span> day_list</span>
-<span id="cb30-28"><a href="data-prep.html#cb30-28" tabindex="-1"></a>      outcome <span class="ot">=</span> <span class="st">&#39;phq2_sum_e&#39;</span></span>
-<span id="cb30-29"><a href="data-prep.html#cb30-29" tabindex="-1"></a>    }</span>
-<span id="cb30-30"><a href="data-prep.html#cb30-30" tabindex="-1"></a>    <span class="co"># Now do the train/test stuff</span></span>
-<span id="cb30-31"><a href="data-prep.html#cb30-31" tabindex="-1"></a>    <span class="cf">for</span>(train_test <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;train&quot;</span>, <span class="st">&quot;val&quot;</span>)){ </span>
-<span id="cb30-32"><a href="data-prep.html#cb30-32" tabindex="-1"></a>      tmp_data <span class="ot">&lt;-</span> tmp_list[[train_test]]</span>
-<span id="cb30-33"><a href="data-prep.html#cb30-33" tabindex="-1"></a>      <span class="do">## Save subject IDs and outcomes</span></span>
-<span id="cb30-34"><a href="data-prep.html#cb30-34" tabindex="-1"></a>      tmp_data <span class="sc">%&gt;%</span> </span>
-<span id="cb30-35"><a href="data-prep.html#cb30-35" tabindex="-1"></a>        <span class="fu">select</span>(external_id) <span class="sc">%&gt;%</span></span>
-<span id="cb30-36"><a href="data-prep.html#cb30-36" tabindex="-1"></a>        <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb30-37"><a href="data-prep.html#cb30-37" tabindex="-1"></a>        <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_subs.pickle&#39;</span>)))</span>
-<span id="cb30-38"><a href="data-prep.html#cb30-38" tabindex="-1"></a>      <span class="do">## Outcome</span></span>
-<span id="cb30-39"><a href="data-prep.html#cb30-39" tabindex="-1"></a>      tmp_data <span class="sc">%&gt;%</span> </span>
-<span id="cb30-40"><a href="data-prep.html#cb30-40" tabindex="-1"></a>        <span class="fu">select</span>(<span class="fu">all_of</span>(outcome)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-41"><a href="data-prep.html#cb30-41" tabindex="-1"></a>        <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb30-42"><a href="data-prep.html#cb30-42" tabindex="-1"></a>        <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_phq.pickle&#39;</span>)))</span>
-<span id="cb30-43"><a href="data-prep.html#cb30-43" tabindex="-1"></a>      <span class="co"># Make the lagged-phq9 predictor</span></span>
-<span id="cb30-44"><a href="data-prep.html#cb30-44" tabindex="-1"></a>      tmp_data <span class="sc">%&gt;%</span> </span>
-<span id="cb30-45"><a href="data-prep.html#cb30-45" tabindex="-1"></a>        <span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-46"><a href="data-prep.html#cb30-46" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(outcome), <span class="cf">function</span>(.x) {</span>
-<span id="cb30-47"><a href="data-prep.html#cb30-47" tabindex="-1"></a>            lagged_x <span class="ot">&lt;-</span> <span class="fu">lag</span>(.x)</span>
-<span id="cb30-48"><a href="data-prep.html#cb30-48" tabindex="-1"></a>            <span class="co"># Calculate median *once* to avoid re-computing</span></span>
-<span id="cb30-49"><a href="data-prep.html#cb30-49" tabindex="-1"></a>            median_val <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">median</span>(<span class="fu">na.omit</span>(lagged_x))) </span>
-<span id="cb30-50"><a href="data-prep.html#cb30-50" tabindex="-1"></a>            lagged_x <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(lagged_x), median_val, lagged_x)</span>
-<span id="cb30-51"><a href="data-prep.html#cb30-51" tabindex="-1"></a>            <span class="fu">return</span>(lagged_x)</span>
-<span id="cb30-52"><a href="data-prep.html#cb30-52" tabindex="-1"></a>          }, <span class="at">.names =</span> <span class="st">&quot;{.col}_lag1&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-53"><a href="data-prep.html#cb30-53" tabindex="-1"></a>        <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb30-54"><a href="data-prep.html#cb30-54" tabindex="-1"></a>        <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">paste0</span>(outcome, <span class="st">&quot;_lag1&quot;</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-55"><a href="data-prep.html#cb30-55" tabindex="-1"></a>        <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb30-56"><a href="data-prep.html#cb30-56" tabindex="-1"></a>        <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_phq_lag1.pickle&#39;</span>)))</span>
-<span id="cb30-57"><a href="data-prep.html#cb30-57" tabindex="-1"></a>      <span class="co"># Now we make the predictor matrices</span></span>
-<span id="cb30-58"><a href="data-prep.html#cb30-58" tabindex="-1"></a>      <span class="cf">for</span> (data <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;ema&quot;</span>, <span class="st">&quot;epa&quot;</span>, <span class="st">&quot;all&quot;</span>)){</span>
-<span id="cb30-59"><a href="data-prep.html#cb30-59" tabindex="-1"></a>        var_list <span class="ot">&lt;-</span> var_lists[[data]]</span>
-<span id="cb30-60"><a href="data-prep.html#cb30-60" tabindex="-1"></a>        <span class="fu">feature_mat</span>(tmp_data, <span class="at">vars =</span> var_list) <span class="sc">%&gt;%</span></span>
-<span id="cb30-61"><a href="data-prep.html#cb30-61" tabindex="-1"></a>          reticulate<span class="sc">::</span><span class="fu">r_to_py</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb30-62"><a href="data-prep.html#cb30-62" tabindex="-1"></a>          <span class="fu">py_save_object</span>( <span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_&#39;</span>, data, <span class="st">&#39;.pickle&#39;</span>)))</span>
-<span id="cb30-63"><a href="data-prep.html#cb30-63" tabindex="-1"></a>      }</span>
-<span id="cb30-64"><a href="data-prep.html#cb30-64" tabindex="-1"></a>    }</span>
-<span id="cb30-65"><a href="data-prep.html#cb30-65" tabindex="-1"></a>  }</span>
-<span id="cb30-66"><a href="data-prep.html#cb30-66" tabindex="-1"></a>}</span>
-<span id="cb30-67"><a href="data-prep.html#cb30-67" tabindex="-1"></a></span>
-<span id="cb30-68"><a href="data-prep.html#cb30-68" tabindex="-1"></a><span class="co"># And now we do the variable list separtely</span></span>
-<span id="cb30-69"><a href="data-prep.html#cb30-69" tabindex="-1"></a><span class="cf">for</span> (data <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;ema&quot;</span>, <span class="st">&quot;epa&quot;</span>, <span class="st">&quot;all&quot;</span>)){</span>
-<span id="cb30-70"><a href="data-prep.html#cb30-70" tabindex="-1"></a>   var_list <span class="ot">&lt;-</span> var_lists[[data]]</span>
-<span id="cb30-71"><a href="data-prep.html#cb30-71" tabindex="-1"></a>   var_list <span class="sc">%&gt;%</span> </span>
-<span id="cb30-72"><a href="data-prep.html#cb30-72" tabindex="-1"></a>     <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb30-73"><a href="data-prep.html#cb30-73" tabindex="-1"></a>     <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(<span class="st">&#39;vars_&#39;</span>, data, <span class="st">&#39;.pickle&#39;</span>)))</span>
-<span id="cb30-74"><a href="data-prep.html#cb30-74" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-prep.html#cb29-1" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb29-2"><a href="data-prep.html#cb29-2" tabindex="-1"></a><span class="co"># Make sublists</span></span>
+<span id="cb29-3"><a href="data-prep.html#cb29-3" tabindex="-1"></a>week_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb29-4"><a href="data-prep.html#cb29-4" tabindex="-1"></a>  <span class="at">train =</span> df_ml_lstm_week_train,</span>
+<span id="cb29-5"><a href="data-prep.html#cb29-5" tabindex="-1"></a>  <span class="at">val =</span> df_ml_lstm_week_test</span>
+<span id="cb29-6"><a href="data-prep.html#cb29-6" tabindex="-1"></a>  )</span>
+<span id="cb29-7"><a href="data-prep.html#cb29-7" tabindex="-1"></a>day_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb29-8"><a href="data-prep.html#cb29-8" tabindex="-1"></a>  <span class="at">train =</span> df_ml_lstm_day_train,</span>
+<span id="cb29-9"><a href="data-prep.html#cb29-9" tabindex="-1"></a>  <span class="at">val =</span> df_ml_lstm_day_test</span>
+<span id="cb29-10"><a href="data-prep.html#cb29-10" tabindex="-1"></a>  )</span>
+<span id="cb29-11"><a href="data-prep.html#cb29-11" tabindex="-1"></a>var_lists <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb29-12"><a href="data-prep.html#cb29-12" tabindex="-1"></a>  <span class="at">ema =</span> ema_vars,</span>
+<span id="cb29-13"><a href="data-prep.html#cb29-13" tabindex="-1"></a>  <span class="at">epa =</span> epa_vars,</span>
+<span id="cb29-14"><a href="data-prep.html#cb29-14" tabindex="-1"></a>  <span class="at">all =</span> <span class="fu">c</span>(ema_vars, epa_vars)</span>
+<span id="cb29-15"><a href="data-prep.html#cb29-15" tabindex="-1"></a>  )</span>
+<span id="cb29-16"><a href="data-prep.html#cb29-16" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="data-prep.html#cb29-17" tabindex="-1"></a></span>
+<span id="cb29-18"><a href="data-prep.html#cb29-18" tabindex="-1"></a>pickle_jar <span class="ot">=</span> <span class="cn">TRUE</span> <span class="co"># TO avoid rewriting the OG data everytime we knit</span></span>
+<span id="cb29-19"><a href="data-prep.html#cb29-19" tabindex="-1"></a><span class="cf">if</span> (pickle_jar){</span>
+<span id="cb29-20"><a href="data-prep.html#cb29-20" tabindex="-1"></a>  <span class="co"># Then inside the loop, you just need one line:</span></span>
+<span id="cb29-21"><a href="data-prep.html#cb29-21" tabindex="-1"></a>  <span class="cf">for</span> (timeframe <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;week&quot;</span>, <span class="st">&quot;day&quot;</span>)){</span>
+<span id="cb29-22"><a href="data-prep.html#cb29-22" tabindex="-1"></a>    <span class="co"># Specify data to use  </span></span>
+<span id="cb29-23"><a href="data-prep.html#cb29-23" tabindex="-1"></a>    <span class="cf">if</span>(timeframe <span class="sc">==</span> <span class="st">&quot;week&quot;</span>){</span>
+<span id="cb29-24"><a href="data-prep.html#cb29-24" tabindex="-1"></a>      tmp_list <span class="ot">&lt;-</span> week_list</span>
+<span id="cb29-25"><a href="data-prep.html#cb29-25" tabindex="-1"></a>      outcome <span class="ot">=</span> <span class="st">&#39;phq9_sum_w&#39;</span></span>
+<span id="cb29-26"><a href="data-prep.html#cb29-26" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(timeframe <span class="sc">==</span> <span class="st">&#39;day&#39;</span>){</span>
+<span id="cb29-27"><a href="data-prep.html#cb29-27" tabindex="-1"></a>      tmp_list <span class="ot">&lt;-</span> day_list</span>
+<span id="cb29-28"><a href="data-prep.html#cb29-28" tabindex="-1"></a>      outcome <span class="ot">=</span> <span class="st">&#39;phq2_sum_e&#39;</span></span>
+<span id="cb29-29"><a href="data-prep.html#cb29-29" tabindex="-1"></a>    }</span>
+<span id="cb29-30"><a href="data-prep.html#cb29-30" tabindex="-1"></a>    <span class="co"># Now do the train/test stuff</span></span>
+<span id="cb29-31"><a href="data-prep.html#cb29-31" tabindex="-1"></a>    <span class="cf">for</span>(train_test <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;train&quot;</span>, <span class="st">&quot;val&quot;</span>)){ </span>
+<span id="cb29-32"><a href="data-prep.html#cb29-32" tabindex="-1"></a>      tmp_data <span class="ot">&lt;-</span> tmp_list[[train_test]]</span>
+<span id="cb29-33"><a href="data-prep.html#cb29-33" tabindex="-1"></a>      <span class="do">## Save subject IDs and outcomes</span></span>
+<span id="cb29-34"><a href="data-prep.html#cb29-34" tabindex="-1"></a>      tmp_data <span class="sc">%&gt;%</span> </span>
+<span id="cb29-35"><a href="data-prep.html#cb29-35" tabindex="-1"></a>        <span class="fu">select</span>(external_id) <span class="sc">%&gt;%</span></span>
+<span id="cb29-36"><a href="data-prep.html#cb29-36" tabindex="-1"></a>        <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-37"><a href="data-prep.html#cb29-37" tabindex="-1"></a>        <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_subs.pickle&#39;</span>)))</span>
+<span id="cb29-38"><a href="data-prep.html#cb29-38" tabindex="-1"></a>      <span class="do">## Outcome</span></span>
+<span id="cb29-39"><a href="data-prep.html#cb29-39" tabindex="-1"></a>      tmp_data <span class="sc">%&gt;%</span> </span>
+<span id="cb29-40"><a href="data-prep.html#cb29-40" tabindex="-1"></a>        <span class="fu">select</span>(<span class="fu">all_of</span>(outcome)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-41"><a href="data-prep.html#cb29-41" tabindex="-1"></a>        <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-42"><a href="data-prep.html#cb29-42" tabindex="-1"></a>        <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_phq.pickle&#39;</span>)))</span>
+<span id="cb29-43"><a href="data-prep.html#cb29-43" tabindex="-1"></a>      <span class="co"># Make the lagged-phq9 predictor</span></span>
+<span id="cb29-44"><a href="data-prep.html#cb29-44" tabindex="-1"></a>      tmp_data <span class="sc">%&gt;%</span> </span>
+<span id="cb29-45"><a href="data-prep.html#cb29-45" tabindex="-1"></a>        <span class="fu">group_by</span>(external_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-46"><a href="data-prep.html#cb29-46" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(outcome), <span class="cf">function</span>(.x) {</span>
+<span id="cb29-47"><a href="data-prep.html#cb29-47" tabindex="-1"></a>            lagged_x <span class="ot">&lt;-</span> <span class="fu">lag</span>(.x)</span>
+<span id="cb29-48"><a href="data-prep.html#cb29-48" tabindex="-1"></a>            <span class="co"># Calculate median *once* to avoid re-computing</span></span>
+<span id="cb29-49"><a href="data-prep.html#cb29-49" tabindex="-1"></a>            median_val <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">median</span>(<span class="fu">na.omit</span>(lagged_x))) </span>
+<span id="cb29-50"><a href="data-prep.html#cb29-50" tabindex="-1"></a>            lagged_x <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(lagged_x), median_val, lagged_x)</span>
+<span id="cb29-51"><a href="data-prep.html#cb29-51" tabindex="-1"></a>            <span class="fu">return</span>(lagged_x)</span>
+<span id="cb29-52"><a href="data-prep.html#cb29-52" tabindex="-1"></a>          }, <span class="at">.names =</span> <span class="st">&quot;{.col}_lag1&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-53"><a href="data-prep.html#cb29-53" tabindex="-1"></a>        <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-54"><a href="data-prep.html#cb29-54" tabindex="-1"></a>        <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">paste0</span>(outcome, <span class="st">&quot;_lag1&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-55"><a href="data-prep.html#cb29-55" tabindex="-1"></a>        <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-56"><a href="data-prep.html#cb29-56" tabindex="-1"></a>        <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_phq_lag1.pickle&#39;</span>)))</span>
+<span id="cb29-57"><a href="data-prep.html#cb29-57" tabindex="-1"></a>      <span class="co"># Now we make the predictor matrices</span></span>
+<span id="cb29-58"><a href="data-prep.html#cb29-58" tabindex="-1"></a>      <span class="cf">for</span> (data <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;ema&quot;</span>, <span class="st">&quot;epa&quot;</span>, <span class="st">&quot;all&quot;</span>)){</span>
+<span id="cb29-59"><a href="data-prep.html#cb29-59" tabindex="-1"></a>        var_list <span class="ot">&lt;-</span> var_lists[[data]]</span>
+<span id="cb29-60"><a href="data-prep.html#cb29-60" tabindex="-1"></a>        <span class="fu">feature_mat</span>(tmp_data, <span class="at">vars =</span> var_list) <span class="sc">%&gt;%</span></span>
+<span id="cb29-61"><a href="data-prep.html#cb29-61" tabindex="-1"></a>          reticulate<span class="sc">::</span><span class="fu">r_to_py</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-62"><a href="data-prep.html#cb29-62" tabindex="-1"></a>          <span class="fu">py_save_object</span>( <span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(timeframe, <span class="st">&#39;_&#39;</span>, train_test, <span class="st">&#39;_&#39;</span>, data, <span class="st">&#39;.pickle&#39;</span>)))</span>
+<span id="cb29-63"><a href="data-prep.html#cb29-63" tabindex="-1"></a>      }</span>
+<span id="cb29-64"><a href="data-prep.html#cb29-64" tabindex="-1"></a>    }</span>
+<span id="cb29-65"><a href="data-prep.html#cb29-65" tabindex="-1"></a>  }</span>
+<span id="cb29-66"><a href="data-prep.html#cb29-66" tabindex="-1"></a>}</span>
+<span id="cb29-67"><a href="data-prep.html#cb29-67" tabindex="-1"></a></span>
+<span id="cb29-68"><a href="data-prep.html#cb29-68" tabindex="-1"></a><span class="co"># And now we do the variable list separtely</span></span>
+<span id="cb29-69"><a href="data-prep.html#cb29-69" tabindex="-1"></a><span class="cf">for</span> (data <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;ema&quot;</span>, <span class="st">&quot;epa&quot;</span>, <span class="st">&quot;all&quot;</span>)){</span>
+<span id="cb29-70"><a href="data-prep.html#cb29-70" tabindex="-1"></a>   var_list <span class="ot">&lt;-</span> var_lists[[data]]</span>
+<span id="cb29-71"><a href="data-prep.html#cb29-71" tabindex="-1"></a>   var_list <span class="sc">%&gt;%</span> </span>
+<span id="cb29-72"><a href="data-prep.html#cb29-72" tabindex="-1"></a>     <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-73"><a href="data-prep.html#cb29-73" tabindex="-1"></a>     <span class="fu">py_save_object</span>(<span class="fu">here</span>(<span class="st">&#39;data&#39;</span>, <span class="st">&#39;pickles&#39;</span>, <span class="fu">paste0</span>(<span class="st">&#39;vars_&#39;</span>, data, <span class="st">&#39;.pickle&#39;</span>)))</span>
+<span id="cb29-74"><a href="data-prep.html#cb29-74" tabindex="-1"></a>}</span></code></pre></div>
 
 </div>
 </div>

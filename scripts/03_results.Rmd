@@ -156,16 +156,10 @@ df_idio <- df_idio %>%
   mutate(R2 = R2(predicted, actual)) %>% 
   distinct(sub_id, .keep_all=T)
 
-ggplot(df_idio, aes(x=R2, fill=samp)) +
-  geom_bar(breaks=seq(0, 1, by=0.1)) +
-  theme_minimal() + 
-  facet_grid(model ~ source)
-
-
 df_idio_sum <- Rmisc::summarySEwithin(df_idio, measurevar = "R2", withinvars = c("model", "source", "samp"), na.rm = T)
 ggplot(df_idio_sum, aes(y=R2, x=source, fill=samp, color=samp)) + 
-  geom_bar(stat="summary", position=position_dodge2(), alpha=0.5) +
-  geom_point(stat="summary", position=position_dodge(0.9)) +
+  geom_bar(stat="summary", fun="mean", position=position_dodge2(), alpha=0.5) +
+  geom_point(stat="summary",fun = "mean", position=position_dodge(0.9)) +
   geom_errorbar(aes(ymin=R2-ci, ymax = R2+ci), position = position_dodge2()) +
   theme_minimal() +
   theme(axis.title.x = element_blank(), legend.title = element_blank()) + 
@@ -430,7 +424,7 @@ random_subs = sample(unique(df_val_phq_combi$sub_id),9)
 df_val_phq_combi <- df_val_phq_combi[df_val_phq_combi$sub_id %in% random_subs,]
 # Plot
 ggplot(df_val_phq_combi, aes(x=n, y=phq, color=score) ) + 
-  geom_line(stat = 'summary', fun = "mean_se") + 
+  geom_line(stat = 'summary', fun = "mean") + 
   geom_hline(aes(yintercept=phq_mean),  linetype='dashed') +
   facet_grid(sub_id~predictors) + 
   labs(y = "PHQ-9 sum score", x ="Time steps") +
